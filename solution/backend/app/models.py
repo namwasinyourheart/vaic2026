@@ -1,7 +1,17 @@
 from datetime import datetime, timezone
 from typing import Any
 
-from sqlalchemy import JSON, Boolean, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint
+from sqlalchemy import (
+    JSON,
+    Boolean,
+    DateTime,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+    Text,
+    UniqueConstraint,
+)
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .database import Base
@@ -387,8 +397,12 @@ class RelationReview(Base):
 class ImpactAnalysis(Base):
     __tablename__ = "workflow_impact_analyses"
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
-    source_document_id: Mapped[str] = mapped_column(ForeignKey("knowledge_documents.id"), index=True)
-    target_document_id: Mapped[str] = mapped_column(ForeignKey("knowledge_documents.id"), index=True)
+    source_document_id: Mapped[str] = mapped_column(
+        ForeignKey("knowledge_documents.id"), index=True
+    )
+    target_document_id: Mapped[str] = mapped_column(
+        ForeignKey("knowledge_documents.id"), index=True
+    )
     ai_analysis_id: Mapped[str] = mapped_column(String(255), unique=True)
     status: Mapped[str] = mapped_column(String(30), default="PENDING_REVIEW")
     effect_count: Mapped[int] = mapped_column(Integer, default=0)

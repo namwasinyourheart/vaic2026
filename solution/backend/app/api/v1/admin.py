@@ -48,7 +48,9 @@ async def users(db: AsyncSession = Depends(get_db)) -> list[UserOut]:
 async def create_user(payload: UserCreate, db: AsyncSession = Depends(get_db)) -> UserOut:
     username = payload.username.strip().lower()
     email = payload.email.strip().lower() if payload.email else None
-    if (await db.execute(select(User).where(User.username == username))).scalar_one_or_none() or (email and (await db.execute(select(User).where(User.email == email))).scalar_one_or_none()):
+    if (await db.execute(select(User).where(User.username == username))).scalar_one_or_none() or (
+        email and (await db.execute(select(User).where(User.email == email))).scalar_one_or_none()
+    ):
         raise HTTPException(409, "Username or email already exists")
     role = (await db.execute(select(Role).where(Role.code == payload.role))).scalar_one_or_none()
     if not role:
@@ -94,14 +96,20 @@ async def update_user(
 
 
 @router.post("/users/{user_id}/lock", response_model=UserOut)
-async def lock_user(user_id: str, db: AsyncSession = Depends(get_db), actor: User = Depends(current_user)) -> UserOut:
+async def lock_user(
+    user_id: str, db: AsyncSession = Depends(get_db), actor: User = Depends(current_user)
+) -> UserOut:
     if user_id == actor.id:
         raise HTTPException(400, "Cannot lock yourself")
     user = await db.get(User, user_id)
     if not user:
         raise HTTPException(404, "User not found")
     user.status = "LOCKED"
-    for session in (await db.execute(select(Session).where(Session.user_id == user.id, Session.revoked_at.is_(None)))).scalars():
+    for session in (
+        await db.execute(
+            select(Session).where(Session.user_id == user.id, Session.revoked_at.is_(None))
+        )
+    ).scalars():
         session.revoked_at = datetime.now(timezone.utc)
     await db.commit()
     return await out(user, db)
@@ -126,7 +134,9 @@ async def get_user(user_id: str, db: AsyncSession = Depends(get_db)) -> UserOut:
 
 
 @router.delete("/users/{user_id}")
-async def delete_user(user_id: str, db: AsyncSession = Depends(get_db), actor: User = Depends(current_user)) -> dict[str, str]:
+async def delete_user(
+    user_id: str, db: AsyncSession = Depends(get_db), actor: User = Depends(current_user)
+) -> dict[str, str]:
     if user_id == actor.id:
         raise HTTPException(400, "Cannot delete yourself")
     user = await db.get(User, user_id)

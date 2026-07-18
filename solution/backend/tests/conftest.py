@@ -1,4 +1,7 @@
 import asyncio
+import os
+
+os.environ.setdefault("DATABASE_URL", "sqlite+aiosqlite:///./shb_rag_test.db")
 
 import pytest
 from fastapi.testclient import TestClient

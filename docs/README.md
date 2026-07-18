@@ -17,6 +17,7 @@ Thư mục này là nguồn tài liệu kỹ thuật và nghiệp vụ dùng chu
 | [AUTH_AND_GUEST.md](AUTH_AND_GUEST.md) | Authentication, authorization, signup và Guest Chat |
 | [WORKFLOWS.md](WORKFLOWS.md) | Luồng chat, upload, ingestion, re-index và admin |
 | [DEVELOPMENT.md](DEVELOPMENT.md) | Cách chạy, test, migration và cấu hình |
+| [DEPLOY_RENDER.md](DEPLOY_RENDER.md) | Checklist và hướng dẫn deploy Render Blueprint |
 | [TRACEABILITY.md](TRACEABILITY.md) | Đối chiếu yêu cầu, implementation và cách kiểm tra |
 | [CHANGELOG.md](CHANGELOG.md) | Nhật ký quyết định/thay đổi, cập nhật liên tục |
 
@@ -30,7 +31,7 @@ Thư mục này là nguồn tài liệu kỹ thuật và nghiệp vụ dùng chu
 
 ## Trạng thái hiện tại
 
-- Backend: FastAPI + SQLAlchemy async + SQLite, Alembic, local file storage, Mock AI adapter.
+- Backend: FastAPI + SQLAlchemy async + PostgreSQL, Alembic, local file storage, Mock AI adapter. SQLite chỉ dùng cho test khi override `DATABASE_URL`.
 - Frontend: React + Vite + TypeScript, API mặc định `http://localhost:8000/api/v1` khi chạy localhost.
 - AI Service thật: chưa tích hợp; interface và ID contract đã được chuẩn bị qua adapter mock.
 - Password: bcrypt; refresh token lưu dạng hash và có rotation.

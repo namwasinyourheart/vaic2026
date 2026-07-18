@@ -1,4 +1,5 @@
 from collections.abc import AsyncGenerator
+from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
@@ -10,7 +11,11 @@ class Base(DeclarativeBase):
     pass
 
 
-engine = create_async_engine(get_settings().database_url, echo=False)
+settings = get_settings()
+engine_options: dict[str, Any] = {"echo": False, "pool_pre_ping": True}
+if settings.database_url.startswith("postgresql") and settings.database_ssl:
+    engine_options["connect_args"] = {"ssl": "require"}
+engine = create_async_engine(settings.database_url, **engine_options)
 SessionLocal = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
 
 

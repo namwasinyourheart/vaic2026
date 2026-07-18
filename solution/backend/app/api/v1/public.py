@@ -27,18 +27,31 @@ def guest_claims(authorization: str | None) -> dict:
 @router.post("/chat")
 async def guest_chat(payload: GuestChatRequest) -> dict:
     request_id = str(uuid.uuid4())
-    result = await get_ai_adapter().query(user_id=f"guest:{payload.guest_session_id}", scope="PUBLIC",
-                                          question=payload.question, conversation_id=request_id)
+    result = await get_ai_adapter().query(
+        user_id=f"guest:{payload.guest_session_id}",
+        scope="PUBLIC",
+        question=payload.question,
+        conversation_id=request_id,
+    )
     chunk_ids = [item["ai_chunk_id"] for item in result.chunks]
-    token = create_guest_access_token(request_id, result.source_group_id, result.graph_id, chunk_ids)
-    return {"guest_request_id": request_id, "answer": result.answer,
-            "ai_source_group_id": result.source_group_id, "source_refs": result.chunks,
-            "ai_graph_id": result.graph_id, "guest_access_token": token,
-            "created_at": datetime.now(timezone.utc)}
+    token = create_guest_access_token(
+        request_id, result.source_group_id, result.graph_id, chunk_ids
+    )
+    return {
+        "guest_request_id": request_id,
+        "answer": result.answer,
+        "ai_source_group_id": result.source_group_id,
+        "source_refs": result.chunks,
+        "ai_graph_id": result.graph_id,
+        "guest_access_token": token,
+        "created_at": datetime.now(timezone.utc),
+    }
 
 
 @router.get("/source-groups/{group_id}/chunks/{chunk_id}")
-async def guest_source(group_id: str, chunk_id: str, authorization: str | None = Header(default=None)) -> dict:
+async def guest_source(
+    group_id: str, chunk_id: str, authorization: str | None = Header(default=None)
+) -> dict:
     claims = guest_claims(authorization)
     if claims.get("source_group_id") != group_id or chunk_id not in claims.get("chunk_ids", []):
         raise HTTPException(403, "Source is not available for this guest request")

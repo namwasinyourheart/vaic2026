@@ -37,7 +37,9 @@ class AIServiceAdapter(Protocol):
     async def get_document_graph(self, ai_document_id: str, graph_type: str) -> dict: ...
     async def detect_relations(self, ai_document_id: str) -> list[dict]: ...
     async def detect_conflicts(self, ai_document_id: str) -> list[dict]: ...
-    async def analyze_impact(self, source_ai_document_id: str, target_ai_document_id: str) -> dict: ...
+    async def analyze_impact(
+        self, source_ai_document_id: str, target_ai_document_id: str
+    ) -> dict: ...
 
 
 class MockAIServiceAdapter:
@@ -81,28 +83,101 @@ class MockAIServiceAdapter:
         return IngestionResult(f"rag_{document_id}", f"job_{uuid.uuid4().hex}", "QUEUED")
 
     async def get_document_outline(self, ai_document_id: str) -> dict:
-        return {"ai_document_id": ai_document_id, "items": [{"id": f"clause_{ai_document_id}_1", "type": "CLAUSE", "label": "Điều 1", "children": []}]}
+        return {
+            "ai_document_id": ai_document_id,
+            "items": [
+                {
+                    "id": f"clause_{ai_document_id}_1",
+                    "type": "CLAUSE",
+                    "label": "Điều 1",
+                    "children": [],
+                }
+            ],
+        }
 
     async def list_clauses(self, ai_document_id: str) -> list[dict]:
-        return [{"ai_clause_id": f"clause_{ai_document_id}_1", "ai_document_id": ai_document_id, "path": "Điều 1 → Khoản 1", "title": "Phạm vi áp dụng", "effective_status": "EFFECTIVE", "access_scope": "INTERNAL"}]
+        return [
+            {
+                "ai_clause_id": f"clause_{ai_document_id}_1",
+                "ai_document_id": ai_document_id,
+                "path": "Điều 1 → Khoản 1",
+                "title": "Phạm vi áp dụng",
+                "effective_status": "EFFECTIVE",
+                "access_scope": "INTERNAL",
+            }
+        ]
 
     async def get_clause(self, ai_clause_id: str) -> dict:
-        return {"ai_clause_id": ai_clause_id, "path": "Điều 1 → Khoản 1", "content": "Nội dung điều khoản mock thuộc AI Service.", "effective_status": "EFFECTIVE", "access_scope": "INTERNAL"}
+        return {
+            "ai_clause_id": ai_clause_id,
+            "path": "Điều 1 → Khoản 1",
+            "content": "Nội dung điều khoản mock thuộc AI Service.",
+            "effective_status": "EFFECTIVE",
+            "access_scope": "INTERNAL",
+        }
 
     async def list_chunks(self, ai_document_id: str) -> list[dict]:
-        return [{"ai_chunk_id": f"chunk_{ai_document_id}_1", "ai_document_id": ai_document_id, "ai_clause_id": f"clause_{ai_document_id}_1", "path": "Điều 1 → Khoản 1", "content_type": "CLAUSE", "effective_status": "EFFECTIVE", "access_scope": "INTERNAL"}]
+        return [
+            {
+                "ai_chunk_id": f"chunk_{ai_document_id}_1",
+                "ai_document_id": ai_document_id,
+                "ai_clause_id": f"clause_{ai_document_id}_1",
+                "path": "Điều 1 → Khoản 1",
+                "content_type": "CLAUSE",
+                "effective_status": "EFFECTIVE",
+                "access_scope": "INTERNAL",
+            }
+        ]
 
     async def get_document_graph(self, ai_document_id: str, graph_type: str) -> dict:
-        return {"ai_graph_id": f"{graph_type}_{ai_document_id}", "graph_type": graph_type, "nodes": [{"id": ai_document_id, "type": "document", "label": "Văn bản chính"}], "edges": []}
+        return {
+            "ai_graph_id": f"{graph_type}_{ai_document_id}",
+            "graph_type": graph_type,
+            "nodes": [{"id": ai_document_id, "type": "document", "label": "Văn bản chính"}],
+            "edges": [],
+        }
 
     async def detect_relations(self, ai_document_id: str) -> list[dict]:
-        return [{"ai_relation_id": f"relation_{uuid.uuid4().hex[:12]}", "source_ai_document_id": ai_document_id, "target_ai_document_id": ai_document_id, "relation_type": "REFERENCES", "confidence": 0.91, "review_status": "PENDING_REVIEW", "source_clause_ids": [f"clause_{ai_document_id}_1"], "target_clause_ids": [f"clause_{ai_document_id}_1"]}]
+        return [
+            {
+                "ai_relation_id": f"relation_{uuid.uuid4().hex[:12]}",
+                "source_ai_document_id": ai_document_id,
+                "target_ai_document_id": ai_document_id,
+                "relation_type": "REFERENCES",
+                "confidence": 0.91,
+                "review_status": "PENDING_REVIEW",
+                "source_clause_ids": [f"clause_{ai_document_id}_1"],
+                "target_clause_ids": [f"clause_{ai_document_id}_1"],
+            }
+        ]
 
     async def detect_conflicts(self, ai_document_id: str) -> list[dict]:
-        return [{"ai_conflict_id": f"conflict_{uuid.uuid4().hex[:12]}", "left_ai_document_id": ai_document_id, "right_ai_document_id": ai_document_id, "conflict_type": "VERSION_AMBIGUITY", "severity": "MEDIUM", "review_status": "PENDING_REVIEW", "resolution_status": "UNRESOLVED", "confidence": 0.82}]
+        return [
+            {
+                "ai_conflict_id": f"conflict_{uuid.uuid4().hex[:12]}",
+                "left_ai_document_id": ai_document_id,
+                "right_ai_document_id": ai_document_id,
+                "conflict_type": "VERSION_AMBIGUITY",
+                "severity": "MEDIUM",
+                "review_status": "PENDING_REVIEW",
+                "resolution_status": "UNRESOLVED",
+                "confidence": 0.82,
+            }
+        ]
 
     async def analyze_impact(self, source_ai_document_id: str, target_ai_document_id: str) -> dict:
-        return {"ai_analysis_id": f"impact_{uuid.uuid4().hex[:12]}", "status": "PENDING_REVIEW", "effects": [{"effect_type": "AMENDS", "source_clause_id": f"clause_{source_ai_document_id}_1", "target_clause_id": f"clause_{target_ai_document_id}_1", "confidence": 0.9}]}
+        return {
+            "ai_analysis_id": f"impact_{uuid.uuid4().hex[:12]}",
+            "status": "PENDING_REVIEW",
+            "effects": [
+                {
+                    "effect_type": "AMENDS",
+                    "source_clause_id": f"clause_{source_ai_document_id}_1",
+                    "target_clause_id": f"clause_{target_ai_document_id}_1",
+                    "confidence": 0.9,
+                }
+            ],
+        }
 
 
 def get_ai_adapter() -> AIServiceAdapter:

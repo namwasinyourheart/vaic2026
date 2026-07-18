@@ -2,9 +2,11 @@ import hashlib
 import secrets
 from datetime import datetime, timedelta, timezone
 
-import jwt
 import bcrypt
+import jwt
+
 from ..config import get_settings
+
 
 def hash_password(value: str) -> str:
     if len(value.encode("utf-8")) > 72:
@@ -44,12 +46,23 @@ def decode_access_token(token: str) -> str:
     return str(payload["sub"])
 
 
-def create_guest_access_token(request_id: str, source_group_id: str, graph_id: str, chunk_ids: list[str]) -> str:
+def create_guest_access_token(
+    request_id: str, source_group_id: str, graph_id: str, chunk_ids: list[str]
+) -> str:
     settings = get_settings()
     expires = datetime.now(timezone.utc) + timedelta(minutes=30)
-    return jwt.encode({"type": "guest", "sub": request_id, "source_group_id": source_group_id,
-                       "graph_id": graph_id, "chunk_ids": chunk_ids, "exp": expires},
-                      settings.jwt_secret_key, algorithm=settings.jwt_algorithm)
+    return jwt.encode(
+        {
+            "type": "guest",
+            "sub": request_id,
+            "source_group_id": source_group_id,
+            "graph_id": graph_id,
+            "chunk_ids": chunk_ids,
+            "exp": expires,
+        },
+        settings.jwt_secret_key,
+        algorithm=settings.jwt_algorithm,
+    )
 
 
 def decode_guest_access_token(token: str) -> dict:

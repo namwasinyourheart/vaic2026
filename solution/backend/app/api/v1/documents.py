@@ -642,7 +642,9 @@ async def bulk_reindex(
 
 
 async def _ai_document_id(document_id: str, db: AsyncSession) -> str:
-    ref = (await db.execute(select(AIDocumentRef).where(AIDocumentRef.document_id == document_id))).scalar_one_or_none()
+    ref = (
+        await db.execute(select(AIDocumentRef).where(AIDocumentRef.document_id == document_id))
+    ).scalar_one_or_none()
     return ref.ai_document_id if ref else f"rag_{document_id}"
 
 
@@ -656,27 +658,56 @@ async def _readable_document(document_id: str, user: User, db: AsyncSession) -> 
 
 
 @router.get("/{document_id}/outline")
-async def document_outline(document_id: str, user: User = Depends(require_permission("document.read")), db: AsyncSession = Depends(get_db)) -> dict:
+async def document_outline(
+    document_id: str,
+    user: User = Depends(require_permission("document.read")),
+    db: AsyncSession = Depends(get_db),
+) -> dict:
     await _readable_document(document_id, user, db)
     return await get_ai_adapter().get_document_outline(await _ai_document_id(document_id, db))
 
 
 @router.get("/{document_id}/clauses")
-async def document_clauses(document_id: str, user: User = Depends(require_permission("document.read")), db: AsyncSession = Depends(get_db)) -> dict:
+async def document_clauses(
+    document_id: str,
+    user: User = Depends(require_permission("document.read")),
+    db: AsyncSession = Depends(get_db),
+) -> dict:
     await _readable_document(document_id, user, db)
     items = await get_ai_adapter().list_clauses(await _ai_document_id(document_id, db))
-    return {"items": items, "page": 1, "page_size": len(items), "total": len(items), "has_next": False}
+    return {
+        "items": items,
+        "page": 1,
+        "page_size": len(items),
+        "total": len(items),
+        "has_next": False,
+    }
 
 
 @router.get("/{document_id}/chunks")
-async def document_chunks(document_id: str, user: User = Depends(require_permission("document.read")), db: AsyncSession = Depends(get_db)) -> dict:
+async def document_chunks(
+    document_id: str,
+    user: User = Depends(require_permission("document.read")),
+    db: AsyncSession = Depends(get_db),
+) -> dict:
     await _readable_document(document_id, user, db)
     items = await get_ai_adapter().list_chunks(await _ai_document_id(document_id, db))
-    return {"items": items, "page": 1, "page_size": len(items), "total": len(items), "has_next": False}
+    return {
+        "items": items,
+        "page": 1,
+        "page_size": len(items),
+        "total": len(items),
+        "has_next": False,
+    }
 
 
 @router.get("/{document_id}/clauses/{ai_clause_id}")
-async def document_clause(document_id: str, ai_clause_id: str, user: User = Depends(require_permission("document.read")), db: AsyncSession = Depends(get_db)) -> dict:
+async def document_clause(
+    document_id: str,
+    ai_clause_id: str,
+    user: User = Depends(require_permission("document.read")),
+    db: AsyncSession = Depends(get_db),
+) -> dict:
     await _readable_document(document_id, user, db)
     clauses = await get_ai_adapter().list_clauses(await _ai_document_id(document_id, db))
     if not any(item.get("ai_clause_id") == ai_clause_id for item in clauses):
@@ -685,7 +716,12 @@ async def document_clause(document_id: str, ai_clause_id: str, user: User = Depe
 
 
 @router.get("/{document_id}/chunks/{ai_chunk_id}")
-async def document_chunk(document_id: str, ai_chunk_id: str, user: User = Depends(require_permission("document.read")), db: AsyncSession = Depends(get_db)) -> dict:
+async def document_chunk(
+    document_id: str,
+    ai_chunk_id: str,
+    user: User = Depends(require_permission("document.read")),
+    db: AsyncSession = Depends(get_db),
+) -> dict:
     await _readable_document(document_id, user, db)
     chunks = await get_ai_adapter().list_chunks(await _ai_document_id(document_id, db))
     if not any(item.get("ai_chunk_id") == ai_chunk_id for item in chunks):
@@ -694,12 +730,24 @@ async def document_chunk(document_id: str, ai_chunk_id: str, user: User = Depend
 
 
 @router.get("/{document_id}/knowledge-graph")
-async def document_knowledge_graph(document_id: str, user: User = Depends(require_permission("relation.read")), db: AsyncSession = Depends(get_db)) -> dict:
+async def document_knowledge_graph(
+    document_id: str,
+    user: User = Depends(require_permission("relation.read")),
+    db: AsyncSession = Depends(get_db),
+) -> dict:
     await _readable_document(document_id, user, db)
-    return await get_ai_adapter().get_document_graph(await _ai_document_id(document_id, db), "KNOWLEDGE")
+    return await get_ai_adapter().get_document_graph(
+        await _ai_document_id(document_id, db), "KNOWLEDGE"
+    )
 
 
 @router.get("/{document_id}/relation-graph")
-async def document_relation_graph(document_id: str, user: User = Depends(require_permission("relation.read")), db: AsyncSession = Depends(get_db)) -> dict:
+async def document_relation_graph(
+    document_id: str,
+    user: User = Depends(require_permission("relation.read")),
+    db: AsyncSession = Depends(get_db),
+) -> dict:
     await _readable_document(document_id, user, db)
-    return await get_ai_adapter().get_document_graph(await _ai_document_id(document_id, db), "RELATION")
+    return await get_ai_adapter().get_document_graph(
+        await _ai_document_id(document_id, db), "RELATION"
+    )

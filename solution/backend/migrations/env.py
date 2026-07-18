@@ -4,12 +4,26 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 
 from app import models  # noqa: F401
+from app.config import get_settings
 from app.database import Base
 
 config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 target_metadata = Base.metadata
+
+# Alembic uses a synchronous driver while the application uses async SQLAlchemy.
+settings = get_settings()
+database_url = settings.database_url.replace("postgresql+asyncpg", "postgresql+psycopg").replace(
+    "+aiosqlite", ""
+)
+if (
+    settings.database_ssl
+    and database_url.startswith("postgresql")
+    and "sslmode=" not in database_url
+):
+    database_url += ("&" if "?" in database_url else "?") + "sslmode=require"
+config.set_main_option("sqlalchemy.url", database_url.replace("%", "%%"))
 
 
 def run_migrations_offline() -> None:

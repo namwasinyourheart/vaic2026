@@ -9,8 +9,15 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from ...database import get_db
 from ...dependencies import current_user, user_role_codes
 from ...models import Session, User
-from ...schemas import (ChangePasswordRequest, CustomerRegisterRequest, LoginRequest,
-                        ProfileUpdate, RefreshRequest, TokenResponse, UserOut)
+from ...schemas import (
+    ChangePasswordRequest,
+    CustomerRegisterRequest,
+    LoginRequest,
+    ProfileUpdate,
+    RefreshRequest,
+    TokenResponse,
+    UserOut,
+)
 from ...services.security import (
     create_access_token,
     create_refresh_token,
@@ -39,7 +46,9 @@ async def login(
 ) -> TokenResponse:
     user = (
         await db.execute(
-            select(User).where(User.username == payload.username.strip().lower(), User.deleted_at.is_(None))
+            select(User).where(
+                User.username == payload.username.strip().lower(), User.deleted_at.is_(None)
+            )
         )
     ).scalar_one_or_none()
     if not user or not verify_password(payload.password, user.password_hash):
@@ -67,7 +76,9 @@ async def login(
 
 
 @router.post("/refresh", response_model=TokenResponse)
-async def refresh(payload: RefreshRequest, request: Request, db: AsyncSession = Depends(get_db)) -> TokenResponse:
+async def refresh(
+    payload: RefreshRequest, request: Request, db: AsyncSession = Depends(get_db)
+) -> TokenResponse:
     digest = hashlib.sha256(payload.refresh_token.encode()).hexdigest()
     session = (
         await db.execute(
@@ -87,9 +98,16 @@ async def refresh(payload: RefreshRequest, request: Request, db: AsyncSession = 
     session.last_used_at = datetime.now(timezone.utc)
     session.revoked_at = datetime.now(timezone.utc)
     value, new_digest, new_expires = create_refresh_token()
-    db.add(Session(id=str(uuid.uuid4()), user_id=user.id, refresh_token_hash=new_digest,
-                   expires_at=new_expires, ip_address=request.client.host if request.client else None,
-                   device_info=request.headers.get("user-agent")))
+    db.add(
+        Session(
+            id=str(uuid.uuid4()),
+            user_id=user.id,
+            refresh_token_hash=new_digest,
+            expires_at=new_expires,
+            ip_address=request.client.host if request.client else None,
+            device_info=request.headers.get("user-agent"),
+        )
+    )
     await db.commit()
     return TokenResponse(
         access_token=create_access_token(user.id),
@@ -117,8 +135,14 @@ async def logout(
 
 
 @router.post("/logout-all")
-async def logout_all(db: AsyncSession = Depends(get_db), user: User = Depends(current_user)) -> dict[str, str]:
-    sessions = (await db.execute(select(Session).where(Session.user_id == user.id, Session.revoked_at.is_(None)))).scalars()
+async def logout_all(
+    db: AsyncSession = Depends(get_db), user: User = Depends(current_user)
+) -> dict[str, str]:
+    sessions = (
+        await db.execute(
+            select(Session).where(Session.user_id == user.id, Session.revoked_at.is_(None))
+        )
+    ).scalars()
     now = datetime.now(timezone.utc)
     for session in sessions:
         session.revoked_at = now
@@ -134,11 +158,18 @@ async def sign_up(payload: CustomerRegisterRequest, db: AsyncSession = Depends(g
         raise HTTPException(status_code=409, detail="Username already exists")
     if email and (await db.execute(select(User).where(User.email == email))).scalar_one_or_none():
         raise HTTPException(status_code=409, detail="Email already exists")
-    user = User(id=str(uuid.uuid4()), username=username, email=email,
-                full_name=payload.full_name.strip(), password_hash=hash_password(payload.password), status="ACTIVE")
+    user = User(
+        id=str(uuid.uuid4()),
+        username=username,
+        email=email,
+        full_name=payload.full_name.strip(),
+        password_hash=hash_password(payload.password),
+        status="ACTIVE",
+    )
     db.add(user)
     await db.flush()
     from ...models import Role, UserRole
+
     role = (await db.execute(select(Role).where(Role.code == "customer"))).scalar_one()
     db.add(UserRole(user_id=user.id, role_id=role.id, assigned_at=datetime.now(timezone.utc)))
     await db.commit()
@@ -147,10 +178,14 @@ async def sign_up(payload: CustomerRegisterRequest, db: AsyncSession = Depends(g
 
 
 @router.patch("/me", response_model=UserOut)
-async def update_me(payload: ProfileUpdate, user: User = Depends(current_user), db: AsyncSession = Depends(get_db)) -> UserOut:
+async def update_me(
+    payload: ProfileUpdate, user: User = Depends(current_user), db: AsyncSession = Depends(get_db)
+) -> UserOut:
     if payload.email:
         email = payload.email.strip().lower()
-        existing = (await db.execute(select(User).where(User.email == email, User.id != user.id))).scalar_one_or_none()
+        existing = (
+            await db.execute(select(User).where(User.email == email, User.id != user.id))
+        ).scalar_one_or_none()
         if existing:
             raise HTTPException(status_code=409, detail="Email already exists")
         user.email = email
@@ -159,18 +194,28 @@ async def update_me(payload: ProfileUpdate, user: User = Depends(current_user), 
     if payload.full_name is not None:
         user.full_name = payload.full_name.strip()
     user.updated_at = datetime.now(timezone.utc)
-    await db.commit(); await db.refresh(user)
+    await db.commit()
+    await db.refresh(user)
     return await user_out(user, db)
 
 
 @router.put("/me/password")
-async def change_password(payload: ChangePasswordRequest, user: User = Depends(current_user), db: AsyncSession = Depends(get_db)) -> dict[str, str]:
+async def change_password(
+    payload: ChangePasswordRequest,
+    user: User = Depends(current_user),
+    db: AsyncSession = Depends(get_db),
+) -> dict[str, str]:
     if not verify_password(payload.current_password, user.password_hash):
         raise HTTPException(status_code=400, detail="Current password is incorrect")
     user.password_hash = hash_password(payload.new_password)
-    sessions = (await db.execute(select(Session).where(Session.user_id == user.id, Session.revoked_at.is_(None)))).scalars()
+    sessions = (
+        await db.execute(
+            select(Session).where(Session.user_id == user.id, Session.revoked_at.is_(None))
+        )
+    ).scalars()
     now = datetime.now(timezone.utc)
-    for session in sessions: session.revoked_at = now
+    for session in sessions:
+        session.revoked_at = now
     await db.commit()
     return {"message": "Password updated"}
 

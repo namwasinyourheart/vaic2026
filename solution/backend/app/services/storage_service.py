@@ -1,5 +1,7 @@
+import asyncio
 import hashlib
 from dataclasses import dataclass
+from io import BytesIO
 from pathlib import Path
 from typing import BinaryIO, Protocol
 
@@ -59,27 +61,58 @@ class LocalStorageAdapter:
 
 
 class R2StorageAdapter:
-    """Cloudflare R2 adapter boundary.
-
-    The POC intentionally does not install an S3 client. Enabling ``r2`` fails
-    fast instead of silently writing files locally. Add boto3/aioboto3 here when
-    production credentials and bucket policies are available.
-    """
+    """Cloudflare R2 adapter using the S3-compatible boto3 API."""
 
     def __init__(self) -> None:
-        raise RuntimeError("R2 storage is not enabled in the POC. Configure an S3 client first.")
+        settings = get_settings()
+        missing = [
+            name
+            for name, value in {
+                "R2_ACCESS_KEY_ID": settings.r2_access_key_id,
+                "R2_SECRET_ACCESS_KEY": settings.r2_secret_access_key,
+                "R2_BUCKET": settings.r2_bucket,
+                "R2_ENDPOINT": settings.r2_endpoint,
+            }.items()
+            if not value
+        ]
+        if missing:
+            raise RuntimeError(f"R2 storage is missing configuration: {', '.join(missing)}")
+        import boto3
+
+        self.bucket = settings.r2_bucket
+        self.client = boto3.client(
+            "s3",
+            endpoint_url=settings.r2_endpoint,
+            aws_access_key_id=settings.r2_access_key_id,
+            aws_secret_access_key=settings.r2_secret_access_key,
+            region_name="auto",
+        )
 
     async def upload(self, file: BinaryIO, key: str, content_type: str) -> StoredFile:
-        raise NotImplementedError
+        content = file.read()
+        digest = hashlib.sha256(content).hexdigest()
+        await asyncio.to_thread(
+            self.client.put_object,
+            Bucket=self.bucket,
+            Key=key,
+            Body=content,
+            ContentType=content_type,
+        )
+        return StoredFile(key, len(content), digest, provider="r2", bucket=self.bucket)
 
     async def download(self, key: str) -> BinaryIO:
-        raise NotImplementedError
+        result = await asyncio.to_thread(self.client.get_object, Bucket=self.bucket, Key=key)
+        return BytesIO(result["Body"].read())
 
     async def delete(self, key: str) -> None:
-        raise NotImplementedError
+        await asyncio.to_thread(self.client.delete_object, Bucket=self.bucket, Key=key)
 
     async def exists(self, key: str) -> bool:
-        raise NotImplementedError
+        try:
+            await asyncio.to_thread(self.client.head_object, Bucket=self.bucket, Key=key)
+            return True
+        except Exception:
+            return False
 
 
 def get_storage() -> StorageService:

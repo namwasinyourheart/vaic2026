@@ -1,5 +1,7 @@
 # SHB Advanced RAG Backend
 
+PostgreSQL is the deployment database. SQLite is only a test/POC fallback by setting `DATABASE_URL` explicitly. Use `.env.product` as the production configuration template and fill all placeholders before starting the service.
+
 Backend POC cho hệ thống Advanced RAG Knowledge Base, xây bằng FastAPI, SQLAlchemy 2 và SQLite. Backend quản lý xác thực, phân quyền, metadata tài liệu, file gốc, hội thoại, workflow và audit. Nội dung đã parse, clause/chunk, embedding, index, graph và source content thuộc AI/RAG Service; SQLite chỉ lưu ID tham chiếu.
 
 ## Chạy local

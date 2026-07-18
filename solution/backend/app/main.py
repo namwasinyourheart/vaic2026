@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from .api.v1 import admin, auth, conversations, documents, knowledge, sources, public
+from .api.v1 import admin, auth, conversations, documents, knowledge, public, sources
 from .config import get_settings
 from .database import SessionLocal, init_db
 from .models import AuditLog
@@ -29,7 +29,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,
-    allow_credentials=True,
+    allow_credentials="*" not in settings.cors_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -85,7 +85,7 @@ async def request_audit(request: Request, call_next):
 async def health() -> dict[str, str]:
     return {
         "status": "ok",
-        "database": "sqlite",
+        "database": "postgresql" if settings.database_url.startswith("postgresql") else "sqlite",
         "storage": settings.storage_backend,
         "ai_provider": settings.ai_provider,
     }
