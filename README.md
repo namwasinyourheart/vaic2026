@@ -1,4 +1,4 @@
-# Lumina – AI-Powered Regulatory Intelligence for Banking
+# Lumina – AI Assistant for Enterprise Knowledge
 
 ## Executive Summary
 
