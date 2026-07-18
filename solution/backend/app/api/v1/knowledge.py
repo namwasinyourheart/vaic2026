@@ -23,8 +23,8 @@ from ...services.ai_adapter import get_ai_adapter
 from .documents import router as document_router
 
 # Compatibility router: the same document operations are mounted under
-# /api/v1/knowledge/documents for Knowledge Manager clients.
-router = APIRouter(prefix="/knowledge", tags=["Knowledge Manager"])
+# /api/v1/knowledge/documents for Compliance Officer clients.
+router = APIRouter(prefix="/knowledge", tags=["Compliance Officer"])
 router.include_router(document_router)
 
 

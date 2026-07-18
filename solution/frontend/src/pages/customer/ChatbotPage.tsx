@@ -29,7 +29,7 @@ import type {
 } from "../../domain"
 import { chatService } from "../../services/api"
 import { ApiDataState, Badge, Btn, EmptyState, Modal } from "../../components/shared"
-import { DemoStateBoundary } from "../SystemPages"
+import { DataStateBoundary } from "../SystemPages"
 
 const graphNodes: GraphNode[] = [
   {
@@ -70,7 +70,7 @@ const graphNodes: GraphNode[] = [
 function SafeAnswer({ text }: { text: string }) {
   return (
     <>
-      {text.split("\n").map((line, index) => (
+      {text.split("\r\n").map((line, index) => (
         <p key={`${line}-${index}`} className="mb-2 last:mb-0">
           {line}
         </p>
@@ -495,7 +495,7 @@ function MessageView({
 
 export default function ChatbotPage() {
   const { user } = useAuth()
-  const role = user?.role === "bank_employee" ? "bank_employee" : "customer"
+  const role = user?.role === "ROLE_STAFF" ? "ROLE_STAFF" : "ROLE_CUSTOMER"
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [currentId, setCurrentId] = useState("")
   const [input, setInput] = useState("")
@@ -553,7 +553,7 @@ export default function ChatbotPage() {
   }
   const sourceCount =
     current?.sources.reduce((sum, group) => sum + group.chunks.length, 0) || 0
-  if (loadError || (loading && conversations.length === 0)) return <AppLayout pageTitle={role === "customer" ? "Chat với AI" : "Chat nội bộ với AI"}><ApiDataState loading={loading} error={loadError} onRetry={() => void load()}><div /></ApiDataState></AppLayout>
+  if (loadError || (loading && conversations.length === 0)) return <AppLayout pageTitle={role === "ROLE_CUSTOMER" ? "Chat với AI" : "Chat nội bộ với AI"}><ApiDataState loading={loading} error={loadError} onRetry={() => void load()}><div /></ApiDataState></AppLayout>
   const headerAction = (
     <Btn
       variant={sourcesOpen ? "primary" : "outline"}
@@ -565,9 +565,9 @@ export default function ChatbotPage() {
     </Btn>
   )
   return (
-    <DemoStateBoundary title="Chat với AI">
+    <DataStateBoundary title="Chat với AI">
       <AppLayout
-        pageTitle={role === "customer" ? "Chat với AI" : "Chat nội bộ với AI"}
+        pageTitle={role === "ROLE_CUSTOMER" ? "Chat với AI" : "Chat nội bộ với AI"}
         headerActions={headerAction}
       >
         <div className="h-[calc(100vh-7.5rem)] bg-white border rounded-lg flex overflow-hidden">
@@ -642,7 +642,7 @@ export default function ChatbotPage() {
                   <h2 className="font-semibold text-sm">{current.title}</h2>
                   <div className="text-[10px] text-gray-400">
                     {current.messages.length} tin nhắn ·{" "}
-                    {role === "customer"
+                    {role === "ROLE_CUSTOMER"
                       ? "Dữ liệu công khai"
                       : "Dữ liệu nội bộ theo quyền"}
                   </div>
@@ -724,6 +724,6 @@ export default function ChatbotPage() {
         )}
         <GraphModal open={graphOpen} onClose={() => setGraphOpen(false)} />
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }

@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
 import type { Permission, Role, User } from '../domain'
-import { ROLE_HOME, ROLE_PERMISSIONS } from '../domain'
+import { normalizeRole, ROLE_HOME, ROLE_PERMISSIONS } from '../domain'
 import { authService } from '../services/api'
 
 const LOCAL_KEY = 'shb-rag-auth'; const SESSION_KEY = 'shb-rag-session'
@@ -9,7 +9,21 @@ interface AuthValue { user: SessionUser | null; login: (username: string, passwo
 const AuthContext = createContext<AuthValue | null>(null)
 
 function readSession(): SessionUser | null {
-  try { return JSON.parse(localStorage.getItem(LOCAL_KEY) || sessionStorage.getItem(SESSION_KEY) || 'null') as SessionUser | null } catch { return null }
+  try {
+    const value = JSON.parse(localStorage.getItem(LOCAL_KEY) || sessionStorage.getItem(SESSION_KEY) || 'null') as SessionUser | null
+    if (!value) return null
+    const role = normalizeRole(value.role)
+    if (!role) {
+      localStorage.removeItem(LOCAL_KEY)
+      sessionStorage.removeItem(SESSION_KEY)
+      return null
+    }
+    return { ...value, role }
+  } catch {
+    localStorage.removeItem(LOCAL_KEY)
+    sessionStorage.removeItem(SESSION_KEY)
+    return null
+  }
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -35,4 +49,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 }
 
 export function useAuth() { const value = useContext(AuthContext); if (!value) throw new Error('useAuth must be used inside AuthProvider'); return value }
-export function isRole(value: string): value is Role { return ['customer', 'bank_employee', 'knowledge_manager', 'system_admin'].includes(value) }
+export function isRole(value: string): value is Role { return ['ROLE_CUSTOMER', 'ROLE_STAFF', 'ROLE_COMPLIANCE', 'ROLE_ADMIN'].includes(value) }

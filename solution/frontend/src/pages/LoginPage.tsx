@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Eye, EyeOff, LockKeyhole, UserRound } from 'lucide-react'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
 import { ROLE_HOME } from '../domain'
 
@@ -52,6 +52,9 @@ export default function LoginPage() {
         {error && <div role="alert" className="text-xs text-red-700 bg-red-50 border border-red-200 rounded p-3">{error}</div>}
         <button disabled={loading} className="w-full bg-[#C8102E] text-white rounded-md py-2.5 text-sm font-semibold disabled:opacity-60">{loading ? 'Đang đăng nhập...' : 'Đăng nhập'}</button>
       </form>
+      <div className="mt-5 border-t border-gray-100 pt-5 text-center text-sm text-gray-500">
+        Chưa có tài khoản? <Link to="/register" className="font-semibold text-[#C8102E] hover:underline">Đăng ký tài khoản</Link>
+      </div>
     </div></section>
   </div>
 }

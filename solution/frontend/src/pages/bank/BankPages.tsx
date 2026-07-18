@@ -22,7 +22,7 @@ import {
   Select,
   Tabs,
 } from "../../components/shared"
-import { DemoStateBoundary } from "../SystemPages"
+import { DataStateBoundary } from "../SystemPages"
 
 const statusLabel: Record<string, string> = {
   EFFECTIVE: "Đang có hiệu lực",
@@ -64,7 +64,7 @@ export function DocumentSearchPage() {
       (!status || doc.effectiveStatus === status),
   )
   return (
-    <DemoStateBoundary title="Tra cứu văn bản">
+    <DataStateBoundary title="Tra cứu văn bản">
       <AppLayout pageTitle="Tra cứu văn bản">
         <PageHeader
           title="Tra cứu văn bản"
@@ -175,7 +175,7 @@ export function DocumentSearchPage() {
             ))}</div>
         </ApiDataState>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -194,7 +194,7 @@ export function ClauseSearchPage() {
     )
   if (loading || error) return <DocumentsUnavailable title="Tìm theo điều khoản" loading={loading} error={error} reload={reload} />
   return (
-    <DemoStateBoundary title="Tìm theo điều khoản">
+    <DataStateBoundary title="Tìm theo điều khoản">
       <AppLayout pageTitle="Tìm theo điều khoản">
         <PageHeader
           title="Tìm theo điều khoản"
@@ -269,7 +269,7 @@ export function ClauseSearchPage() {
           ))}
         </div>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -285,7 +285,7 @@ export function DocumentDetailPageNew() {
   if (loading || error) return <AppLayout pageTitle="Chi tiết văn bản"><ApiDataState loading={loading} error={error} onRetry={() => void load()}><div /></ApiDataState></AppLayout>
   if (!doc) return <AppLayout pageTitle="Chi tiết văn bản"><ApiDataState loading={false} empty><div /></ApiDataState></AppLayout>
   return (
-    <DemoStateBoundary title="Chi tiết văn bản">
+    <DataStateBoundary title="Chi tiết văn bản">
       <AppLayout
         pageTitle="Chi tiết văn bản"
         breadcrumbs={["Tra cứu văn bản", doc.code]}
@@ -445,7 +445,7 @@ export function DocumentDetailPageNew() {
           {tab === "related" && <RelationList documents={[doc]} />}
         </Card>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -525,7 +525,7 @@ export function ComparePage() {
     ? [doc.versions[0], doc.versions[1]]
     : [doc.versions[1], doc.versions[0]]
   return (
-    <DemoStateBoundary title="So sánh phiên bản">
+    <DataStateBoundary title="So sánh phiên bản">
       <AppLayout pageTitle="So sánh phiên bản">
         <PageHeader
           title="So sánh phiên bản"
@@ -574,14 +574,14 @@ export function ComparePage() {
           ))}
         </div>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 export function TimelinePage() {
   const { documents, loading, error, reload } = useDocuments()
   if (loading || error) return <DocumentsUnavailable title="Timeline sửa đổi" loading={loading} error={error} reload={reload} />
   return (
-    <DemoStateBoundary title="Timeline sửa đổi">
+    <DataStateBoundary title="Timeline sửa đổi">
       <AppLayout pageTitle="Timeline sửa đổi">
         <PageHeader
           title="Timeline sửa đổi"
@@ -591,7 +591,7 @@ export function TimelinePage() {
           <TimelineList documents={documents.slice(0, 4)} />
         </Card>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 export function RelatedPage() {
@@ -599,7 +599,7 @@ export function RelatedPage() {
   if (loading || error) return <DocumentsUnavailable title="Văn bản liên quan" loading={loading} error={error} reload={reload} />
   const [view, setView] = useState<"list" | "graph">("list")
   return (
-    <DemoStateBoundary title="Văn bản liên quan">
+    <DataStateBoundary title="Văn bản liên quan">
       <AppLayout pageTitle="Văn bản liên quan">
         <PageHeader
           title="Văn bản liên quan"
@@ -652,6 +652,6 @@ export function RelatedPage() {
           )}
         </Card>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }

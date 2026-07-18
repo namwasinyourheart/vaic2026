@@ -154,7 +154,7 @@ async def list_documents(
     db: AsyncSession = Depends(get_db), user: User = Depends(current_user)
 ) -> list[DocumentOut]:
     query = select(Document).where(Document.deleted_at.is_(None))
-    if "customer" in await user_role_codes(user, db):
+    if "ROLE_CUSTOMER" in await user_role_codes(user, db):
         query = query.where(Document.access_scope == "PUBLIC")
     result = await db.execute(query.order_by(Document.updated_at.desc()))
     return [to_out(item) for item in result.scalars().all()]
@@ -169,7 +169,7 @@ async def get_document(
     document = await db.get(Document, document_id)
     if not document or document.deleted_at:
         raise HTTPException(404, "Document not found")
-    if document.access_scope != "PUBLIC" and "customer" in await user_role_codes(user, db):
+    if document.access_scope != "PUBLIC" and "ROLE_CUSTOMER" in await user_role_codes(user, db):
         raise HTTPException(403, "Document access denied")
     return to_out(document)
 
@@ -184,7 +184,7 @@ async def download_document(
     if (
         document
         and document.access_scope != "PUBLIC"
-        and "customer" in await user_role_codes(user, db)
+        and "ROLE_CUSTOMER" in await user_role_codes(user, db)
     ):
         raise HTTPException(403, "Document access denied")
     file = (
@@ -652,7 +652,7 @@ async def _readable_document(document_id: str, user: User, db: AsyncSession) -> 
     document = await db.get(Document, document_id)
     if not document or document.deleted_at:
         raise HTTPException(404, "Document not found")
-    if document.access_scope != "PUBLIC" and "customer" in await user_role_codes(user, db):
+    if document.access_scope != "PUBLIC" and "ROLE_CUSTOMER" in await user_role_codes(user, db):
         raise HTTPException(403, "Document access denied")
     return document
 

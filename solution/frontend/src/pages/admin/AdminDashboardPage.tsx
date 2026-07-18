@@ -2,15 +2,15 @@ import AppLayout from '../../layouts/AppLayout'
 import { StatCard, Card, Avatar } from '../../components/shared'
 
 const RECENT_USERS = [
-  { name: 'Nguyễn Thị Thu', role: 'Bank Employee', dept: 'Ban Tín dụng', date: '17/01/2024' },
+  { name: 'Nguyễn Thị Thu', role: 'Nhân viên Nghiệp vụ', dept: 'Ban Tín dụng', date: '17/01/2024' },
   { name: 'Trần Văn Phúc', role: 'Customer', dept: '—', date: '16/01/2024' },
-  { name: 'Lê Minh Đức', role: 'Bank Employee', dept: 'Ban Nguồn vốn', date: '15/01/2024' },
+  { name: 'Lê Minh Đức', role: 'Nhân viên Nghiệp vụ', dept: 'Ban Nguồn vốn', date: '15/01/2024' },
 ]
 
 const RECENT_ADMIN_ACTIONS = [
   { actor: 'Admin Hệ thống', action: 'Tạo tài khoản mới', target: 'Nguyễn Thị Thu', time: '17/01 09:45' },
   { actor: 'Admin Hệ thống', action: 'Khóa tài khoản', target: 'Bùi Thanh Tú', time: '16/01 14:22' },
-  { actor: 'Admin Hệ thống', action: 'Gán role Bank Employee', target: 'Trần Văn Phúc', time: '16/01 10:10' },
+  { actor: 'Admin Hệ thống', action: 'Gán role Nhân viên Nghiệp vụ', target: 'Trần Văn Phúc', time: '16/01 10:10' },
   { actor: 'Admin Hệ thống', action: 'Cập nhật quyền truy cập', target: 'Role: Nhân viên', time: '15/01 16:05' },
 ]
 
@@ -31,7 +31,7 @@ export default function AdminDashboardPage() {
       </div>
 
       <div className="grid grid-cols-3 gap-4 mb-4">
-        <StatCard label="Bank Employee" value="124" color="gray" />
+        <StatCard label="Nhân viên Nghiệp vụ" value="124" color="gray" />
         <StatCard label="Customer" value="215" color="gray" />
         <StatCard label="Thao tác hệ thống / ngày" value="1,247" sub="↑ 12% vs tuần trước" color="purple" />
       </div>

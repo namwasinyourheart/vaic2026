@@ -26,7 +26,7 @@ import {
   Select,
   StatCard,
 } from "../../components/shared"
-import { DemoStateBoundary } from "../SystemPages"
+import { DataStateBoundary } from "../SystemPages"
 import { createId } from "../../utils/id"
 
 function useKnowledgeDocs() {
@@ -59,7 +59,7 @@ export function KnowledgeDashboard() {
   if (loading || error) return <KnowledgeUnavailable title="Tổng quan kho tri thức" loading={loading} error={error} reload={reload} />
   const recent = documents.slice(0, 5)
   return (
-    <DemoStateBoundary title="Tổng quan kho tri thức">
+    <DataStateBoundary title="Tổng quan kho tri thức">
       <AppLayout pageTitle="Tổng quan kho tri thức">
         <PageHeader
           title="Kho tri thức"
@@ -158,7 +158,7 @@ export function KnowledgeDashboard() {
           </Card>
         </div>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -180,7 +180,7 @@ export function KnowledgeDocuments() {
   )
   const rows = filtered.slice((page - 1) * pageSize, page * pageSize)
   return (
-    <DemoStateBoundary title="Danh sách tài liệu">
+    <DataStateBoundary title="Danh sách tài liệu">
       <AppLayout pageTitle="Danh sách tài liệu">
         <PageHeader
           title="Danh sách tài liệu"
@@ -360,7 +360,7 @@ export function KnowledgeDocuments() {
           </div>
         </Card>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -416,7 +416,7 @@ export function UploadDocumentPage() {
     }
   }
   return (
-    <DemoStateBoundary title="Upload tài liệu">
+    <DataStateBoundary title="Upload tài liệu">
       <AppLayout pageTitle="Upload tài liệu">
         <div className="max-w-4xl mx-auto">
           <PageHeader
@@ -628,7 +628,7 @@ export function UploadDocumentPage() {
           )}
         </div>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -685,7 +685,7 @@ export function MetadataPage() {
     setTimeout(() => setSaved(false), 1600)
   }
   return (
-    <DemoStateBoundary title="Khai báo Metadata">
+    <DataStateBoundary title="Khai báo Metadata">
       <AppLayout pageTitle="Khai báo Metadata">
         <PageHeader
           title="Metadata tài liệu"
@@ -736,7 +736,7 @@ export function MetadataPage() {
                 AI trích xuất: giá trị hệ thống nhận diện từ file.
               </div>
               <div className="p-2 bg-amber-50 text-amber-700 rounded">
-                Đã chỉnh sửa: giá trị Knowledge Manager thay đổi.
+                Đã chỉnh sửa: giá trị Chuyên gia Pháp chế thay đổi.
               </div>
               <div className="p-2 bg-blue-50 text-blue-700 rounded">
                 Đang sử dụng: giá trị hiện hành trong hệ thống.
@@ -745,7 +745,7 @@ export function MetadataPage() {
           </Card>
         </div>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -769,7 +769,7 @@ export function EffectivenessPage() {
   }
   if (loading || error) return <KnowledgeUnavailable title="Hiệu lực văn bản" loading={loading} error={error} reload={reload} />
   return (
-    <DemoStateBoundary title="Hiệu lực văn bản">
+    <DataStateBoundary title="Hiệu lực văn bản">
       <AppLayout pageTitle="Hiệu lực văn bản">
         <PageHeader
           title="Quản lý hiệu lực văn bản"
@@ -852,7 +852,7 @@ export function EffectivenessPage() {
           </div>
         </Modal>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -883,7 +883,7 @@ export function KnowledgeRelationsPage() {
   }
   if (loading || error) return <KnowledgeUnavailable title="Liên kết văn bản" loading={loading} error={error} reload={reload} />
   return (
-    <DemoStateBoundary title="Liên kết văn bản">
+    <DataStateBoundary title="Liên kết văn bản">
       <AppLayout pageTitle="Liên kết văn bản">
         <PageHeader
           title="Liên kết văn bản"
@@ -968,7 +968,7 @@ export function KnowledgeRelationsPage() {
           </Card>
         </div>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -990,7 +990,7 @@ export function ReindexPage() {
   }
   if (loading || error) return <KnowledgeUnavailable title="Re-index tài liệu" loading={loading} error={error} reload={reload} />
   return (
-    <DemoStateBoundary title="Re-index tài liệu">
+    <DataStateBoundary title="Re-index tài liệu">
       <AppLayout pageTitle="Re-index tài liệu">
         <PageHeader
           title="Re-index tài liệu"
@@ -1100,13 +1100,13 @@ export function ReindexPage() {
           </div>
         </Modal>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
 export function KnowledgeHistoryPage() {
   return (
-    <DemoStateBoundary title="Lịch sử thao tác">
+    <DataStateBoundary title="Lịch sử thao tác">
       <AppLayout pageTitle="Lịch sử thao tác">
         <PageHeader
           title="Lịch sử thao tác"
@@ -1151,6 +1151,6 @@ export function KnowledgeHistoryPage() {
           </table>
         </Card>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
