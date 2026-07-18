@@ -1,243 +1,165 @@
 # Lumina Backend
 
-FastAPI backend cho sản phẩm **Lumina – AI Assistant for Enterprise Knowledge** – nền tảng tra cứu tri thức doanh nghiệp bằng AI.
+Backend service for **Lumina – AI Assistant for Enterprise Knowledge**. Lumina provides secure enterprise knowledge retrieval for customers, staff, compliance officers, and system administrators.
 
-Ngân hàng quản lý hàng nghìn văn bản nội bộ, thông tư, quy định và hợp đồng với vòng đời phức tạp: mỗi điều khoản có thể được sửa đổi nhiều lần, bị thay thế một phần, hoặc mâu thuẫn với quy định mới hơn. RAG thông thường không phân biệt được câu trả lời đúng với câu trả lời đến từ quy định đã hết hiệu lực. Backend này được thiết kế để giải quyết chính xác bài toán đó.
+The backend is an independent FastAPI application. It owns identity, authorization, conversations, document metadata, original files, workflow state, and audit records. Parsed document text, clauses, chunks, embeddings, vector indexes, graph nodes, graph edges, and source content remain in the AI/RAG service.
 
-Backend chịu trách nhiệm: xác thực, phân quyền, quản lý người dùng, metadata tài liệu, lưu trữ file gốc, lịch sử hội thoại, trạng thái workflow, tham chiếu AI và nhật ký kiểm toán. Toàn bộ nội dung văn bản đã phân tích, chunk text, embedding và graph node thuộc về AI/RAG Service độc lập và không được lưu vào database của Backend.
+## Responsibilities and boundaries
 
-## Tại sao kiến trúc được tách thành hai service?
+### Backend owns
 
-Việc tách Backend và AI/RAG Service qua **Internal API** (`/internal/v1`) có chủ đích:
+- Authentication, JWT access tokens, refresh-token rotation, logout, and customer registration.
+- One-role-per-user RBAC for `ROLE_CUSTOMER`, `ROLE_STAFF`, `ROLE_COMPLIANCE`, and `ROLE_ADMIN`.
+- Conversation and message metadata, including assistant answers returned by the AI service.
+- Document metadata, versions, lifecycle/effective status, and original uploaded files.
+- Local or Cloudflare R2 file storage through the `StorageService` abstraction.
+- Processing, re-index, metadata-review, and audit workflows.
+- Authorization checks before every protected document, source, chunk, and graph request.
 
-- Backend đảm bảo mọi câu hỏi đều đi qua lớp xác thực và kiểm tra quyền trước khi chạm vào dữ liệu AI.
-- AI/RAG Service có thể được nâng cấp, thay thế mô hình hoặc mở rộng độc lập mà không ảnh hưởng đến lớp nghiệp vụ.
-- Mock AI adapter cho phép toàn bộ luồng nghiệp vụ (upload → xử lý → chat → sources → graph) hoạt động và kiểm thử được ngay cả khi AI thực chưa sẵn sàng.
+### AI/RAG service owns
 
-## Grounding và độ tin cậy của câu trả lời
+- OCR, parsing, normalized document content, clauses and chunks.
+- Embeddings, vector search, BM25 search, graph traversal, and retrieval ranking.
+- Source/chunk text and retrieval graph content.
+- Cross-reference, amendment, partial supersession, and conflict analysis.
 
-Mỗi câu trả lời AI được Backend liên kết với tập hợp **Source Groups** – các chunk văn bản thực tế được sử dụng, kèm theo:
+The backend stores only AI identifiers and synchronization state (`ai_document_id`, `ai_chunk_id`, `ai_graph_id`, and job IDs). It never stores source text or embeddings in PostgreSQL.
 
-- Tên văn bản, số hiệu, điều khoản cụ thể.
-- Trạng thái hiệu lực tại thời điểm truy vấn (`EFFECTIVE`, `SUPERSEDED`, `EXPIRED`).
-- Cảnh báo nếu chunk đến từ phần điều khoản có mâu thuẫn đã được phát hiện.
+## Technology
 
-Nguồn không được nhúng trực tiếp vào câu trả lời mà nằm trong panel Sources riêng, theo từng câu hỏi, để người dùng có thể kiểm chứng độc lập.
-
-## Bảo mật và kiểm soát truy cập
-
-- Mật khẩu được hash bằng bcrypt; refresh token chỉ lưu SHA-256 hash.
-- Refresh token được rotate mỗi lần dùng; phiên cũ bị thu hồi tức thì.
-- Mỗi người dùng có đúng một vai trò; permission được kiểm tra tại Backend bất kể Frontend.
-- Mọi thao tác nhạy cảm được ghi vào bảng `audit_logs` với đầy đủ actor, action, resource và timestamp.
-- Khách vãng lai (Guest) được cấp token tạm thời giới hạn phạm vi `PUBLIC` và không được ghi lịch sử.
-
-## Sẵn sàng pilot
-
-Hệ thống có thể demo toàn bộ luồng nghiệp vụ với bốn vai trò (Customer, Bank Employee, Knowledge Manager, System Admin) ngay sau khi chạy `python -m app.seed`. Mọi thành phần production – Supabase PostgreSQL, Cloudflare R2, Render Web Service – đã được cấu hình và kiểm tra. Khi AI Service thực tế sẵn sàng, chỉ cần đổi `AI_PROVIDER=real` và trỏ `AI_SERVICE_URL`.
-
-## Technology stack
-
-- Python 3.11
+- Python 3.11+
 - FastAPI and Uvicorn
-- SQLAlchemy 2.x with async sessions
-- PostgreSQL in production through `asyncpg`
-- SQLite only for automated tests
-- Alembic migrations through `psycopg`
-- JWT access tokens and rotating refresh tokens
+- SQLAlchemy 2.x async ORM
+- PostgreSQL with `asyncpg` in production
+- SQLite with `aiosqlite` for isolated tests/POC
+- Alembic migrations
+- Pydantic Settings
 - bcrypt password hashing
-- Local filesystem and Cloudflare R2 storage adapters
-- Mock AI adapter until the real AI/RAG service is available
+- PyJWT-compatible access and refresh tokens
+- Local filesystem or Cloudflare R2 storage
 
-## Responsibilities
-
-The Backend stores:
-
-- users, one role per user, permissions, and sessions;
-- account conversation messages and feedback;
-- document metadata, versions, keywords, access rules, and file references;
-- original files through `StorageService`;
-- AI document, version, chunk, clause, relation, conflict, graph, and job IDs;
-- ingestion, re-index, review, impact-analysis, and audit state.
-
-The Backend does **not** store:
-
-- plain-text passwords or MD5 hashes;
-- file binaries inside PostgreSQL;
-- parsed document bodies or source/chunk text;
-- embeddings, vector indexes, or graph nodes and edges;
-- Guest Chat history.
-
-## Project structure
+## Project layout
 
 ```text
-solution/backend/
-├── app/
-│   ├── api/v1/          # Auth, conversations, documents, knowledge, sources, admin
-│   ├── services/        # Security, storage, AI adapter, ingestion services
-│   ├── config.py        # Environment configuration
-│   ├── database.py      # Async SQLAlchemy engine and sessions
-│   ├── dependencies.py  # JWT, role, and permission guards
-│   ├── models.py        # Backend persistence models
-│   ├── schemas.py       # Pydantic request/response models
-│   ├── seed.py          # Roles, permissions, users, and demo data
-│   └── main.py          # FastAPI application, CORS, health, and audit middleware
-├── migrations/          # Alembic revisions
-├── storage/             # Local development storage
-├── tests/               # Unit and API tests
-├── .env.example
-├── alembic.ini
-└── requirements.txt
+app/
+├── main.py                 # FastAPI application, CORS, audit middleware
+├── config.py               # Environment-backed settings
+├── database.py             # Async engine, session, declarative base
+├── models.py               # Auth, knowledge, workflow, AI-reference, audit models
+├── schemas.py              # Request/response contracts
+├── api/v1/                 # auth, conversations, documents, knowledge, sources, admin
+├── services/               # security, storage, ingestion, AI adapter services
+└── seed.py                 # Development seed command
+migrations/                 # Alembic revisions; required for deployment
+storage/                    # Local-only uploaded files (ignored by Git)
+tests/                      # API and service tests
 ```
 
 ## Local setup
 
-Requirements:
+From `solution/backend`:
 
-- Python 3.11
-- PostgreSQL, unless running the test suite with SQLite
-
-On Windows PowerShell:
-
-```powershell
-cd solution/backend
+```bash
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+# Windows: .venv\Scripts\activate
+# Linux/macOS: source .venv/bin/activate
 pip install -r requirements.txt
-Copy-Item .env.example .env
+copy .env.example .env        # Windows
+# cp .env.example .env        # Linux/macOS
 ```
 
-Update `DATABASE_URL` and other local settings in `.env`, then run:
+Set `DATABASE_URL` to a local PostgreSQL instance or a SQLite test URL. Never place production credentials in `.env.example` or source code.
 
-```powershell
+Run migrations and seed development data:
+
+```bash
 alembic upgrade head
 python -m app.seed
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Available endpoints:
+Useful endpoints:
 
-- API base: `http://localhost:8000/api/v1`
-- Swagger UI: `http://localhost:8000/docs`
-- OpenAPI JSON: `http://localhost:8000/api/v1/openapi.json`
-- Health check: `http://localhost:8000/health`
+```text
+GET  /health
+GET  /docs
+GET  /api/v1/openapi.json
+```
 
-## Environment variables
-
-Copy `.env.example` for local development. Never commit `.env`, `.env.product`, database credentials, JWT secrets, or R2 secrets.
+## Configuration
 
 | Variable | Required | Description |
-|---|---:|---|
-| `ENVIRONMENT` | Yes | `development`, `test`, or `production` |
-| `DATABASE_URL` | Yes | PostgreSQL URL; `postgresql://` is normalized to asyncpg automatically |
-| `DATABASE_SSL` | Production | Enables required SSL for hosted PostgreSQL |
-| `JWT_SECRET_KEY` | Yes | Secret used to sign account and Guest JWTs |
-| `JWT_ALGORITHM` | Yes | Currently `HS256` |
-| `ACCESS_TOKEN_MINUTES` | Yes | Access-token lifetime |
-| `REFRESH_TOKEN_DAYS` | Yes | Refresh-token lifetime |
-| `STORAGE_BACKEND` | Yes | `local` or `r2` |
-| `LOCAL_STORAGE_PATH` | Local | Local adapter root directory |
-| `MAX_UPLOAD_BYTES` | Yes | Maximum accepted upload size |
-| `AI_PROVIDER` | Yes | Use `mock` until the real service is integrated |
-| `AI_SERVICE_URL` | Real AI only | Internal AI/RAG base URL |
-| `FRONTEND_ORIGINS` | Yes | Comma-separated CORS origins |
-| `R2_ACCESS_KEY_ID` | R2 | Cloudflare R2 access key |
-| `R2_SECRET_ACCESS_KEY` | R2 | Cloudflare R2 secret |
-| `R2_BUCKET` | R2 | Bucket containing original documents |
-| `R2_ENDPOINT` | R2 | S3-compatible R2 endpoint |
+| --- | --- | --- |
+| `APP_NAME` | No | FastAPI/OpenAPI title; defaults to the Lumina product name |
+| `ENVIRONMENT` | No | `development`, `test`, or `production` |
+| `DATABASE_URL` | Yes in deployment | PostgreSQL URL; Render/Supabase URLs are normalized to `asyncpg` |
+| `DATABASE_SSL` | No | Enable SSL for hosted PostgreSQL |
+| `JWT_SECRET_KEY` | Yes in production | Strong secret used to sign access tokens |
+| `ACCESS_TOKEN_MINUTES` | No | Access-token lifetime |
+| `REFRESH_TOKEN_DAYS` | No | Refresh-session lifetime |
+| `STORAGE_BACKEND` | No | `local` or `r2` |
+| `LOCAL_STORAGE_PATH` | No | Local storage directory for development |
+| `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET`, `R2_ENDPOINT` | Required for R2 | Cloudflare R2 connection settings |
+| `AI_PROVIDER` | No | `mock` for the current POC; `real` when the AI adapter is available |
+| `AI_SERVICE_URL` | No | Internal AI/RAG service base URL |
+| `FRONTEND_ORIGINS` | Yes in deployment | Comma-separated allowed browser origins |
 
-When `AI_PROVIDER=mock`, the Backend does not require a reachable `AI_SERVICE_URL`. Mock responses preserve the external-ID contract but do not perform real OCR, retrieval, conflict detection, or graph generation.
+## Authentication and RBAC
 
-## Authentication and authorization
+The public ROLE_CUSTOMER registration endpoint is `POST /api/v1/auth/sign-up`. It accepts username, full name, optional email, and a user-selected password. The backend always assigns the `ROLE_CUSTOMER` role. Admin-created accounts use the default development password `vaic@2026`; this behavior is intended for the POC and should be replaced by an invitation/reset flow in production.
 
-- Login accepts `username` and `password`.
-- Passwords are hashed with bcrypt.
-- Access uses JWT Bearer tokens.
-- Only the SHA-256 hash of each refresh token is stored.
-- Refresh tokens are rotated and the old session is revoked.
-- Every user has exactly one role.
-- Protected endpoints enforce permissions in the Backend, independently of the Frontend menu.
-- Locked or soft-deleted users cannot access protected APIs.
+Technical role codes remain stable for database and API compatibility:
 
-Customer registration is available at `POST /api/v1/auth/sign-up`. Email is optional and the Backend always assigns the `customer` role.
+| Display name | Stable role code | Scope |
+| --- | --- | --- |
+| Customer | `ROLE_CUSTOMER` | Public data and own conversations |
+| Staff | `ROLE_STAFF` | Internal staff retrieval and document reading |
+| Compliance Officer | `ROLE_COMPLIANCE` | Document lifecycle, metadata, relations, and re-indexing |
+| System Admin | `ROLE_ADMIN` | Users, roles, permissions, and audit logs |
 
-## Guest Public Chat
+The display names can change without a database migration. The role code must not be renamed without an explicit compatibility migration.
 
-Guest requests use `POST /api/v1/public/chat`. The Backend forces the query scope to `PUBLIC`, does not write Guest questions, answers, or conversations to PostgreSQL, and returns a short-lived Guest token for the corresponding public source group and graph.
+## API groups
 
-Guest source and graph endpoints validate that the requested IDs belong to the token claims before calling the AI adapter.
+- `/api/v1/auth`: login, registration, refresh rotation, logout, profile, and password change.
+- `/api/v1/conversations`: authenticated conversation and message operations.
+- `/api/v1/documents`: authorized document metadata, versions, timeline, relations, and downloads.
+- `/api/v1/knowledge`: Compliance Officer upload, metadata, expiry, relation, and re-index workflows.
+- `/api/v1/source-chunks` and retrieval graph endpoints: authorization-protected proxy calls to the AI adapter.
+- `/api/v1/public`: guest public chat, public sources, and public graphs using short-lived guest tokens.
+- `/api/v1/admin`: user CRUD, lock/unlock, password reset, role permissions, and audit logs.
 
-## Main API groups
-
-| Group | Prefix | Purpose |
-|---|---|---|
-| Authentication | `/api/v1/auth` | Login, signup, refresh, logout, profile, password |
-| Public | `/api/v1/public` | Guest Chat, public source chunks, public graphs |
-| Conversations | `/api/v1/conversations` | Account conversation CRUD and messages |
-| Documents | `/api/v1/documents` | Search, detail, download, versions, timeline, clauses, chunks, graphs |
-| Knowledge Manager | `/api/v1/knowledge` | Upload, metadata, expiry, re-index, relations, conflicts, impact analysis |
-| Sources | `/api/v1/messages`, `/api/v1/source-chunks` | Account source groups, chunk details, retrieval graphs |
-| Administration | `/api/v1/admin` | Users, roles, permissions, and audit logs |
-
-Detailed contracts are documented in [`../../docs/API_FE_BE.md`](../../docs/API_FE_BE.md) and [`../../docs/API_BE_AI.md`](../../docs/API_BE_AI.md).
-
-## Storage
-
-`StorageService` supports two adapters:
-
-- `LocalStorageAdapter` for local development and tests;
-- `R2StorageAdapter` for production using the S3-compatible boto3 API.
-
-PostgreSQL stores only the provider, bucket, key, MIME type, size, and SHA-256 checksum. Downloads pass through the Backend for authorization and auditing; storage keys are not exposed to the Frontend.
+All protected routes require a bearer access token. Customer requests are forced to `PUBLIC` scope; clients cannot elevate themselves to `INTERNAL`.
 
 ## Database and migrations
 
-Run all migrations before starting a deployment:
+PostgreSQL is the deployment database. The `migrations/` directory is part of the application release and must be committed. Render runs:
 
-```powershell
+```bash
 alembic upgrade head
 ```
 
-Current revisions cover the initial schema, Auth/Guest changes, and AI-governance workflows. The application also calls `init_db()` as a POC startup safety net, but Alembic remains the deployment schema-version mechanism.
-
-Hosted PostgreSQL transaction poolers are supported by disabling prepared-statement caches, generating unique prepared-statement names, and using SQLAlchemy `NullPool`.
-
-The complete schema is documented in [`../../docs/DATABASE_SCHEMA.md`](../../docs/DATABASE_SCHEMA.md).
-
-## Demo data
-
-Run `python -m app.seed` to create or refresh development data. All demo users use the password `password`:
-
-| Username | Role |
-|---|---|
-| `customer` | Customer |
-| `employee` | Bank Employee |
-| `knowledge` | Knowledge Manager |
-| `admin` | System Admin |
-
-The seed also creates sample document metadata, AI reference IDs, one Customer conversation, and an audit record. Replace demo credentials before any real deployment.
-
-## Quality checks
-
-```powershell
-pytest
-ruff check .
-mypy app
-python -m compileall app
-```
-
-The test suite covers security, storage, API behavior, role restrictions, Guest access, and AI-governance references.
+Migration files create and evolve `auth`, `knowledge`, `ai_ref`, `conversation`, `workflow`, and `audit` tables. Runtime source text, parsed content, embeddings, and graph payloads are deliberately absent from these schemas.
 
 ## Render deployment
 
-The current production Backend URL is `https://vaic2026.onrender.com`.
-
-With `solution/backend` as the Render root directory:
+Use `solution/backend` as the Render Root Directory:
 
 ```text
 Build Command: pip install -r requirements.txt
-Start Command: alembic upgrade head && python -m app.seed && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+Start Command: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
 Health Check: /health
 ```
 
-Use PostgreSQL, `DATABASE_SSL=true`, `STORAGE_BACKEND=r2`, and `AI_PROVIDER=mock` until the real AI Service is ready. See [`../../docs/DEPLOY_RENDER.md`](../../docs/DEPLOY_RENDER.md) for the complete checklist.
+Set production secrets in Render Environment Variables. Do not run `app.seed` on every production restart because it is a development data initializer.
+
+## Validation
+
+```bash
+python -m compileall app
+pytest
+ruff check .
+mypy app
+```
+
+The test suite covers password hashing, JWTs, RBAC, migrations, storage adapters, document validation, guest scope isolation, source/graph authorization, and admin workflows.
