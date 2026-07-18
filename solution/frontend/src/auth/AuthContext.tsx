@@ -3,7 +3,7 @@ import type { Permission, Role, User } from '../domain'
 import { normalizeRole, ROLE_HOME, ROLE_PERMISSIONS } from '../domain'
 import { authService } from '../services/api'
 
-const LOCAL_KEY = 'shb-rag-auth'; const SESSION_KEY = 'shb-rag-session'
+const LOCAL_KEY = 'lumina-auth'; const SESSION_KEY = 'lumina-session'
 type SessionUser = Omit<User, 'password'>
 interface AuthValue { user: SessionUser | null; login: (username: string, password: string, remember: boolean) => Promise<SessionUser>; logout: () => void; changePassword: (current: string, next: string) => Promise<void>; can: (permission: Permission) => boolean; home: string }
 const AuthContext = createContext<AuthValue | null>(null)

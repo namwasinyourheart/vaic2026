@@ -1,0 +1,33 @@
+{
+  "id": "175258",
+  "doc_number": "63/2025/QH15",
+  "title": "Luật Tổ chức chính phủ số 63/2025/QH15",
+  "doc_type": "Luật",
+  "agency": "Quốc hội",
+  "signer": "Trần Thanh Mẫn",
+  "signer_title": "Chủ tịch Quốc hội",
+  "issue_date": "2025-02-18",
+  "effective_date": "2025-03-01",
+  "expire_date": "--",
+  "status": "Hết hiệu lực một phần",
+  "industry": "Nội vụ",
+  "field": "Tổ chức- Biên chế",
+  "relations": {
+    "Căn cứ ban hành": [
+      {
+        "title": "Hiến pháp năm 2013",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--32801"
+      }
+    ],
+    "Văn bản được thay thế": [
+      {
+        "title": "Luật Tổ chức Chính phủ số 76/2015/QH13",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--70821"
+      },
+      {
+        "title": "Luật Giao dịch điện tử số 20/2023/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--165913"
+      }
+    ]
+  }
+}

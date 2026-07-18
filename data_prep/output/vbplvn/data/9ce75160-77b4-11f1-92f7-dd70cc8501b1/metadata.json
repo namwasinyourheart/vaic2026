@@ -1,0 +1,29 @@
+{
+  "id": "9ce75160-77b4-11f1-92f7-dd70cc8501b1",
+  "doc_number": "01/2026/QH16",
+  "title": "Luật TIẾP CẬN THÔNG TIN số 01/2026/QH16",
+  "doc_type": "Luật",
+  "agency": "Quốc hội",
+  "signer": "Trần Thanh Mẫn",
+  "signer_title": "Chủ tịch Quốc hội",
+  "issue_date": "2026-04-23",
+  "effective_date": "2026-09-01",
+  "expire_date": "--",
+  "status": "Chưa có hiệu lực",
+  "industry": "Tư pháp",
+  "field": "Tiếp cận thông tin",
+  "relations": {
+    "Văn bản bị bãi bỏ": [
+      {
+        "title": "Luật Tiếp cận thông tin số 104/2016/QH13",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--101873"
+      }
+    ],
+    "Căn cứ ban hành": [
+      {
+        "title": "Hiến pháp năm 2013",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--32801"
+      }
+    ]
+  }
+}

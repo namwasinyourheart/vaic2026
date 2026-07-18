@@ -1,0 +1,31 @@
+{
+  "id": "5e5d4920-7f27-11f1-a31e-63a440cfb7c7",
+  "doc_number": "26/2026/TT-BYT",
+  "title": "Thông tư Ban hành Danh mục dược liệu, thuốc cổ truyền có mức độ rủi ro trung bình thuộc trách nhiệm quản lý của Bộ Y tế",
+  "doc_type": "Thông tư",
+  "agency": "Bộ Y tế",
+  "signer": "Vũ Mạnh Hà",
+  "signer_title": "Thứ trưởng thường trực",
+  "issue_date": "2026-07-01",
+  "effective_date": "2026-07-01",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "Y  tế",
+  "field": "Dược",
+  "relations": {
+    "Căn cứ ban hành": [
+      {
+        "title": "Nghị định số 42/2025/NĐ-CP quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Y tế",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--e903ac50-76bb-11f1-8fea-b7ba0a214fc2"
+      },
+      {
+        "title": "Luật Dược số 105/2016/QH13",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--101886"
+      },
+      {
+        "title": "Luật Chất lượng sản phẩm, hàng hoá số 05/2007/QH12",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--12896"
+      }
+    ]
+  }
+}

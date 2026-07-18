@@ -1,0 +1,43 @@
+{
+  "id": "9f320090-54c9-11f1-aa08-59e3f5ee2be8",
+  "doc_number": "05/2026/QH16",
+  "title": "Luật Sửa đổi, bổ sung một số điều của Luật trợ giúp pháp lý số 05/2026/QH16",
+  "doc_type": "Luật",
+  "agency": "Quốc hội",
+  "signer": "Trần Thanh Mẫn",
+  "signer_title": "Chủ tịch Quốc hội",
+  "issue_date": "2026-04-23",
+  "effective_date": "2027-01-01",
+  "expire_date": "--",
+  "status": "Chưa có hiệu lực",
+  "industry": "Tư pháp",
+  "field": "Trợ giúp pháp lý",
+  "relations": {
+    "Văn bản bị bãi bỏ": [
+      {
+        "title": "Luật Tư pháp người chưa thành niên số 59/2024/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--175425"
+      },
+      {
+        "title": "LUẬT PHÒNG, CHỐNG MUA BÁN NGƯỜI SỐ 53/2024/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--173982"
+      }
+    ],
+    "Căn cứ ban hành": [
+      {
+        "title": "Nghị quyết số 203/2025/QH15 Sửa đổi, bổ sung một số điều của Hiến pháp nước Cộng hòa xã hội chủ nghĩa Việt Nam",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--178314"
+      },
+      {
+        "title": "Hiến pháp năm 2013",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--32801"
+      }
+    ],
+    "Văn bản được sửa đổi bổ sung": [
+      {
+        "title": "Luật Trợ giúp pháp lý số 11/2017/QH14",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--122827"
+      }
+    ]
+  }
+}

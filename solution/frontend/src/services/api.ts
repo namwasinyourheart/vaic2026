@@ -37,6 +37,7 @@ async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
     if (response.status === 401 || response.status === 403) {
       localStorage.removeItem(ACCESS_KEY); localStorage.removeItem(REFRESH_KEY)
       sessionStorage.removeItem(ACCESS_KEY); sessionStorage.removeItem(REFRESH_KEY)
+      localStorage.removeItem('lumina-auth'); sessionStorage.removeItem('lumina-session')
       if (window.location.pathname !== '/login') window.location.href = '/login'
     }
     window.dispatchEvent(new CustomEvent('shb-api-error', { detail: message }))

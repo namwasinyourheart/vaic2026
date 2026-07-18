@@ -1,0 +1,41 @@
+{
+  "id": "610cf490-6564-11f1-9176-c9d3ad7ca57f",
+  "doc_number": "199/2026/NĐ-CP",
+  "title": "Nghị định số 199/2026/NĐ-CP Quy định chính sách hỗ trợ phục vụ",
+  "doc_type": "Nghị định",
+  "agency": "Chính phủ",
+  "signer": "Nguyễn Văn Thắng",
+  "signer_title": "Phó Thủ tướng Chính phủ",
+  "issue_date": "2026-06-05",
+  "effective_date": "2026-07-20",
+  "expire_date": "--",
+  "status": "Chưa có hiệu lực",
+  "industry": "Tài chính",
+  "field": "Ngân sách nhà nước",
+  "relations": {
+    "Văn bản bị bãi bỏ": [
+      {
+        "title": "Quyết định số 269/2005/QĐ-TTg Về chế độ phụ cấp phục vụ",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--17234"
+      }
+    ],
+    "Căn cứ ban hành": [
+      {
+        "title": "Luật Sửa đổi, bổ sung một số điều của luật ban hành văn bản quy phạm pháp luật số 87/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--178717"
+      },
+      {
+        "title": "Luật Ngân sách nhà nước số 89/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--179427"
+      },
+      {
+        "title": "Luật Tổ chức chính phủ số 63/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--175258"
+      },
+      {
+        "title": "Luật Ban hành văn bản quy phạm pháp luật số 64/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--175440"
+      }
+    ]
+  }
+}

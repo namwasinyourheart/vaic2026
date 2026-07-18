@@ -1,0 +1,3384 @@
+{
+  "nodes": [
+    {
+      "id": "CRD",
+      "type": "Domain",
+      "label": "Tín dụng"
+    },
+    {
+      "id": "AML",
+      "type": "Domain",
+      "label": "Phòng chống rửa tiền"
+    },
+    {
+      "id": "OPS",
+      "type": "Domain",
+      "label": "Vận hành"
+    },
+    {
+      "id": "DEP",
+      "type": "Domain",
+      "label": "Tiền gửi"
+    },
+    {
+      "id": "CMP",
+      "type": "Domain",
+      "label": "Tuân thủ"
+    },
+    {
+      "id": "RSK",
+      "type": "Domain",
+      "label": "Rủi ro"
+    },
+    {
+      "id": "LGP",
+      "type": "Domain",
+      "label": "Pháp chế"
+    },
+    {
+      "id": "DIG",
+      "type": "Domain",
+      "label": "Thanh toán số"
+    },
+    {
+      "id": "CRD-R01",
+      "type": "Document",
+      "label": "Quy định cho vay tín chấp",
+      "domain": "CRD",
+      "doc_type": "Regulation",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-P01",
+      "type": "Document",
+      "label": "Chính sách thẩm định tín dụng",
+      "domain": "CRD",
+      "doc_type": "Policy",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CRD-S01",
+      "type": "Document",
+      "label": "Quy trình phê duyệt khoản vay",
+      "domain": "CRD",
+      "doc_type": "SOP",
+      "version": "1.0",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "CRD-R01-v2",
+      "type": "Document",
+      "label": "Quy định cho vay tín chấp (sửa đổi)",
+      "domain": "CRD",
+      "doc_type": "Regulation",
+      "version": "2.0",
+      "effective_date": "2024-07-01",
+      "expiry_date": "2026-07-01"
+    },
+    {
+      "id": "CRD-C01",
+      "type": "Document",
+      "label": "Hợp đồng cho vay tiêu dùng",
+      "domain": "CRD",
+      "doc_type": "ContractTemplate",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2029-01-01"
+    },
+    {
+      "id": "AML-R01",
+      "type": "Document",
+      "label": "Quy định Know Your Customer (KYC)",
+      "domain": "AML",
+      "doc_type": "Regulation",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "AML-P01",
+      "type": "Document",
+      "label": "Chính sách báo cáo giao dịch đáng ngờ",
+      "domain": "AML",
+      "doc_type": "Policy",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "AML-S01",
+      "type": "Document",
+      "label": "Quy trình xác minh khách hàng",
+      "domain": "AML",
+      "doc_type": "SOP",
+      "version": "1.0",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "AML-N01",
+      "type": "Document",
+      "label": "Thông tư 35/2024 về phòng chống rửa tiền",
+      "domain": "AML",
+      "doc_type": "Circular",
+      "version": "1.0",
+      "effective_date": "2024-06-01",
+      "expiry_date": "2025-06-01"
+    },
+    {
+      "id": "OPS-P01",
+      "type": "Document",
+      "label": "Chính sách quản lý tiền mặt",
+      "domain": "OPS",
+      "doc_type": "Policy",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "OPS-S01",
+      "type": "Document",
+      "label": "Quy trình giao dịch tại quầy",
+      "domain": "OPS",
+      "doc_type": "SOP",
+      "version": "1.0",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "OPS-S02",
+      "type": "Document",
+      "label": "Quy trình xử lý sự cố hệ thống",
+      "domain": "OPS",
+      "doc_type": "SOP",
+      "version": "1.0",
+      "effective_date": "2024-03-01",
+      "expiry_date": "2026-03-01"
+    },
+    {
+      "id": "OPS-F01",
+      "type": "Document",
+      "label": "FAQ giao dịch vận hành",
+      "domain": "OPS",
+      "doc_type": "FAQ",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "DEP-R01",
+      "type": "Document",
+      "label": "Quy định tiền gửi tiết kiệm",
+      "domain": "DEP",
+      "doc_type": "Regulation",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-09-01"
+    },
+    {
+      "id": "DEP-P01",
+      "type": "Document",
+      "label": "Chính sách lãi suất tiền gửi",
+      "domain": "DEP",
+      "doc_type": "Policy",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DEP-S01",
+      "type": "Document",
+      "label": "Quy trình mở tài khoản tiết kiệm",
+      "domain": "DEP",
+      "doc_type": "SOP",
+      "version": "1.0",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DEP-R01-v2",
+      "type": "Document",
+      "label": "Quy định tiền gửi tiết kiệm (sửa đổi)",
+      "domain": "DEP",
+      "doc_type": "Regulation",
+      "version": "2.0",
+      "effective_date": "2024-09-01",
+      "expiry_date": "2026-09-01"
+    },
+    {
+      "id": "CMP-R01",
+      "type": "Document",
+      "label": "Quy định báo cáo tuân thủ",
+      "domain": "CMP",
+      "doc_type": "Regulation",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "CMP-P01",
+      "type": "Document",
+      "label": "Chính sách kiểm toán nội bộ",
+      "domain": "CMP",
+      "doc_type": "Policy",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CMP-S01",
+      "type": "Document",
+      "label": "Quy trình kiểm soát nội bộ",
+      "domain": "CMP",
+      "doc_type": "SOP",
+      "version": "1.0",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "CMP-N01",
+      "type": "Document",
+      "label": "Thông tư 13/2024关于kiểm soát nội bộ",
+      "domain": "CMP",
+      "doc_type": "Circular",
+      "version": "1.0",
+      "effective_date": "2024-04-01",
+      "expiry_date": "2025-04-01"
+    },
+    {
+      "id": "RSK-P01",
+      "type": "Document",
+      "label": "Chính sách quản lý rủi ro tín dụng",
+      "domain": "RSK",
+      "doc_type": "Policy",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "RSK-S01",
+      "type": "Document",
+      "label": "Quy trình đánh giá rủi ro",
+      "domain": "RSK",
+      "doc_type": "SOP",
+      "version": "1.0",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "RSK-R01",
+      "type": "Document",
+      "label": "Quy định tỷ lệ an toàn vốn",
+      "domain": "RSK",
+      "doc_type": "Regulation",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "LGP-P01",
+      "type": "Document",
+      "label": "Chính sách quản lý hợp đồng",
+      "domain": "LGP",
+      "doc_type": "Policy",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "LGP-S01",
+      "type": "Document",
+      "label": "Quy trình phê duyệt pháp lý",
+      "domain": "LGP",
+      "doc_type": "SOP",
+      "version": "1.0",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "LGP-R01",
+      "type": "Document",
+      "label": "Quy định xử lý tranh chấp",
+      "domain": "LGP",
+      "doc_type": "Regulation",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "DIG-P01",
+      "type": "Document",
+      "label": "Chính sách thanh toán số",
+      "domain": "DIG",
+      "doc_type": "Policy",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DIG-S01",
+      "type": "Document",
+      "label": "Quy trình giao dịch trực tuyến",
+      "domain": "DIG",
+      "doc_type": "SOP",
+      "version": "1.0",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DIG-F01",
+      "type": "Document",
+      "label": "FAQ e-banking",
+      "domain": "DIG",
+      "doc_type": "FAQ",
+      "version": "1.0",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "CRD-R01-1.1",
+      "type": "Clause",
+      "document_id": "CRD-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-R01-1.2",
+      "type": "Clause",
+      "document_id": "CRD-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-R01-2.1",
+      "type": "Clause",
+      "document_id": "CRD-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-R01-2.2",
+      "type": "Clause",
+      "document_id": "CRD-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-R01-2.3",
+      "type": "Clause",
+      "document_id": "CRD-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-R01-3.1",
+      "type": "Clause",
+      "document_id": "CRD-R01",
+      "status": "Active",
+      "effective_date": null,
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-R01-3.2",
+      "type": "Clause",
+      "document_id": "CRD-R01",
+      "status": "Active",
+      "effective_date": null,
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-R01-4.1",
+      "type": "Clause",
+      "document_id": "CRD-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-R01-4.2",
+      "type": "Clause",
+      "document_id": "CRD-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-R01-5.1",
+      "type": "Clause",
+      "document_id": "CRD-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-07-01"
+    },
+    {
+      "id": "CRD-P01-1.1",
+      "type": "Clause",
+      "document_id": "CRD-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CRD-P01-1.2",
+      "type": "Clause",
+      "document_id": "CRD-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CRD-P01-2.1",
+      "type": "Clause",
+      "document_id": "CRD-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CRD-P01-2.2",
+      "type": "Clause",
+      "document_id": "CRD-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CRD-P01-2.3",
+      "type": "Clause",
+      "document_id": "CRD-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CRD-P01-3.1",
+      "type": "Clause",
+      "document_id": "CRD-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CRD-P01-3.2",
+      "type": "Clause",
+      "document_id": "CRD-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CRD-P01-4.1",
+      "type": "Clause",
+      "document_id": "CRD-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CRD-S01-1.1",
+      "type": "Clause",
+      "document_id": "CRD-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "CRD-S01-1.2",
+      "type": "Clause",
+      "document_id": "CRD-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "CRD-S01-2.1",
+      "type": "Clause",
+      "document_id": "CRD-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "CRD-S01-2.2",
+      "type": "Clause",
+      "document_id": "CRD-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "CRD-S01-3.1",
+      "type": "Clause",
+      "document_id": "CRD-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "CRD-S01-3.2",
+      "type": "Clause",
+      "document_id": "CRD-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "CRD-S01-3.3",
+      "type": "Clause",
+      "document_id": "CRD-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "CRD-S01-4.1",
+      "type": "Clause",
+      "document_id": "CRD-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "CRD-R01-v2-3.1",
+      "type": "Clause",
+      "document_id": "CRD-R01-v2",
+      "status": "Active",
+      "effective_date": "2024-07-01",
+      "expiry_date": null
+    },
+    {
+      "id": "CRD-R01-v2-3.2",
+      "type": "Clause",
+      "document_id": "CRD-R01-v2",
+      "status": "Active",
+      "effective_date": "2024-07-01",
+      "expiry_date": null
+    },
+    {
+      "id": "CRD-R01-v2-6.1",
+      "type": "Clause",
+      "document_id": "CRD-R01-v2",
+      "status": "Active",
+      "effective_date": "2024-07-01",
+      "expiry_date": "2026-07-01"
+    },
+    {
+      "id": "CRD-C01-1.1",
+      "type": "Clause",
+      "document_id": "CRD-C01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2029-01-01"
+    },
+    {
+      "id": "CRD-C01-2.1",
+      "type": "Clause",
+      "document_id": "CRD-C01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2029-01-01"
+    },
+    {
+      "id": "CRD-C01-2.2",
+      "type": "Clause",
+      "document_id": "CRD-C01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2029-01-01"
+    },
+    {
+      "id": "CRD-C01-2.3",
+      "type": "Clause",
+      "document_id": "CRD-C01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2029-01-01"
+    },
+    {
+      "id": "CRD-C01-3.1",
+      "type": "Clause",
+      "document_id": "CRD-C01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2029-01-01"
+    },
+    {
+      "id": "CRD-C01-3.2",
+      "type": "Clause",
+      "document_id": "CRD-C01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2029-01-01"
+    },
+    {
+      "id": "CRD-C01-4.1",
+      "type": "Clause",
+      "document_id": "CRD-C01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2029-01-01"
+    },
+    {
+      "id": "CRD-C01-4.2",
+      "type": "Clause",
+      "document_id": "CRD-C01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2029-01-01"
+    },
+    {
+      "id": "CRD-C01-5.1",
+      "type": "Clause",
+      "document_id": "CRD-C01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2029-01-01"
+    },
+    {
+      "id": "AML-R01-1.1",
+      "type": "Clause",
+      "document_id": "AML-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "AML-R01-1.2",
+      "type": "Clause",
+      "document_id": "AML-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "AML-R01-2.1",
+      "type": "Clause",
+      "document_id": "AML-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "AML-R01-2.2",
+      "type": "Clause",
+      "document_id": "AML-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "AML-R01-2.3",
+      "type": "Clause",
+      "document_id": "AML-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "AML-R01-3.1",
+      "type": "Clause",
+      "document_id": "AML-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "AML-R01-3.2",
+      "type": "Clause",
+      "document_id": "AML-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "AML-R01-4.1",
+      "type": "Clause",
+      "document_id": "AML-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "AML-R01-5.1",
+      "type": "Clause",
+      "document_id": "AML-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "AML-P01-1.1",
+      "type": "Clause",
+      "document_id": "AML-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "AML-P01-1.2",
+      "type": "Clause",
+      "document_id": "AML-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "AML-P01-2.1",
+      "type": "Clause",
+      "document_id": "AML-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "AML-P01-2.2",
+      "type": "Clause",
+      "document_id": "AML-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "AML-P01-3.1",
+      "type": "Clause",
+      "document_id": "AML-P01",
+      "status": "Active",
+      "effective_date": null,
+      "expiry_date": "2024-06-01"
+    },
+    {
+      "id": "AML-P01-3.2",
+      "type": "Clause",
+      "document_id": "AML-P01",
+      "status": "Active",
+      "effective_date": null,
+      "expiry_date": "2024-06-01"
+    },
+    {
+      "id": "AML-P01-4.1",
+      "type": "Clause",
+      "document_id": "AML-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "AML-S01-1.1",
+      "type": "Clause",
+      "document_id": "AML-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "AML-S01-1.2",
+      "type": "Clause",
+      "document_id": "AML-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "AML-S01-2.1",
+      "type": "Clause",
+      "document_id": "AML-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "AML-S01-2.2",
+      "type": "Clause",
+      "document_id": "AML-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "AML-S01-3.1",
+      "type": "Clause",
+      "document_id": "AML-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "AML-S01-4.1",
+      "type": "Clause",
+      "document_id": "AML-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "AML-N01-1.1",
+      "type": "Clause",
+      "document_id": "AML-N01",
+      "status": "Active",
+      "effective_date": "2024-06-01",
+      "expiry_date": "2025-06-01"
+    },
+    {
+      "id": "AML-N01-1.2",
+      "type": "Clause",
+      "document_id": "AML-N01",
+      "status": "Active",
+      "effective_date": "2024-06-01",
+      "expiry_date": "2025-06-01"
+    },
+    {
+      "id": "AML-N01-2.1",
+      "type": "Clause",
+      "document_id": "AML-N01",
+      "status": "Active",
+      "effective_date": "2024-06-01",
+      "expiry_date": "2025-06-01"
+    },
+    {
+      "id": "AML-N01-2.2",
+      "type": "Clause",
+      "document_id": "AML-N01",
+      "status": "Active",
+      "effective_date": "2024-06-01",
+      "expiry_date": "2025-06-01"
+    },
+    {
+      "id": "AML-N01-2.3",
+      "type": "Clause",
+      "document_id": "AML-N01",
+      "status": "Active",
+      "effective_date": "2024-06-01",
+      "expiry_date": "2025-06-01"
+    },
+    {
+      "id": "AML-N01-3.1",
+      "type": "Clause",
+      "document_id": "AML-N01",
+      "status": "Active",
+      "effective_date": "2024-06-01",
+      "expiry_date": "2025-06-01"
+    },
+    {
+      "id": "AML-N01-4.1",
+      "type": "Clause",
+      "document_id": "AML-N01",
+      "status": "Active",
+      "effective_date": "2024-06-01",
+      "expiry_date": "2025-06-01"
+    },
+    {
+      "id": "OPS-P01-1.1",
+      "type": "Clause",
+      "document_id": "OPS-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "OPS-P01-1.2",
+      "type": "Clause",
+      "document_id": "OPS-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "OPS-P01-2.1",
+      "type": "Clause",
+      "document_id": "OPS-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "OPS-P01-3.1",
+      "type": "Clause",
+      "document_id": "OPS-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "OPS-P01-3.2",
+      "type": "Clause",
+      "document_id": "OPS-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "OPS-P01-4.1",
+      "type": "Clause",
+      "document_id": "OPS-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "OPS-P01-4.2",
+      "type": "Clause",
+      "document_id": "OPS-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "OPS-S01-1.1",
+      "type": "Clause",
+      "document_id": "OPS-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "OPS-S01-1.2",
+      "type": "Clause",
+      "document_id": "OPS-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "OPS-S01-2.1",
+      "type": "Clause",
+      "document_id": "OPS-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "OPS-S01-3.1",
+      "type": "Clause",
+      "document_id": "OPS-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "OPS-S01-3.2",
+      "type": "Clause",
+      "document_id": "OPS-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "OPS-S01-3.3",
+      "type": "Clause",
+      "document_id": "OPS-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "OPS-S01-4.1",
+      "type": "Clause",
+      "document_id": "OPS-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "OPS-S02-1.1",
+      "type": "Clause",
+      "document_id": "OPS-S02",
+      "status": "Active",
+      "effective_date": "2024-03-01",
+      "expiry_date": "2026-03-01"
+    },
+    {
+      "id": "OPS-S02-1.2",
+      "type": "Clause",
+      "document_id": "OPS-S02",
+      "status": "Active",
+      "effective_date": "2024-03-01",
+      "expiry_date": "2026-03-01"
+    },
+    {
+      "id": "OPS-S02-2.1",
+      "type": "Clause",
+      "document_id": "OPS-S02",
+      "status": "Active",
+      "effective_date": "2024-03-01",
+      "expiry_date": "2026-03-01"
+    },
+    {
+      "id": "OPS-S02-2.2",
+      "type": "Clause",
+      "document_id": "OPS-S02",
+      "status": "Active",
+      "effective_date": "2024-03-01",
+      "expiry_date": "2026-03-01"
+    },
+    {
+      "id": "OPS-S02-3.1",
+      "type": "Clause",
+      "document_id": "OPS-S02",
+      "status": "Active",
+      "effective_date": "2024-03-01",
+      "expiry_date": "2026-03-01"
+    },
+    {
+      "id": "OPS-S02-4.1",
+      "type": "Clause",
+      "document_id": "OPS-S02",
+      "status": "Active",
+      "effective_date": "2024-03-01",
+      "expiry_date": "2026-03-01"
+    },
+    {
+      "id": "OPS-S02-4.2",
+      "type": "Clause",
+      "document_id": "OPS-S02",
+      "status": "Active",
+      "effective_date": "2024-03-01",
+      "expiry_date": "2026-03-01"
+    },
+    {
+      "id": "OPS-F01-1.1",
+      "type": "Clause",
+      "document_id": "OPS-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "OPS-F01-1.2",
+      "type": "Clause",
+      "document_id": "OPS-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "OPS-F01-1.3",
+      "type": "Clause",
+      "document_id": "OPS-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "OPS-F01-2.1",
+      "type": "Clause",
+      "document_id": "OPS-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "OPS-F01-2.2",
+      "type": "Clause",
+      "document_id": "OPS-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "OPS-F01-3.1",
+      "type": "Clause",
+      "document_id": "OPS-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "DEP-R01-1.1",
+      "type": "Clause",
+      "document_id": "DEP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-09-01"
+    },
+    {
+      "id": "DEP-R01-2.1",
+      "type": "Clause",
+      "document_id": "DEP-R01",
+      "status": "Active",
+      "effective_date": null,
+      "expiry_date": "2024-09-01"
+    },
+    {
+      "id": "DEP-R01-2.2",
+      "type": "Clause",
+      "document_id": "DEP-R01",
+      "status": "Active",
+      "effective_date": null,
+      "expiry_date": "2024-09-01"
+    },
+    {
+      "id": "DEP-R01-2.3",
+      "type": "Clause",
+      "document_id": "DEP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-09-01"
+    },
+    {
+      "id": "DEP-R01-3.1",
+      "type": "Clause",
+      "document_id": "DEP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-09-01"
+    },
+    {
+      "id": "DEP-R01-3.2",
+      "type": "Clause",
+      "document_id": "DEP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-09-01"
+    },
+    {
+      "id": "DEP-R01-4.1",
+      "type": "Clause",
+      "document_id": "DEP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2024-09-01"
+    },
+    {
+      "id": "DEP-P01-1.1",
+      "type": "Clause",
+      "document_id": "DEP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DEP-P01-1.2",
+      "type": "Clause",
+      "document_id": "DEP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DEP-P01-2.1",
+      "type": "Clause",
+      "document_id": "DEP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DEP-P01-2.2",
+      "type": "Clause",
+      "document_id": "DEP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DEP-P01-3.1",
+      "type": "Clause",
+      "document_id": "DEP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DEP-S01-1.1",
+      "type": "Clause",
+      "document_id": "DEP-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DEP-S01-2.1",
+      "type": "Clause",
+      "document_id": "DEP-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DEP-S01-2.2",
+      "type": "Clause",
+      "document_id": "DEP-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DEP-S01-3.1",
+      "type": "Clause",
+      "document_id": "DEP-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DEP-S01-3.2",
+      "type": "Clause",
+      "document_id": "DEP-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DEP-S01-4.1",
+      "type": "Clause",
+      "document_id": "DEP-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DEP-R01-v2-2.1",
+      "type": "Clause",
+      "document_id": "DEP-R01-v2",
+      "status": "Active",
+      "effective_date": "2024-09-01",
+      "expiry_date": null
+    },
+    {
+      "id": "DEP-R01-v2-2.2",
+      "type": "Clause",
+      "document_id": "DEP-R01-v2",
+      "status": "Active",
+      "effective_date": "2024-09-01",
+      "expiry_date": null
+    },
+    {
+      "id": "DEP-R01-v2-5.1",
+      "type": "Clause",
+      "document_id": "DEP-R01-v2",
+      "status": "Active",
+      "effective_date": "2024-09-01",
+      "expiry_date": "2026-09-01"
+    },
+    {
+      "id": "CMP-R01-1.1",
+      "type": "Clause",
+      "document_id": "CMP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "CMP-R01-1.2",
+      "type": "Clause",
+      "document_id": "CMP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "CMP-R01-2.1",
+      "type": "Clause",
+      "document_id": "CMP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "CMP-R01-2.2",
+      "type": "Clause",
+      "document_id": "CMP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "CMP-R01-3.1",
+      "type": "Clause",
+      "document_id": "CMP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "CMP-R01-3.2",
+      "type": "Clause",
+      "document_id": "CMP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "CMP-R01-4.1",
+      "type": "Clause",
+      "document_id": "CMP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "CMP-P01-1.1",
+      "type": "Clause",
+      "document_id": "CMP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CMP-P01-2.1",
+      "type": "Clause",
+      "document_id": "CMP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CMP-P01-2.2",
+      "type": "Clause",
+      "document_id": "CMP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CMP-P01-3.1",
+      "type": "Clause",
+      "document_id": "CMP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CMP-P01-3.2",
+      "type": "Clause",
+      "document_id": "CMP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CMP-P01-4.1",
+      "type": "Clause",
+      "document_id": "CMP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CMP-P01-4.2",
+      "type": "Clause",
+      "document_id": "CMP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "CMP-S01-1.1",
+      "type": "Clause",
+      "document_id": "CMP-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "CMP-S01-1.2",
+      "type": "Clause",
+      "document_id": "CMP-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "CMP-S01-2.1",
+      "type": "Clause",
+      "document_id": "CMP-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "CMP-S01-2.2",
+      "type": "Clause",
+      "document_id": "CMP-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "CMP-S01-3.1",
+      "type": "Clause",
+      "document_id": "CMP-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "CMP-N01-1.1",
+      "type": "Clause",
+      "document_id": "CMP-N01",
+      "status": "Active",
+      "effective_date": "2024-04-01",
+      "expiry_date": "2025-04-01"
+    },
+    {
+      "id": "CMP-N01-1.2",
+      "type": "Clause",
+      "document_id": "CMP-N01",
+      "status": "Active",
+      "effective_date": "2024-04-01",
+      "expiry_date": "2025-04-01"
+    },
+    {
+      "id": "CMP-N01-2.1",
+      "type": "Clause",
+      "document_id": "CMP-N01",
+      "status": "Active",
+      "effective_date": "2024-04-01",
+      "expiry_date": "2025-04-01"
+    },
+    {
+      "id": "CMP-N01-2.2",
+      "type": "Clause",
+      "document_id": "CMP-N01",
+      "status": "Active",
+      "effective_date": "2024-04-01",
+      "expiry_date": "2025-04-01"
+    },
+    {
+      "id": "CMP-N01-3.1",
+      "type": "Clause",
+      "document_id": "CMP-N01",
+      "status": "Active",
+      "effective_date": "2024-04-01",
+      "expiry_date": "2025-04-01"
+    },
+    {
+      "id": "RSK-P01-1.1",
+      "type": "Clause",
+      "document_id": "RSK-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "RSK-P01-1.2",
+      "type": "Clause",
+      "document_id": "RSK-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "RSK-P01-1.3",
+      "type": "Clause",
+      "document_id": "RSK-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "RSK-P01-2.1",
+      "type": "Clause",
+      "document_id": "RSK-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "RSK-P01-2.2",
+      "type": "Clause",
+      "document_id": "RSK-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "RSK-P01-3.1",
+      "type": "Clause",
+      "document_id": "RSK-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "RSK-P01-3.2",
+      "type": "Clause",
+      "document_id": "RSK-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "RSK-P01-4.1",
+      "type": "Clause",
+      "document_id": "RSK-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "RSK-S01-1.1",
+      "type": "Clause",
+      "document_id": "RSK-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "RSK-S01-2.1",
+      "type": "Clause",
+      "document_id": "RSK-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "RSK-S01-2.2",
+      "type": "Clause",
+      "document_id": "RSK-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "RSK-S01-3.1",
+      "type": "Clause",
+      "document_id": "RSK-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "RSK-S01-4.1",
+      "type": "Clause",
+      "document_id": "RSK-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "RSK-R01-1.1",
+      "type": "Clause",
+      "document_id": "RSK-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "RSK-R01-1.2",
+      "type": "Clause",
+      "document_id": "RSK-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "RSK-R01-2.1",
+      "type": "Clause",
+      "document_id": "RSK-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "RSK-R01-2.2",
+      "type": "Clause",
+      "document_id": "RSK-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "RSK-R01-3.1",
+      "type": "Clause",
+      "document_id": "RSK-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "RSK-R01-4.1",
+      "type": "Clause",
+      "document_id": "RSK-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "LGP-P01-1.1",
+      "type": "Clause",
+      "document_id": "LGP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "LGP-P01-1.2",
+      "type": "Clause",
+      "document_id": "LGP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "LGP-P01-2.1",
+      "type": "Clause",
+      "document_id": "LGP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "LGP-P01-2.2",
+      "type": "Clause",
+      "document_id": "LGP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "LGP-P01-3.1",
+      "type": "Clause",
+      "document_id": "LGP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "LGP-P01-4.1",
+      "type": "Clause",
+      "document_id": "LGP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "LGP-P01-4.2",
+      "type": "Clause",
+      "document_id": "LGP-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "LGP-S01-1.1",
+      "type": "Clause",
+      "document_id": "LGP-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "LGP-S01-2.1",
+      "type": "Clause",
+      "document_id": "LGP-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "LGP-S01-2.2",
+      "type": "Clause",
+      "document_id": "LGP-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "LGP-S01-3.1",
+      "type": "Clause",
+      "document_id": "LGP-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "LGP-S01-3.2",
+      "type": "Clause",
+      "document_id": "LGP-S01",
+      "status": "Active",
+      "effective_date": "2024-02-01",
+      "expiry_date": "2026-02-01"
+    },
+    {
+      "id": "LGP-R01-1.1",
+      "type": "Clause",
+      "document_id": "LGP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "LGP-R01-1.2",
+      "type": "Clause",
+      "document_id": "LGP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "LGP-R01-2.1",
+      "type": "Clause",
+      "document_id": "LGP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "LGP-R01-3.1",
+      "type": "Clause",
+      "document_id": "LGP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "LGP-R01-3.2",
+      "type": "Clause",
+      "document_id": "LGP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "LGP-R01-4.1",
+      "type": "Clause",
+      "document_id": "LGP-R01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2026-01-01"
+    },
+    {
+      "id": "DIG-P01-1.1",
+      "type": "Clause",
+      "document_id": "DIG-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DIG-P01-1.2",
+      "type": "Clause",
+      "document_id": "DIG-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DIG-P01-2.1",
+      "type": "Clause",
+      "document_id": "DIG-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DIG-P01-2.2",
+      "type": "Clause",
+      "document_id": "DIG-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DIG-P01-3.1",
+      "type": "Clause",
+      "document_id": "DIG-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DIG-P01-3.2",
+      "type": "Clause",
+      "document_id": "DIG-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DIG-P01-4.1",
+      "type": "Clause",
+      "document_id": "DIG-P01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2027-01-01"
+    },
+    {
+      "id": "DIG-S01-1.1",
+      "type": "Clause",
+      "document_id": "DIG-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DIG-S01-1.2",
+      "type": "Clause",
+      "document_id": "DIG-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DIG-S01-2.1",
+      "type": "Clause",
+      "document_id": "DIG-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DIG-S01-2.2",
+      "type": "Clause",
+      "document_id": "DIG-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DIG-S01-3.1",
+      "type": "Clause",
+      "document_id": "DIG-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DIG-S01-4.1",
+      "type": "Clause",
+      "document_id": "DIG-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DIG-S01-4.2",
+      "type": "Clause",
+      "document_id": "DIG-S01",
+      "status": "Active",
+      "effective_date": "2024-01-15",
+      "expiry_date": "2026-01-15"
+    },
+    {
+      "id": "DIG-F01-1.1",
+      "type": "Clause",
+      "document_id": "DIG-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "DIG-F01-1.2",
+      "type": "Clause",
+      "document_id": "DIG-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "DIG-F01-2.1",
+      "type": "Clause",
+      "document_id": "DIG-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "DIG-F01-2.2",
+      "type": "Clause",
+      "document_id": "DIG-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "DIG-F01-3.1",
+      "type": "Clause",
+      "document_id": "DIG-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": "DIG-F01-3.2",
+      "type": "Clause",
+      "document_id": "DIG-F01",
+      "status": "Active",
+      "effective_date": "2024-01-01",
+      "expiry_date": "2025-01-01"
+    }
+  ],
+  "edges": [
+    {
+      "source": "CRD",
+      "target": "CRD-R01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "CRD",
+      "target": "CRD-P01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "CRD",
+      "target": "CRD-S01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "CRD",
+      "target": "CRD-R01-v2",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "CRD",
+      "target": "CRD-C01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "AML",
+      "target": "AML-R01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "AML",
+      "target": "AML-P01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "AML",
+      "target": "AML-S01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "AML",
+      "target": "AML-N01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "OPS",
+      "target": "OPS-P01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "OPS",
+      "target": "OPS-S01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "OPS",
+      "target": "OPS-S02",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "OPS",
+      "target": "OPS-F01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "DEP",
+      "target": "DEP-R01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "DEP",
+      "target": "DEP-P01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "DEP",
+      "target": "DEP-S01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "DEP",
+      "target": "DEP-R01-v2",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "CMP",
+      "target": "CMP-R01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "CMP",
+      "target": "CMP-P01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "CMP",
+      "target": "CMP-S01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "CMP",
+      "target": "CMP-N01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "RSK",
+      "target": "RSK-P01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "RSK",
+      "target": "RSK-S01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "RSK",
+      "target": "RSK-R01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "LGP",
+      "target": "LGP-P01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "LGP",
+      "target": "LGP-S01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "LGP",
+      "target": "LGP-R01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "DIG",
+      "target": "DIG-P01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "DIG",
+      "target": "DIG-S01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "DIG",
+      "target": "DIG-F01",
+      "type": "HAS_DOCUMENT"
+    },
+    {
+      "source": "CRD-R01-v2",
+      "target": "CRD-R01",
+      "type": "REPLACES"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-v2",
+      "type": "REPLACED_BY"
+    },
+    {
+      "source": "DEP-R01-v2",
+      "target": "DEP-R01",
+      "type": "REPLACES"
+    },
+    {
+      "source": "DEP-R01",
+      "target": "DEP-R01-v2",
+      "type": "REPLACED_BY"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-2.3",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-4.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01",
+      "target": "CRD-R01-5.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-P01",
+      "target": "CRD-P01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-P01",
+      "target": "CRD-P01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-P01",
+      "target": "CRD-P01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-P01",
+      "target": "CRD-P01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-P01",
+      "target": "CRD-P01-2.3",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-P01",
+      "target": "CRD-P01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-P01",
+      "target": "CRD-P01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-P01",
+      "target": "CRD-P01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-S01",
+      "target": "CRD-S01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-S01",
+      "target": "CRD-S01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-S01",
+      "target": "CRD-S01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-S01",
+      "target": "CRD-S01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-S01",
+      "target": "CRD-S01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-S01",
+      "target": "CRD-S01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-S01",
+      "target": "CRD-S01-3.3",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-S01",
+      "target": "CRD-S01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01-v2",
+      "target": "CRD-R01-v2-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01-v2",
+      "target": "CRD-R01-v2-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01-v2",
+      "target": "CRD-R01-v2-6.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-C01",
+      "target": "CRD-C01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-C01",
+      "target": "CRD-C01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-C01",
+      "target": "CRD-C01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-C01",
+      "target": "CRD-C01-2.3",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-C01",
+      "target": "CRD-C01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-C01",
+      "target": "CRD-C01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-C01",
+      "target": "CRD-C01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-C01",
+      "target": "CRD-C01-4.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-C01",
+      "target": "CRD-C01-5.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-R01",
+      "target": "AML-R01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-R01",
+      "target": "AML-R01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-R01",
+      "target": "AML-R01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-R01",
+      "target": "AML-R01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-R01",
+      "target": "AML-R01-2.3",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-R01",
+      "target": "AML-R01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-R01",
+      "target": "AML-R01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-R01",
+      "target": "AML-R01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-R01",
+      "target": "AML-R01-5.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-P01",
+      "target": "AML-P01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-P01",
+      "target": "AML-P01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-P01",
+      "target": "AML-P01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-P01",
+      "target": "AML-P01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-P01",
+      "target": "AML-P01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-P01",
+      "target": "AML-P01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-P01",
+      "target": "AML-P01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-S01",
+      "target": "AML-S01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-S01",
+      "target": "AML-S01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-S01",
+      "target": "AML-S01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-S01",
+      "target": "AML-S01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-S01",
+      "target": "AML-S01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-S01",
+      "target": "AML-S01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-N01",
+      "target": "AML-N01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-N01",
+      "target": "AML-N01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-N01",
+      "target": "AML-N01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-N01",
+      "target": "AML-N01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-N01",
+      "target": "AML-N01-2.3",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-N01",
+      "target": "AML-N01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "AML-N01",
+      "target": "AML-N01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-P01",
+      "target": "OPS-P01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-P01",
+      "target": "OPS-P01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-P01",
+      "target": "OPS-P01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-P01",
+      "target": "OPS-P01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-P01",
+      "target": "OPS-P01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-P01",
+      "target": "OPS-P01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-P01",
+      "target": "OPS-P01-4.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S01",
+      "target": "OPS-S01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S01",
+      "target": "OPS-S01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S01",
+      "target": "OPS-S01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S01",
+      "target": "OPS-S01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S01",
+      "target": "OPS-S01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S01",
+      "target": "OPS-S01-3.3",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S01",
+      "target": "OPS-S01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S02",
+      "target": "OPS-S02-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S02",
+      "target": "OPS-S02-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S02",
+      "target": "OPS-S02-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S02",
+      "target": "OPS-S02-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S02",
+      "target": "OPS-S02-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S02",
+      "target": "OPS-S02-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-S02",
+      "target": "OPS-S02-4.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-F01",
+      "target": "OPS-F01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-F01",
+      "target": "OPS-F01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-F01",
+      "target": "OPS-F01-1.3",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-F01",
+      "target": "OPS-F01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-F01",
+      "target": "OPS-F01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "OPS-F01",
+      "target": "OPS-F01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-R01",
+      "target": "DEP-R01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-R01",
+      "target": "DEP-R01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-R01",
+      "target": "DEP-R01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-R01",
+      "target": "DEP-R01-2.3",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-R01",
+      "target": "DEP-R01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-R01",
+      "target": "DEP-R01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-R01",
+      "target": "DEP-R01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-P01",
+      "target": "DEP-P01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-P01",
+      "target": "DEP-P01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-P01",
+      "target": "DEP-P01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-P01",
+      "target": "DEP-P01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-P01",
+      "target": "DEP-P01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-S01",
+      "target": "DEP-S01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-S01",
+      "target": "DEP-S01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-S01",
+      "target": "DEP-S01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-S01",
+      "target": "DEP-S01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-S01",
+      "target": "DEP-S01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-S01",
+      "target": "DEP-S01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-R01-v2",
+      "target": "DEP-R01-v2-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-R01-v2",
+      "target": "DEP-R01-v2-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DEP-R01-v2",
+      "target": "DEP-R01-v2-5.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-R01",
+      "target": "CMP-R01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-R01",
+      "target": "CMP-R01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-R01",
+      "target": "CMP-R01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-R01",
+      "target": "CMP-R01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-R01",
+      "target": "CMP-R01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-R01",
+      "target": "CMP-R01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-R01",
+      "target": "CMP-R01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-P01",
+      "target": "CMP-P01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-P01",
+      "target": "CMP-P01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-P01",
+      "target": "CMP-P01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-P01",
+      "target": "CMP-P01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-P01",
+      "target": "CMP-P01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-P01",
+      "target": "CMP-P01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-P01",
+      "target": "CMP-P01-4.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-S01",
+      "target": "CMP-S01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-S01",
+      "target": "CMP-S01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-S01",
+      "target": "CMP-S01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-S01",
+      "target": "CMP-S01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-S01",
+      "target": "CMP-S01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-N01",
+      "target": "CMP-N01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-N01",
+      "target": "CMP-N01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-N01",
+      "target": "CMP-N01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-N01",
+      "target": "CMP-N01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CMP-N01",
+      "target": "CMP-N01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-P01",
+      "target": "RSK-P01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-P01",
+      "target": "RSK-P01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-P01",
+      "target": "RSK-P01-1.3",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-P01",
+      "target": "RSK-P01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-P01",
+      "target": "RSK-P01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-P01",
+      "target": "RSK-P01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-P01",
+      "target": "RSK-P01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-P01",
+      "target": "RSK-P01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-S01",
+      "target": "RSK-S01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-S01",
+      "target": "RSK-S01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-S01",
+      "target": "RSK-S01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-S01",
+      "target": "RSK-S01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-S01",
+      "target": "RSK-S01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-R01",
+      "target": "RSK-R01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-R01",
+      "target": "RSK-R01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-R01",
+      "target": "RSK-R01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-R01",
+      "target": "RSK-R01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-R01",
+      "target": "RSK-R01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "RSK-R01",
+      "target": "RSK-R01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-P01",
+      "target": "LGP-P01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-P01",
+      "target": "LGP-P01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-P01",
+      "target": "LGP-P01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-P01",
+      "target": "LGP-P01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-P01",
+      "target": "LGP-P01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-P01",
+      "target": "LGP-P01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-P01",
+      "target": "LGP-P01-4.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-S01",
+      "target": "LGP-S01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-S01",
+      "target": "LGP-S01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-S01",
+      "target": "LGP-S01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-S01",
+      "target": "LGP-S01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-S01",
+      "target": "LGP-S01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-R01",
+      "target": "LGP-R01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-R01",
+      "target": "LGP-R01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-R01",
+      "target": "LGP-R01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-R01",
+      "target": "LGP-R01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-R01",
+      "target": "LGP-R01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "LGP-R01",
+      "target": "LGP-R01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-P01",
+      "target": "DIG-P01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-P01",
+      "target": "DIG-P01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-P01",
+      "target": "DIG-P01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-P01",
+      "target": "DIG-P01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-P01",
+      "target": "DIG-P01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-P01",
+      "target": "DIG-P01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-P01",
+      "target": "DIG-P01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-S01",
+      "target": "DIG-S01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-S01",
+      "target": "DIG-S01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-S01",
+      "target": "DIG-S01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-S01",
+      "target": "DIG-S01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-S01",
+      "target": "DIG-S01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-S01",
+      "target": "DIG-S01-4.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-S01",
+      "target": "DIG-S01-4.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-F01",
+      "target": "DIG-F01-1.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-F01",
+      "target": "DIG-F01-1.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-F01",
+      "target": "DIG-F01-2.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-F01",
+      "target": "DIG-F01-2.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-F01",
+      "target": "DIG-F01-3.1",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "DIG-F01",
+      "target": "DIG-F01-3.2",
+      "type": "HAS_CLAUSE"
+    },
+    {
+      "source": "CRD-R01-2.1",
+      "target": "AML-R01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-P01-1.2",
+      "target": "AML-R01-1.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-S01-2.2",
+      "target": "AML-S01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-C01-4.1",
+      "target": "AML-R01-3.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-R01-3.1",
+      "target": "RSK-P01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-P01-2.1",
+      "target": "RSK-P01-1.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-P01-2.3",
+      "target": "RSK-P01-1.3",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-S01-3.2",
+      "target": "RSK-R01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-C01-5.1",
+      "target": "LGP-P01-4.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-R01-5.1",
+      "target": "LGP-R01-1.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "AML-R01-1.1",
+      "target": "CMP-R01-1.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "AML-P01-3.1",
+      "target": "CMP-R01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "AML-N01-1.1",
+      "target": "CMP-R01-1.2",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "OPS-S01-2.1",
+      "target": "AML-S01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "OPS-S01-3.1",
+      "target": "AML-R01-2.2",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "OPS-F01-1.2",
+      "target": "AML-R01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "OPS-S01-3.2",
+      "target": "DIG-P01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DIG-S01-1.1",
+      "target": "AML-R01-3.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DIG-S01-2.1",
+      "target": "OPS-S01-3.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DIG-P01-4.1",
+      "target": "OPS-S02-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DEP-R01-2.1",
+      "target": "RSK-P01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DEP-P01-1.2",
+      "target": "RSK-R01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DEP-R01-4.1",
+      "target": "CMP-R01-1.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DEP-S01-2.1",
+      "target": "AML-R01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CMP-R01-3.1",
+      "target": "RSK-P01-3.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CMP-P01-3.1",
+      "target": "RSK-S01-3.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CMP-S01-1.1",
+      "target": "RSK-P01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CMP-N01-2.1",
+      "target": "RSK-R01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CMP-R01-4.1",
+      "target": "LGP-R01-3.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CMP-P01-4.2",
+      "target": "LGP-P01-4.2",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "RSK-P01-4.1",
+      "target": "LGP-R01-1.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "RSK-R01-4.1",
+      "target": "LGP-R01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DIG-P01-2.2",
+      "target": "AML-R01-3.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DIG-P01-3.1",
+      "target": "AML-P01-1.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DIG-S01-4.1",
+      "target": "OPS-S02-2.2",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DIG-F01-3.1",
+      "target": "DIG-P01-4.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DIG-F01-2.1",
+      "target": "DIG-S01-2.2",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "OPS-P01-3.2",
+      "target": "CMP-S01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "OPS-S02-4.2",
+      "target": "CMP-R01-3.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DEP-P01-3.1",
+      "target": "RSK-P01-2.2",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-R01-1.2",
+      "target": "CMP-R01-1.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "AML-P01-2.1",
+      "target": "CMP-P01-3.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "DIG-P01-3.2",
+      "target": "RSK-P01-2.1",
+      "type": "REFERENCES"
+    },
+    {
+      "source": "CRD-R01-v2-3.1",
+      "target": "CRD-R01-3.1",
+      "type": "AMENDS"
+    },
+    {
+      "source": "CRD-R01-v2-3.2",
+      "target": "CRD-R01-3.2",
+      "type": "AMENDS"
+    },
+    {
+      "source": "DEP-R01-v2-2.1",
+      "target": "DEP-R01-2.1",
+      "type": "AMENDS"
+    },
+    {
+      "source": "DEP-R01-v2-2.2",
+      "target": "DEP-R01-2.2",
+      "type": "AMENDS"
+    },
+    {
+      "source": "CRD-R01-v2-3.1",
+      "target": "CRD-R01-3.1",
+      "type": "SUPERSEDES"
+    },
+    {
+      "source": "CRD-R01-v2-3.2",
+      "target": "CRD-R01-3.2",
+      "type": "SUPERSEDES"
+    },
+    {
+      "source": "DEP-R01-v2-2.1",
+      "target": "DEP-R01-2.1",
+      "type": "SUPERSEDES"
+    },
+    {
+      "source": "DEP-R01-v2-2.2",
+      "target": "DEP-R01-2.2",
+      "type": "SUPERSEDES"
+    },
+    {
+      "source": "AML-N01-2.1",
+      "target": "AML-P01-3.1",
+      "type": "SUPERSEDES"
+    },
+    {
+      "source": "AML-N01-2.2",
+      "target": "AML-P01-3.2",
+      "type": "SUPERSEDES"
+    },
+    {
+      "source": "CMP-N01-2.1",
+      "target": "CMP-S01-2.1",
+      "type": "SUPERSEDES"
+    },
+    {
+      "source": "CMP-N01-2.2",
+      "target": "CMP-S01-2.2",
+      "type": "SUPERSEDES"
+    },
+    {
+      "source": "OPS-S02-1.1",
+      "target": "OPS-P01-1.2",
+      "type": "SUPERSEDES"
+    },
+    {
+      "source": "DEP-P01-2.1",
+      "target": "DIG-F01-2.1",
+      "type": "CONFLICTS_WITH"
+    },
+    {
+      "source": "OPS-S01-3.3",
+      "target": "DIG-P01-3.2",
+      "type": "CONFLICTS_WITH"
+    },
+    {
+      "source": "AML-R01-2.2",
+      "target": "CMP-N01-1.2",
+      "type": "CONFLICTS_WITH"
+    },
+    {
+      "source": "CMP-P01-2.1",
+      "target": "CMP-N01-2.1",
+      "type": "CONFLICTS_WITH"
+    },
+    {
+      "source": "CRD-S01-3.1",
+      "target": "RSK-P01-2.2",
+      "type": "CONFLICTS_WITH"
+    },
+    {
+      "source": "OPS-S02-3.1",
+      "target": "CMP-R01-3.1",
+      "type": "CONFLICTS_WITH"
+    },
+    {
+      "source": "LGP-R01-2.1",
+      "target": "CRD-R01-5.1",
+      "type": "CONFLICTS_WITH"
+    },
+    {
+      "source": "DIG-P01-2.2",
+      "target": "AML-R01-3.1",
+      "type": "CONFLICTS_WITH"
+    }
+  ]
+}

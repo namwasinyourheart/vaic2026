@@ -1,0 +1,1559 @@
+[
+  {
+    "document_id": "CRD-R01",
+    "title": "Quy định cho vay tín chấp",
+    "title_en": "Unsecured Lending Regulation",
+    "domain": "CRD",
+    "type": "Regulation",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2024-07-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Risk",
+    "summary": "Quy định chung về cho vay tín chấp, bao gồm điều kiện, hạn mức, lãi suất và quy trình phê duyệt.",
+    "sections": [
+      {
+        "title": "Mục đích và phạm vi",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Điều kiện khách hàng",
+        "clauses": [
+          "2.1",
+          "2.2",
+          "2.3"
+        ]
+      },
+      {
+        "title": "Hạn mức và lãi suất",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Quy trình phê duyệt",
+        "clauses": [
+          "4.1",
+          "4.2"
+        ]
+      },
+      {
+        "title": "Điều khoản chung",
+        "clauses": [
+          "5.1"
+        ]
+      }
+    ],
+    "clause_count": 10,
+    "clause_ids": [
+      "CRD-R01-1.1",
+      "CRD-R01-1.2",
+      "CRD-R01-2.1",
+      "CRD-R01-2.2",
+      "CRD-R01-2.3",
+      "CRD-R01-3.1",
+      "CRD-R01-3.2",
+      "CRD-R01-4.1",
+      "CRD-R01-4.2",
+      "CRD-R01-5.1"
+    ]
+  },
+  {
+    "document_id": "CRD-P01",
+    "title": "Chính sách thẩm định tín dụng",
+    "title_en": "Credit Appraisal Policy",
+    "domain": "CRD",
+    "type": "Policy",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2027-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Risk",
+    "summary": "Chính sách thẩm định tín dụng, bao gồm đánh giá năng lực trả nợ, xếp hạng tín dụng và quản lý rủi ro.",
+    "sections": [
+      {
+        "title": "Nguyên tắc thẩm định",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Xếp hạng tín dụng nội bộ",
+        "clauses": [
+          "2.1",
+          "2.2",
+          "2.3"
+        ]
+      },
+      {
+        "title": "Đánh giá tài sản đảm bảo",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Giám sát sau cho vay",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 8,
+    "clause_ids": [
+      "CRD-P01-1.1",
+      "CRD-P01-1.2",
+      "CRD-P01-2.1",
+      "CRD-P01-2.2",
+      "CRD-P01-2.3",
+      "CRD-P01-3.1",
+      "CRD-P01-3.2",
+      "CRD-P01-4.1"
+    ]
+  },
+  {
+    "document_id": "CRD-S01",
+    "title": "Quy trình phê duyệt khoản vay",
+    "title_en": "Loan Approval SOP",
+    "domain": "CRD",
+    "type": "SOP",
+    "version": "1.0",
+    "effective_date": "2024-01-15",
+    "expiry_date": "2026-01-15",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Retail",
+    "summary": "Quy trình chi tiết phê duyệt khoản vay từ tiếp nhận hồ sơ đến giải ngân.",
+    "sections": [
+      {
+        "title": "Tiếp nhận hồ sơ",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Thẩm định hồ sơ",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Phê duyệt",
+        "clauses": [
+          "3.1",
+          "3.2",
+          "3.3"
+        ]
+      },
+      {
+        "title": "Giải ngân",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 8,
+    "clause_ids": [
+      "CRD-S01-1.1",
+      "CRD-S01-1.2",
+      "CRD-S01-2.1",
+      "CRD-S01-2.2",
+      "CRD-S01-3.1",
+      "CRD-S01-3.2",
+      "CRD-S01-3.3",
+      "CRD-S01-4.1"
+    ]
+  },
+  {
+    "document_id": "CRD-R01-v2",
+    "title": "Quy định cho vay tín chấp (sửa đổi)",
+    "title_en": "Unsecured Lending Regulation (Amended)",
+    "domain": "CRD",
+    "type": "Regulation",
+    "version": "2.0",
+    "effective_date": "2024-07-01",
+    "expiry_date": "2026-07-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Risk",
+    "summary": "Bản sửa đổi quy định cho vay tín chấp: tăng hạn mức, cập nhật lãi suất theo thị trường.",
+    "sections": [
+      {
+        "title": "Hạn mức và lãi suất (sửa đổi)",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Điều khoản过渡",
+        "clauses": [
+          "6.1"
+        ]
+      }
+    ],
+    "clause_count": 3,
+    "clause_ids": [
+      "CRD-R01-v2-3.1",
+      "CRD-R01-v2-3.2",
+      "CRD-R01-v2-6.1"
+    ]
+  },
+  {
+    "document_id": "CRD-C01",
+    "title": "Hợp đồng cho vay tiêu dùng",
+    "title_en": "Consumer Loan Contract Template",
+    "domain": "CRD",
+    "type": "ContractTemplate",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2029-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Public",
+    "owner_department": "Legal",
+    "summary": "Mẫu hợp đồng的标准 cho vay tiêu dùng cá nhân.",
+    "sections": [
+      {
+        "title": "Thông tin các bên",
+        "clauses": [
+          "1.1"
+        ]
+      },
+      {
+        "title": "Điều khoản khoản vay",
+        "clauses": [
+          "2.1",
+          "2.2",
+          "2.3"
+        ]
+      },
+      {
+        "title": "Lãi suất và phí",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Trách nhiệm các bên",
+        "clauses": [
+          "4.1",
+          "4.2"
+        ]
+      },
+      {
+        "title": "Xử lý vi phạm",
+        "clauses": [
+          "5.1"
+        ]
+      }
+    ],
+    "clause_count": 9,
+    "clause_ids": [
+      "CRD-C01-1.1",
+      "CRD-C01-2.1",
+      "CRD-C01-2.2",
+      "CRD-C01-2.3",
+      "CRD-C01-3.1",
+      "CRD-C01-3.2",
+      "CRD-C01-4.1",
+      "CRD-C01-4.2",
+      "CRD-C01-5.1"
+    ]
+  },
+  {
+    "document_id": "AML-R01",
+    "title": "Quy định Know Your Customer (KYC)",
+    "title_en": "KYC Regulation",
+    "domain": "AML",
+    "type": "Regulation",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2026-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Compliance",
+    "summary": "Quy định về nhận biết khách hàng, thu thập và xác minh thông tin theo quy định pháp luật.",
+    "sections": [
+      {
+        "title": "Phạm vi áp dụng",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Thu thập thông tin",
+        "clauses": [
+          "2.1",
+          "2.2",
+          "2.3"
+        ]
+      },
+      {
+        "title": "Xác minh danh tính",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Cập nhật thông tin",
+        "clauses": [
+          "4.1"
+        ]
+      },
+      {
+        "title": "Lưu trữ hồ sơ",
+        "clauses": [
+          "5.1"
+        ]
+      }
+    ],
+    "clause_count": 9,
+    "clause_ids": [
+      "AML-R01-1.1",
+      "AML-R01-1.2",
+      "AML-R01-2.1",
+      "AML-R01-2.2",
+      "AML-R01-2.3",
+      "AML-R01-3.1",
+      "AML-R01-3.2",
+      "AML-R01-4.1",
+      "AML-R01-5.1"
+    ]
+  },
+  {
+    "document_id": "AML-P01",
+    "title": "Chính sách báo cáo giao dịch đáng ngờ",
+    "title_en": "Suspicious Transaction Reporting Policy",
+    "domain": "AML",
+    "type": "Policy",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2027-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Compliance",
+    "summary": "Chính sách nhận diện, đánh giá và báo cáo các giao dịch đáng ngờ theo quy định pháp luật.",
+    "sections": [
+      {
+        "title": "Tiêu chí nhận diện giao dịch đáng ngờ",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Quy trình đánh giá",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Báo cáo đến NHNN",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Bảo mật thông tin",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "AML-P01-1.1",
+      "AML-P01-1.2",
+      "AML-P01-2.1",
+      "AML-P01-2.2",
+      "AML-P01-3.1",
+      "AML-P01-3.2",
+      "AML-P01-4.1"
+    ]
+  },
+  {
+    "document_id": "AML-S01",
+    "title": "Quy trình xác minh khách hàng",
+    "title_en": "Customer Verification SOP",
+    "domain": "AML",
+    "type": "SOP",
+    "version": "1.0",
+    "effective_date": "2024-02-01",
+    "expiry_date": "2026-02-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Compliance",
+    "summary": "Quy trình chi tiết xác minh khách hàng từ bước tiếp nhận đến phê duyệt mở tài khoản.",
+    "sections": [
+      {
+        "title": "Tiếp nhận hồ sơ",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Xác minh giấy tờ",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Đánh giá rủi ro",
+        "clauses": [
+          "3.1"
+        ]
+      },
+      {
+        "title": "Phê duyệt",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 6,
+    "clause_ids": [
+      "AML-S01-1.1",
+      "AML-S01-1.2",
+      "AML-S01-2.1",
+      "AML-S01-2.2",
+      "AML-S01-3.1",
+      "AML-S01-4.1"
+    ]
+  },
+  {
+    "document_id": "AML-N01",
+    "title": "Thông tư 35/2024 về phòng chống rửa tiền",
+    "title_en": "Circular 35/2024 on AML",
+    "domain": "AML",
+    "type": "Circular",
+    "version": "1.0",
+    "effective_date": "2024-06-01",
+    "expiry_date": "2025-06-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Compliance",
+    "summary": "Thông tư hướng dẫn thi hành Luật Phòng chống sửa tiền, quy định chi tiết về báo cáo CTR.",
+    "sections": [
+      {
+        "title": "Quy định chung",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Báo cáo giao dịch",
+        "clauses": [
+          "2.1",
+          "2.2",
+          "2.3"
+        ]
+      },
+      {
+        "title": "Kiểm soát nội bộ AML",
+        "clauses": [
+          "3.1"
+        ]
+      },
+      {
+        "title": "Hình phạt",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "AML-N01-1.1",
+      "AML-N01-1.2",
+      "AML-N01-2.1",
+      "AML-N01-2.2",
+      "AML-N01-2.3",
+      "AML-N01-3.1",
+      "AML-N01-4.1"
+    ]
+  },
+  {
+    "document_id": "OPS-P01",
+    "title": "Chính sách quản lý tiền mặt",
+    "title_en": "Cash Management Policy",
+    "domain": "OPS",
+    "type": "Policy",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2027-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Operations",
+    "summary": "Chính sách quản lý tiền mặt tại quầy, bao gồm kiểm quỹ, giao nhận tiền và xử lý chênh lệch.",
+    "sections": [
+      {
+        "title": "Nguyên tắc quản lý tiền mặt",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Kiểm quỹ đầu ngày",
+        "clauses": [
+          "2.1"
+        ]
+      },
+      {
+        "title": "Giao nhận tiền",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Xử lý chênh lệch",
+        "clauses": [
+          "4.1",
+          "4.2"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "OPS-P01-1.1",
+      "OPS-P01-1.2",
+      "OPS-P01-2.1",
+      "OPS-P01-3.1",
+      "OPS-P01-3.2",
+      "OPS-P01-4.1",
+      "OPS-P01-4.2"
+    ]
+  },
+  {
+    "document_id": "OPS-S01",
+    "title": "Quy trình giao dịch tại quầy",
+    "title_en": "Teller Transaction SOP",
+    "domain": "OPS",
+    "type": "SOP",
+    "version": "1.0",
+    "effective_date": "2024-01-15",
+    "expiry_date": "2026-01-15",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Operations",
+    "summary": "Quy trình xử lý giao dịch tại quầy: nộp tiền, rút tiền, chuyển khoản, yêu cầu xác minh.",
+    "sections": [
+      {
+        "title": "Tiếp nhận giao dịch",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Xác minh khách hàng",
+        "clauses": [
+          "2.1"
+        ]
+      },
+      {
+        "title": "Xử lý giao dịch",
+        "clauses": [
+          "3.1",
+          "3.2",
+          "3.3"
+        ]
+      },
+      {
+        "title": "Ghi sổ và lưu trữ",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "OPS-S01-1.1",
+      "OPS-S01-1.2",
+      "OPS-S01-2.1",
+      "OPS-S01-3.1",
+      "OPS-S01-3.2",
+      "OPS-S01-3.3",
+      "OPS-S01-4.1"
+    ]
+  },
+  {
+    "document_id": "OPS-S02",
+    "title": "Quy trình xử lý sự cố hệ thống",
+    "title_en": "System Incident Handling SOP",
+    "domain": "OPS",
+    "type": "SOP",
+    "version": "1.0",
+    "effective_date": "2024-03-01",
+    "expiry_date": "2026-03-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "IT",
+    "summary": "Quy trình phản ứng và xử lý sự cố hệ thống banking, escalation và khôi phục.",
+    "sections": [
+      {
+        "title": "Phân loại sự cố",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Phản ứng ban đầu",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Escalation",
+        "clauses": [
+          "3.1"
+        ]
+      },
+      {
+        "title": "Khôi phục và báo cáo",
+        "clauses": [
+          "4.1",
+          "4.2"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "OPS-S02-1.1",
+      "OPS-S02-1.2",
+      "OPS-S02-2.1",
+      "OPS-S02-2.2",
+      "OPS-S02-3.1",
+      "OPS-S02-4.1",
+      "OPS-S02-4.2"
+    ]
+  },
+  {
+    "document_id": "OPS-F01",
+    "title": "FAQ giao dịch vận hành",
+    "title_en": "Operations FAQ",
+    "domain": "OPS",
+    "type": "FAQ",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2025-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Public",
+    "owner_department": "Operations",
+    "summary": "Câu hỏi thường gặp về giao dịch vận hành, xử lý lỗi và hỗ trợ khách hàng.",
+    "sections": [
+      {
+        "title": "Giao dịch tại quầy",
+        "clauses": [
+          "1.1",
+          "1.2",
+          "1.3"
+        ]
+      },
+      {
+        "title": "Chuyển khoản",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Xử lý lỗi",
+        "clauses": [
+          "3.1"
+        ]
+      }
+    ],
+    "clause_count": 6,
+    "clause_ids": [
+      "OPS-F01-1.1",
+      "OPS-F01-1.2",
+      "OPS-F01-1.3",
+      "OPS-F01-2.1",
+      "OPS-F01-2.2",
+      "OPS-F01-3.1"
+    ]
+  },
+  {
+    "document_id": "DEP-R01",
+    "title": "Quy định tiền gửi tiết kiệm",
+    "title_en": "Savings Deposit Regulation",
+    "domain": "DEP",
+    "type": "Regulation",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2024-09-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Retail",
+    "summary": "Quy định về tiền gửi tiết kiệm: lãi suất, kỳ hạn, rút trước hạn, bảo hiểm tiền gửi.",
+    "sections": [
+      {
+        "title": "Phạm vi và đối tượng",
+        "clauses": [
+          "1.1"
+        ]
+      },
+      {
+        "title": "Lãi suất và kỳ hạn",
+        "clauses": [
+          "2.1",
+          "2.2",
+          "2.3"
+        ]
+      },
+      {
+        "title": "Rút trước hạn",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Bảo hiểm tiền gửi",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "DEP-R01-1.1",
+      "DEP-R01-2.1",
+      "DEP-R01-2.2",
+      "DEP-R01-2.3",
+      "DEP-R01-3.1",
+      "DEP-R01-3.2",
+      "DEP-R01-4.1"
+    ]
+  },
+  {
+    "document_id": "DEP-P01",
+    "title": "Chính sách lãi suất tiền gửi",
+    "title_en": "Deposit Interest Rate Policy",
+    "domain": "DEP",
+    "type": "Policy",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2027-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Treasury",
+    "summary": "Chính sách xác định lãi suất tiền gửi theo kỳ hạn và thị trường.",
+    "sections": [
+      {
+        "title": "Nguyên tắc xác định lãi suất",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Bảng lãi suất kỳ hạn",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Lãi suất huy động vốn",
+        "clauses": [
+          "3.1"
+        ]
+      }
+    ],
+    "clause_count": 5,
+    "clause_ids": [
+      "DEP-P01-1.1",
+      "DEP-P01-1.2",
+      "DEP-P01-2.1",
+      "DEP-P01-2.2",
+      "DEP-P01-3.1"
+    ]
+  },
+  {
+    "document_id": "DEP-S01",
+    "title": "Quy trình mở tài khoản tiết kiệm",
+    "title_en": "Savings Account Opening SOP",
+    "domain": "DEP",
+    "type": "SOP",
+    "version": "1.0",
+    "effective_date": "2024-01-15",
+    "expiry_date": "2026-01-15",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Retail",
+    "summary": "Quy trình mở tài khoản tiết kiệm từ tiếp nhận hồ sơ đến phát hành sổ.",
+    "sections": [
+      {
+        "title": "Tiếp nhận yêu cầu",
+        "clauses": [
+          "1.1"
+        ]
+      },
+      {
+        "title": "Xác minh thông tin",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Mở tài khoản",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Phát hành sổ tiết kiệm",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 6,
+    "clause_ids": [
+      "DEP-S01-1.1",
+      "DEP-S01-2.1",
+      "DEP-S01-2.2",
+      "DEP-S01-3.1",
+      "DEP-S01-3.2",
+      "DEP-S01-4.1"
+    ]
+  },
+  {
+    "document_id": "DEP-R01-v2",
+    "title": "Quy định tiền gửi tiết kiệm (sửa đổi)",
+    "title_en": "Savings Deposit Regulation (Amended)",
+    "domain": "DEP",
+    "type": "Regulation",
+    "version": "2.0",
+    "effective_date": "2024-09-01",
+    "expiry_date": "2026-09-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Retail",
+    "summary": "Bản sửa đổi: cập nhật lãi suất, bổ sung sản phẩm tiết kiệm online.",
+    "sections": [
+      {
+        "title": "Lãi suất và kỳ hạn (sửa đổi)",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Tiết kiệm online (mới)",
+        "clauses": [
+          "5.1"
+        ]
+      }
+    ],
+    "clause_count": 3,
+    "clause_ids": [
+      "DEP-R01-v2-2.1",
+      "DEP-R01-v2-2.2",
+      "DEP-R01-v2-5.1"
+    ]
+  },
+  {
+    "document_id": "CMP-R01",
+    "title": "Quy định báo cáo tuân thủ",
+    "title_en": "Compliance Reporting Regulation",
+    "domain": "CMP",
+    "type": "Regulation",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2026-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Compliance",
+    "summary": "Quy định về báo cáo tuân thủ định kỳ và đột xuất đến NHNN.",
+    "sections": [
+      {
+        "title": "Phạm vi báo cáo",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Chu kỳ báo cáo",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Nội dung báo cáo",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Xử lý vi phạm",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "CMP-R01-1.1",
+      "CMP-R01-1.2",
+      "CMP-R01-2.1",
+      "CMP-R01-2.2",
+      "CMP-R01-3.1",
+      "CMP-R01-3.2",
+      "CMP-R01-4.1"
+    ]
+  },
+  {
+    "document_id": "CMP-P01",
+    "title": "Chính sách kiểm toán nội bộ",
+    "title_en": "Internal Audit Policy",
+    "domain": "CMP",
+    "type": "Policy",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2027-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Internal Audit",
+    "summary": "Chính sách kiểm toán nội bộ: kế hoạch, thực hiện, báo cáo và theo dõi khắc phục.",
+    "sections": [
+      {
+        "title": "Mục tiêu kiểm toán",
+        "clauses": [
+          "1.1"
+        ]
+      },
+      {
+        "title": "Lập kế hoạch",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Thực hiện kiểm toán",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Báo cáo và theo dõi",
+        "clauses": [
+          "4.1",
+          "4.2"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "CMP-P01-1.1",
+      "CMP-P01-2.1",
+      "CMP-P01-2.2",
+      "CMP-P01-3.1",
+      "CMP-P01-3.2",
+      "CMP-P01-4.1",
+      "CMP-P01-4.2"
+    ]
+  },
+  {
+    "document_id": "CMP-S01",
+    "title": "Quy trình kiểm soát nội bộ",
+    "title_en": "Internal Control SOP",
+    "domain": "CMP",
+    "type": "SOP",
+    "version": "1.0",
+    "effective_date": "2024-02-01",
+    "expiry_date": "2026-02-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Compliance",
+    "summary": "Quy trình kiểm soát nội bộ, phân quyền, review và giám sát giao dịch.",
+    "sections": [
+      {
+        "title": "Phân quyền giao dịch",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Review và giám sát",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Xử lý ngoại lệ",
+        "clauses": [
+          "3.1"
+        ]
+      }
+    ],
+    "clause_count": 5,
+    "clause_ids": [
+      "CMP-S01-1.1",
+      "CMP-S01-1.2",
+      "CMP-S01-2.1",
+      "CMP-S01-2.2",
+      "CMP-S01-3.1"
+    ]
+  },
+  {
+    "document_id": "CMP-N01",
+    "title": "Thông tư 13/2024关于kiểm soát nội bộ",
+    "title_en": "Circular 13/2024 on Internal Control",
+    "domain": "CMP",
+    "type": "Circular",
+    "version": "1.0",
+    "effective_date": "2024-04-01",
+    "expiry_date": "2025-04-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Compliance",
+    "summary": "Thông tư hướng dẫn kiểm soát nội bộ tại các tổ chức tín dụng.",
+    "sections": [
+      {
+        "title": "Yêu cầu chung",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Hệ thống kiểm soát",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Báo cáo kiểm soát",
+        "clauses": [
+          "3.1"
+        ]
+      }
+    ],
+    "clause_count": 5,
+    "clause_ids": [
+      "CMP-N01-1.1",
+      "CMP-N01-1.2",
+      "CMP-N01-2.1",
+      "CMP-N01-2.2",
+      "CMP-N01-3.1"
+    ]
+  },
+  {
+    "document_id": "RSK-P01",
+    "title": "Chính sách quản lý rủi ro tín dụng",
+    "title_en": "Credit Risk Management Policy",
+    "domain": "RSK",
+    "type": "Policy",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2027-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Risk",
+    "summary": "Chính sách quản lý rủi ro tín dụng: phân loại, đánh giá, theo dõi và xử lý nợ xấu.",
+    "sections": [
+      {
+        "title": "Phân loại rủi ro tín dụng",
+        "clauses": [
+          "1.1",
+          "1.2",
+          "1.3"
+        ]
+      },
+      {
+        "title": "Hạn mức rủi ro",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Theo dõi nợ xấu",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Xử lý nợ xấu",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 8,
+    "clause_ids": [
+      "RSK-P01-1.1",
+      "RSK-P01-1.2",
+      "RSK-P01-1.3",
+      "RSK-P01-2.1",
+      "RSK-P01-2.2",
+      "RSK-P01-3.1",
+      "RSK-P01-3.2",
+      "RSK-P01-4.1"
+    ]
+  },
+  {
+    "document_id": "RSK-S01",
+    "title": "Quy trình đánh giá rủi ro",
+    "title_en": "Risk Assessment SOP",
+    "domain": "RSK",
+    "type": "SOP",
+    "version": "1.0",
+    "effective_date": "2024-02-01",
+    "expiry_date": "2026-02-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Risk",
+    "summary": "Quy trình đánh giá rủi ro định kỳ và theo vụ việc.",
+    "sections": [
+      {
+        "title": "Thu thập dữ liệu",
+        "clauses": [
+          "1.1"
+        ]
+      },
+      {
+        "title": "Phân tích rủi ro",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Báo cáo đánh giá",
+        "clauses": [
+          "3.1"
+        ]
+      },
+      {
+        "title": "Kế hoạch hành động",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 5,
+    "clause_ids": [
+      "RSK-S01-1.1",
+      "RSK-S01-2.1",
+      "RSK-S01-2.2",
+      "RSK-S01-3.1",
+      "RSK-S01-4.1"
+    ]
+  },
+  {
+    "document_id": "RSK-R01",
+    "title": "Quy định tỷ lệ an toàn vốn",
+    "title_en": "Capital Adequacy Regulation",
+    "domain": "RSK",
+    "type": "Regulation",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2026-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Risk",
+    "summary": "Quy định về tỷ lệ an toàn vốn theo Basel II/III và hướng dẫn NHNN.",
+    "sections": [
+      {
+        "title": "Yêu cầu vốn tối thiểu",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Tính toán CAR",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Báo cáo CAR",
+        "clauses": [
+          "3.1"
+        ]
+      },
+      {
+        "title": "Xử lý thiếu hụt vốn",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 6,
+    "clause_ids": [
+      "RSK-R01-1.1",
+      "RSK-R01-1.2",
+      "RSK-R01-2.1",
+      "RSK-R01-2.2",
+      "RSK-R01-3.1",
+      "RSK-R01-4.1"
+    ]
+  },
+  {
+    "document_id": "LGP-P01",
+    "title": "Chính sách quản lý hợp đồng",
+    "title_en": "Contract Management Policy",
+    "domain": "LGP",
+    "type": "Policy",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2027-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Legal",
+    "summary": "Chính sách quản lý vòng đời hợp đồng: soạn thảo, phê duyệt, thực hiện, chấm dứt.",
+    "sections": [
+      {
+        "title": "Phân loại hợp đồng",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Soạn thảo và phê duyệt",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Thực hiện hợp đồng",
+        "clauses": [
+          "3.1"
+        ]
+      },
+      {
+        "title": "Chấm dứt và tranh chấp",
+        "clauses": [
+          "4.1",
+          "4.2"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "LGP-P01-1.1",
+      "LGP-P01-1.2",
+      "LGP-P01-2.1",
+      "LGP-P01-2.2",
+      "LGP-P01-3.1",
+      "LGP-P01-4.1",
+      "LGP-P01-4.2"
+    ]
+  },
+  {
+    "document_id": "LGP-S01",
+    "title": "Quy trình phê duyệt pháp lý",
+    "title_en": "Legal Review SOP",
+    "domain": "LGP",
+    "type": "SOP",
+    "version": "1.0",
+    "effective_date": "2024-02-01",
+    "expiry_date": "2026-02-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Legal",
+    "summary": "Quy trình phê duyệt pháp lý cho hợp đồng, sản phẩm mới và giao dịch đặc biệt.",
+    "sections": [
+      {
+        "title": "Tiếp nhận yêu cầu",
+        "clauses": [
+          "1.1"
+        ]
+      },
+      {
+        "title": "Kiểm tra pháp lý",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Phê duyệt",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      }
+    ],
+    "clause_count": 5,
+    "clause_ids": [
+      "LGP-S01-1.1",
+      "LGP-S01-2.1",
+      "LGP-S01-2.2",
+      "LGP-S01-3.1",
+      "LGP-S01-3.2"
+    ]
+  },
+  {
+    "document_id": "LGP-R01",
+    "title": "Quy định xử lý tranh chấp",
+    "title_en": "Dispute Resolution Regulation",
+    "domain": "LGP",
+    "type": "Regulation",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2026-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Legal",
+    "summary": "Quy định về xử lý tranh chấp với khách hàng, trọng tài và tòa án.",
+    "sections": [
+      {
+        "title": "Phân loại tranh chấp",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Thương lượng",
+        "clauses": [
+          "2.1"
+        ]
+      },
+      {
+        "title": "Trọng tài và tòa án",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Bồi thường",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 6,
+    "clause_ids": [
+      "LGP-R01-1.1",
+      "LGP-R01-1.2",
+      "LGP-R01-2.1",
+      "LGP-R01-3.1",
+      "LGP-R01-3.2",
+      "LGP-R01-4.1"
+    ]
+  },
+  {
+    "document_id": "DIG-P01",
+    "title": "Chính sách thanh toán số",
+    "title_en": "Digital Payment Policy",
+    "domain": "DIG",
+    "type": "Policy",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2027-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Digital Banking",
+    "summary": "Chính sách thanh toán số: mobile banking, internet banking, QR code, ví điện tử.",
+    "sections": [
+      {
+        "title": "Phạm vi thanh toán số",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Xác thực giao dịch",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Hạn mức giao dịch",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      },
+      {
+        "title": "Bảo mật",
+        "clauses": [
+          "4.1"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "DIG-P01-1.1",
+      "DIG-P01-1.2",
+      "DIG-P01-2.1",
+      "DIG-P01-2.2",
+      "DIG-P01-3.1",
+      "DIG-P01-3.2",
+      "DIG-P01-4.1"
+    ]
+  },
+  {
+    "document_id": "DIG-S01",
+    "title": "Quy trình giao dịch trực tuyến",
+    "title_en": "Online Transaction SOP",
+    "domain": "DIG",
+    "type": "SOP",
+    "version": "1.0",
+    "effective_date": "2024-01-15",
+    "expiry_date": "2026-01-15",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Internal",
+    "owner_department": "Digital Banking",
+    "summary": "Quy trình xử lý giao dịch trực tuyến từ xác thực đến xử lý và ghi sổ.",
+    "sections": [
+      {
+        "title": "Xác thực người dùng",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Xử lý giao dịch",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Xác nhận và ghi sổ",
+        "clauses": [
+          "3.1"
+        ]
+      },
+      {
+        "title": "Xử lý lỗi giao dịch",
+        "clauses": [
+          "4.1",
+          "4.2"
+        ]
+      }
+    ],
+    "clause_count": 7,
+    "clause_ids": [
+      "DIG-S01-1.1",
+      "DIG-S01-1.2",
+      "DIG-S01-2.1",
+      "DIG-S01-2.2",
+      "DIG-S01-3.1",
+      "DIG-S01-4.1",
+      "DIG-S01-4.2"
+    ]
+  },
+  {
+    "document_id": "DIG-F01",
+    "title": "FAQ e-banking",
+    "title_en": "E-Banking FAQ",
+    "domain": "DIG",
+    "type": "FAQ",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "expiry_date": "2025-01-01",
+    "status": "Active",
+    "language": "vi",
+    "access_level": "Public",
+    "owner_department": "Digital Banking",
+    "summary": "Câu hỏi thường gặp về e-banking: đăng nhập, chuyển khoản, bảo mật.",
+    "sections": [
+      {
+        "title": "Đăng nhập và mật khẩu",
+        "clauses": [
+          "1.1",
+          "1.2"
+        ]
+      },
+      {
+        "title": "Chuyển khoản trực tuyến",
+        "clauses": [
+          "2.1",
+          "2.2"
+        ]
+      },
+      {
+        "title": "Bảo mật tài khoản",
+        "clauses": [
+          "3.1",
+          "3.2"
+        ]
+      }
+    ],
+    "clause_count": 6,
+    "clause_ids": [
+      "DIG-F01-1.1",
+      "DIG-F01-1.2",
+      "DIG-F01-2.1",
+      "DIG-F01-2.2",
+      "DIG-F01-3.1",
+      "DIG-F01-3.2"
+    ]
+  }
+]

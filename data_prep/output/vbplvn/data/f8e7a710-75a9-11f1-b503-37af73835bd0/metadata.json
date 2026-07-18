@@ -1,0 +1,37 @@
+{
+  "id": "f8e7a710-75a9-11f1-b503-37af73835bd0",
+  "doc_number": "234/2026/NĐ-CP",
+  "title": "Quy định về xử lý kỷ luật viên chức",
+  "doc_type": "Nghị định",
+  "agency": "Chính phủ",
+  "signer": "Phạm Thị Thanh Trà",
+  "signer_title": "Phó Thủ tướng",
+  "issue_date": "2026-06-26",
+  "effective_date": "2026-07-01",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "Nội vụ",
+  "field": "Viên chức",
+  "relations": {
+    "Căn cứ ban hành": [
+      {
+        "title": "Luật Viên chức số 129/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--185448"
+      },
+      {
+        "title": "Luật Tổ chức chính phủ số 63/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--175258"
+      }
+    ],
+    "Văn bản được thay thế": [
+      {
+        "title": "Nghị định số 71/2023/NĐ-CP sửa đổi, bổ sung một số điều của Nghị định số 112/2020/NĐ-CP ngày 18/9/2020 vê xử lý cán bộ, công chức, viên chức",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--162979"
+      },
+      {
+        "title": "Nghị định số 112/2020/NĐ-CP về xử lý kỷ luật cán bộ, công chức, viên chức",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--144030"
+      }
+    ]
+  }
+}

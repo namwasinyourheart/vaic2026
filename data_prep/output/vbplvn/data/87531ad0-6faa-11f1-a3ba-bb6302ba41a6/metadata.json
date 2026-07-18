@@ -1,0 +1,41 @@
+{
+  "id": "87531ad0-6faa-11f1-a3ba-bb6302ba41a6",
+  "doc_number": "63/2026/TT-BTC",
+  "title": "Thông tư số 63/2026/TT-BTC Quy định nội dung và mức chi hoạt động thi kỹ năng nghề",
+  "doc_type": "Thông tư",
+  "agency": "Bộ Tài chính",
+  "signer": "Nguyễn Thị Bích Ngọc",
+  "signer_title": "Thứ trưởng",
+  "issue_date": "2026-06-05",
+  "effective_date": "2026-06-05",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "Tài chính",
+  "field": "Ngân sách nhà nước",
+  "relations": {
+    "Văn bản bị bãi bỏ": [
+      {
+        "title": "Thông tư liên tịch số 43/2012/TTLT-BTC-BLĐTBXH Quy định nội dung và mức chi hoạt động thi tay nghề các cấp",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--50650"
+      }
+    ],
+    "Căn cứ ban hành": [
+      {
+        "title": "Nghị định 73/2026/NĐ-CP Quy định chi tiết và hướng dẫn thi hành một số điều của Luật Ngân sách nhà nước",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--5cb1afe0-5f05-11f1-9481-57487a853907"
+      },
+      {
+        "title": "Luật Ngân sách nhà nước số 89/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--179427"
+      },
+      {
+        "title": "Luật Giáo dục nghề nghiệp số 124/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--187742"
+      },
+      {
+        "title": "Nghị định 95/2026/NĐ-CP Quy định chi tiết một số điều của Luật Giáo dục nghề nghiệp",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--860f7bf0-5fbf-11f1-baad-7baf349e4825"
+      }
+    ]
+  }
+}

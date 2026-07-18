@@ -1,0 +1,35 @@
+{
+  "id": "96117",
+  "doc_number": "95/2015/QH13",
+  "title": "Bộ luật Hàng hải số 95/2015/QH13",
+  "doc_type": "Bộ luật",
+  "agency": "Quốc hội",
+  "signer": "Nguyễn Sinh Hùng",
+  "signer_title": "Chủ tịch Quốc hội",
+  "issue_date": "2015-11-25",
+  "effective_date": "2017-07-01",
+  "expire_date": "--",
+  "status": "Hết hiệu lực một phần",
+  "industry": "Giao thông Vận tải",
+  "field": "Hàng hải",
+  "relations": {
+    "Căn cứ ban hành": [
+      {
+        "title": "Hiến pháp năm 2013",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--32801"
+      }
+    ],
+    "Văn bản được dẫn chiếu": [
+      {
+        "title": "Luật Xử lý vi phạm hành chính số 15/2012/QH13",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--27621"
+      }
+    ],
+    "Văn bản được thay thế": [
+      {
+        "title": "Bộ luật Hàng hải Việt Nam số 40/2005/QH11",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--18131"
+      }
+    ]
+  }
+}

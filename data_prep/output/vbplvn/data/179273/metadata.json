@@ -1,0 +1,39 @@
+{
+  "id": "179273",
+  "doc_number": "74/2025/QH15",
+  "title": "Luật Việc làm số 74/2025/QH15",
+  "doc_type": "Luật",
+  "agency": "Quốc hội",
+  "signer": "Trần Thanh Mẫn",
+  "signer_title": "Chủ tịch Quốc hội",
+  "issue_date": "2025-06-16",
+  "effective_date": "2026-01-01",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "Nội vụ",
+  "field": "Việc làm",
+  "relations": {
+    "Văn bản bị bãi bỏ": [
+      {
+        "title": "Luật Việc làm số 38/2013/QH13",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--32912"
+      }
+    ],
+    "Căn cứ ban hành": [
+      {
+        "title": "Hiến pháp năm 2013",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--32801"
+      }
+    ],
+    "Văn bản được thay thế": [
+      {
+        "title": "Luật Bảo hiểm xã hội",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--175027"
+      },
+      {
+        "title": "Luật Việc làm số 38/2013/QH13",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--32912"
+      }
+    ]
+  }
+}

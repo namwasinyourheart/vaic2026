@@ -1,0 +1,33 @@
+{
+  "id": "9048b740-541f-11f1-b175-1fe27ccb5c48",
+  "doc_number": "48/2026/TT-BCA",
+  "title": "Thông tư 48/2026/TT-BCA Ban hành Quy chuẩn kỹ thuật quốc gia về thiết bị camera giám sát sử dụng giao thức Internet - Các yêu cầu an ninh mạng cơ bản",
+  "doc_type": "Thông tư",
+  "agency": "Bộ Công an",
+  "signer": "Đại tướng Lương Tam Quang",
+  "signer_title": "Bộ trưởng",
+  "issue_date": "2026-05-12",
+  "effective_date": "2026-07-01",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "An ninh quốc gia",
+  "field": "An ninh quốc gia",
+  "relations": {
+    "Căn cứ ban hành": [
+      {
+        "title": "Luật Tiêu chuẩn và quy chuẩn kỹ thuật số 68/2006/QH11",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--15062"
+      },
+      {
+        "title": "LUẬT AN NINH MẠNG SỐ 116/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--187039"
+      }
+    ],
+    "Văn bản bị đình chỉ thi hành": [
+      {
+        "title": "Thông tư số 21/2024/TT-BTTTT Ban hành Quy chuẩn kỹ thuật quốc gia về thiết bị camera giám sát sử dụng giao thức Internet - Các yêu cầu an toàn thông tin cơ bản",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--174948"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "a7a6d300-54c3-11f1-8b25-0115f78416ec",
+  "doc_number": "15/2026/TT-BYT",
+  "title": "Thông tư Quy định chi tiết một số điều của Luật Phòng bệnh",
+  "doc_type": "Thông tư",
+  "agency": "Bộ Y tế",
+  "signer": "Nguyễn Thị Liên Hương",
+  "signer_title": "Thứ trưởng",
+  "issue_date": "2026-05-17",
+  "effective_date": "2026-07-01",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "Y tế",
+  "field": "Phòng, chống bệnh truyền nhiễm",
+  "relations": {
+    "Văn bản bị bãi bỏ": [
+      {
+        "title": "Thông tư số 54/2015/TT-BYT Hướng dẫn chế độ thông tin báo cáo và khai báo bệnh, dịch bệnh truyền nhiễm",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--97333"
+      },
+      {
+        "title": "Quyết định số 25/2006/QĐ-BYT Về việc ban hành bổ sung biểu mẫu về tai nạn thương tích vào hệ thống biểu mẫu của Ngành Y tế",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--14796"
+      },
+      {
+        "title": "Thông tư số 17/2019/TT-BYT Hướng dẫn giám sát và đáp ứng với bệnh, dịch bệnh truyền nhiễm",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--136387"
+      },
+      {
+        "title": "Thông tư liên tịch số 16/2013/TTLT-BYT-BNN&PTNT Hướng dẫn phối hợp phòng, chống bệnh lây truyền từ động vật sang người",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--46847"
+      }
+    ]
+  }
+}

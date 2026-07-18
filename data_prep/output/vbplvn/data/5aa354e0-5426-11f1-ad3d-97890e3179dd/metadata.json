@@ -1,0 +1,49 @@
+{
+  "id": "5aa354e0-5426-11f1-ad3d-97890e3179dd",
+  "doc_number": "51/2026/TT-BTC",
+  "title": "Thông tư 51/2026/TT-BTC Hướng dẫn lập Báo cáo tài chính nhà nước",
+  "doc_type": "Thông tư",
+  "agency": "Bộ Tài chính",
+  "signer": "Tạ Anh Tuấn",
+  "signer_title": "Thứ trưởng",
+  "issue_date": "2026-05-13",
+  "effective_date": "2026-05-13",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "Tài chính",
+  "field": "Ngân sách nhà nước",
+  "relations": {
+    "Căn cứ ban hành": [
+      {
+        "title": "Luật Kế toán số 88/2015/QH13",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--95924"
+      },
+      {
+        "title": "Luật Tổ chức chính quyền địa phương số 72/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--178340"
+      },
+      {
+        "title": "Luật Ngân sách nhà nước số 89/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--179427"
+      },
+      {
+        "title": "Luật Tổ chức chính phủ số 63/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--175258"
+      },
+      {
+        "title": "Nghị định số 29/2025/NĐ-CP Quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Tài chính",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--175462"
+      }
+    ],
+    "Văn bản được thay thế": [
+      {
+        "title": "Thông tư số 133/2018/TT-BTC Hướng dẫn lập Báo cáo tài chính nhà nước",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--136168"
+      },
+      {
+        "title": "Thông tư số 39/2021/TT-BTC Sửa đổi, bổ sung một số điều của Thông tư 133/2018/TT-BTC ngày 28/12/2018 của Bộ Tài chính hướng dẫn lập Báo cáo tài chính Nhà nước",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--148285"
+      }
+    ]
+  }
+}

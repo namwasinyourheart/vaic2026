@@ -1,0 +1,27 @@
+{
+  "id": "41003",
+  "doc_number": "63/BXD-QLN",
+  "title": "Công văn số 63/BXD-QLN Hướng dẫn việc quản lý, sử dụng lệ phí cấp chứng chỉ môi giới, chứng chỉ định giá BĐS.",
+  "doc_type": "Công văn",
+  "agency": "Bộ Xây dựng",
+  "signer": "Nguyễn Mạnh Hà",
+  "signer_title": "Bộ trưởng",
+  "issue_date": "2009-06-10",
+  "effective_date": "2009-06-10",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "Xây dựng",
+  "field": "Chưa phân loại",
+  "relations": {
+    "Văn bản được dẫn chiếu": [
+      {
+        "title": "Quyết định số 206/2003/QĐ-BTC của Bộ trưởng Bộ Tài chính về ban hành Chế độ quản lý, sử dụng và trích khấu hao tài sản cố định",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--17079"
+      },
+      {
+        "title": "Nghị định số 153/2007/NĐ-CP Quy định chi tiết và hướng dẫn thi hành Luật Kinh doanh bất động sản",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--13178"
+      }
+    ]
+  }
+}

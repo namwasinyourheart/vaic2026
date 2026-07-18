@@ -1,0 +1,69 @@
+{
+  "id": "179989",
+  "doc_number": "71/2025/QH15",
+  "title": "Luật Công nghiệp công nghệ số số 71/2025/QH15",
+  "doc_type": "Luật",
+  "agency": "Quốc hội",
+  "signer": "Trần Thanh Mẫn",
+  "signer_title": "Chủ tịch Quốc hội",
+  "issue_date": "2025-06-14",
+  "effective_date": "2026-01-01",
+  "expire_date": "--",
+  "status": "Hết hiệu lực một phần",
+  "industry": "Khoa học và công nghệ",
+  "field": "Công nghệ thông tin",
+  "relations": {
+    "Văn bản bị bãi bỏ": [
+      {
+        "title": "Luật Công nghệ thông tin số 67/2006/QH11",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--15066"
+      }
+    ],
+    "Căn cứ ban hành": [
+      {
+        "title": "Nghị quyết số 64/2013/QH13 Quy định một số điểm thi hành Hiến pháp nước Cộng hòa xã hội chủ nghĩa Việt Nam",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--32804"
+      }
+    ],
+    "Văn bản được sửa đổi bổ sung": [
+      {
+        "title": "Nghị quyết số 04/2007/QH12 Về việc điều chỉnh chương trình xây dựng luật, pháp lệnh năm 2007",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--25400"
+      },
+      {
+        "title": "Bộ Luật lao động số 45/2019/QH14",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--139264"
+      }
+    ],
+    "Văn bản được thay thế": [
+      {
+        "title": "Luật Quy hoạch đô thị và nông thôn số 47/2024/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--172548"
+      },
+      {
+        "title": "Nghị quyết số 136/2024/QH15 về tổ chức chính quyền đô thị và thí điểm một số cơ chế, chính sách đặc thù phát triển thành phố Đà Nẵng",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--168687"
+      },
+      {
+        "title": "Luật Đất đai số 31/2024/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--177815"
+      },
+      {
+        "title": "Nghị quyết số 98/2023/QH15 Về thí điểm một số cơ chế, chính sách đặc thù phát triển thành phố Hồ Chí Minh",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--179317"
+      },
+      {
+        "title": "Nghị quyết số 81/2023/QH15 Về Quy hoạch tổng thể quốc gia thời kỳ 2021 – 2023, tầm nhìn năm 2050",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--166402"
+      },
+      {
+        "title": "Luật đầu tư số 61/2020/QH14",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--142867"
+      },
+      {
+        "title": "Luật Thủ đô số 39/2024/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--169990"
+      }
+    ]
+  }
+}

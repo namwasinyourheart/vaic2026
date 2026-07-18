@@ -1,0 +1,59 @@
+{
+  "id": "e86fb920-7cef-11f1-b034-558b5a933713",
+  "doc_number": "160/2026/NĐ-CP",
+  "title": "Nghị định số 160/2026/NĐ-CP Quy định cơ sở dữ liệu về thi hành án hình sự",
+  "doc_type": "Nghị định",
+  "agency": "Chính phủ",
+  "signer": "Phạm Gia Túc",
+  "signer_title": "Phó Thủ tướng",
+  "issue_date": "2026-05-15",
+  "effective_date": "2026-07-01",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "An ninh quốc gia",
+  "field": "An ninh quốc gia",
+  "relations": {
+    "Văn bản bị bãi bỏ": [
+      {
+        "title": "Nghị định số 59/2020/NĐ-CP Quy định cơ sở dữ liệu về thi hành án hình sự",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--162591"
+      }
+    ],
+    "Căn cứ ban hành": [
+      {
+        "title": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--179252"
+      },
+      {
+        "title": "Luật Giao dịch điện tử số 20/2023/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--165913"
+      },
+      {
+        "title": "Luật Dữ liệu số 60/2024/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--174877"
+      },
+      {
+        "title": "LUẬT BẢO VỆ BÍ MẬT NHÀ NƯỚC SỐ 117/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--187038"
+      },
+      {
+        "title": "LUẬT AN NINH MẠNG SỐ 116/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--187039"
+      },
+      {
+        "title": "Luật Tổ chức chính phủ số 63/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--175258"
+      },
+      {
+        "title": "LUẬT THI HÀNH ÁN HÌNH SỰ SỐ 127/2025/QH15",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--187035"
+      }
+    ],
+    "Văn bản được quy định chi tiết, hướng dẫn thi hành": [
+      {
+        "title": "Luật Thi hành án hình sự số 53/2010/QH12",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--25681"
+      }
+    ]
+  }
+}

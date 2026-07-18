@@ -1,0 +1,27 @@
+{
+  "id": "17a39ff0-7c3b-11f1-b7c7-cd263b0d5a5a",
+  "doc_number": "17/2026/TT-BYT",
+  "title": "Thông tư Quy định về quy trình kiểm tra chuyên ngành lĩnh vực y tế",
+  "doc_type": "Thông tư",
+  "agency": "Bộ Y tế",
+  "signer": "Vũ Mạnh Hà",
+  "signer_title": "Thứ trưởng thường trực",
+  "issue_date": "2026-05-30",
+  "effective_date": "2026-06-01",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "Y  tế",
+  "field": "Thanh tra",
+  "relations": {
+    "Căn cứ ban hành": [
+      {
+        "title": "Nghị định số 217/2025/NĐ-CP Về hoạt động kiểm tra chuyên ngành",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--182763"
+      },
+      {
+        "title": "Nghị định số 42/2025/NĐ-CP quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Y tế",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--e903ac50-76bb-11f1-8fea-b7ba0a214fc2"
+      }
+    ]
+  }
+}

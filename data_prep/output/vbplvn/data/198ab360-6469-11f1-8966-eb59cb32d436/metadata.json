@@ -1,0 +1,37 @@
+{
+  "id": "198ab360-6469-11f1-8966-eb59cb32d436",
+  "doc_number": "07/2026/TT-BQP",
+  "title": "Thông tư ban hành, sửa đổi Quy chuẩn kỹ thuật quốc gia và Danh mục tiêu chuẩn kỹ thuật mật mã áp dụng bắt buộc trong lĩnh vực mật mã dân sự.",
+  "doc_type": "Thông tư",
+  "agency": "Bộ Quốc phòng",
+  "signer": "Đại tướng Nguyễn Tân Cương",
+  "signer_title": "Thứ trưởng",
+  "issue_date": "2026-01-20",
+  "effective_date": "2026-03-06",
+  "expire_date": "--",
+  "status": "Còn hiệu lực",
+  "industry": "Thông tin và Truyền thông",
+  "field": "Tiêu chuẩn và quy chuẩn kỹ thuật, An toàn thông tin mạng",
+  "relations": {
+    "Căn cứ ban hành": [
+      {
+        "title": "Luật Sửa đổi, bổ sung một số điều của 37 luật có liên quan đến quy hoạch số 35/2018/QH14",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--132982"
+      },
+      {
+        "title": "Luật Tiêu chuẩn và quy chuẩn kỹ thuật số 68/2006/QH11",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--15062"
+      },
+      {
+        "title": "Luật An toàn thông tin mạng số 86/2015/QH13",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--95908"
+      }
+    ],
+    "Văn bản được thay thế": [
+      {
+        "title": "Thông tư số 87/2024/TT-BQP quy định Danh mục tiêu chuẩn kỹ thuật mật mã áp dụng bắt buộc cho mô-đun an toàn phần cứng trong hoạt động định danh và xác thực điện tử",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--172399"
+      }
+    ]
+  }
+}

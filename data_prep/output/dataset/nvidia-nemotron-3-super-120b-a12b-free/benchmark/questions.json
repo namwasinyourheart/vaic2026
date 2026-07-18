@@ -1,0 +1,272 @@
+[
+  {
+    "question_id": "Q001",
+    "question": "Cho tôi biết về Điều kiện khách hàng vay tín chấp theo quy định hiện hành",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q002",
+    "question": "Hạn mức cho vay tín chấp được quy định như thế nào?",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q003",
+    "question": "Quy định Know Your Customer (KYC) quy định những gì về Thu thập thông tin KYC?",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q004",
+    "question": "Cho tôi biết về Xác minh danh tính khách hàng theo quy định hiện hành",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q005",
+    "question": "Tiếp nhận giao dịch tại quầy được quy định như thế nào?",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q006",
+    "question": "Chính sách quản lý tiền mặt quy định những gì về Xử lý chênh lệch tiền mặt?",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q007",
+    "question": "Cho tôi biết về Lãi suất tiền gửi tiết kiệm theo quy định hiện hành",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q008",
+    "question": "Rút trước hạn tiết kiệm được quy định như thế nào?",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q009",
+    "question": "Quy định báo cáo tuân thủ quy định những gì về Chu kỳ báo cáo tuân thủ?",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q010",
+    "question": "Cho tôi biết về Phân loại rủi ro tín dụng theo quy định hiện hành",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q011",
+    "question": "Yêu cầu vốn tối thiểu CAR được quy định như thế nào?",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q012",
+    "question": "Chính sách thanh toán số quy định những gì về Hạn mức giao dịch số?",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q013",
+    "question": "Cho tôi biết về Phân loại tranh chấp theo quy định hiện hành",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q014",
+    "question": "Soạn thảo và phê duyệt hợp đồng được quy định như thế nào?",
+    "question_type": "simple_retrieval",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "Q009",
+    "question": "Khi cho vay tín chấp, yêu cầu KYC nào cần được tuân thủ?",
+    "question_type": "cross_reference",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q010",
+    "question": "Chính sách thẩm định tín dụng liên quan gì đến quy định AML?",
+    "question_type": "cross_reference",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q011",
+    "question": "Quy trình phê duyệt khoản vay cần thực hiện bước xác minh khách hàng nào?",
+    "question_type": "cross_reference",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q012",
+    "question": "Giao dịch tại quầy cần đáp ứng yêu cầu xác minh nào từ quy định AML?",
+    "question_type": "cross_reference",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q013",
+    "question": "Khi mở tài khoản tiết kiệm, yêu cầu KYC nào cần được thực hiện?",
+    "question_type": "cross_reference",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q014",
+    "question": "Giao dịch trực tuyến cần đáp ứng yêu cầu xác thực danh tính nào?",
+    "question_type": "cross_reference",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q015",
+    "question": "Báo cáo tuân thủ cần đề cập những gì về theo dõi nợ xấu?",
+    "question_type": "cross_reference",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q016",
+    "question": "Xử lý nợ xấu cần tuân theo quy định tranh chấp nào?",
+    "question_type": "cross_reference",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q017",
+    "question": "Hạn mức cho vay tín chấp theo quy định mới nhất là bao nhiêu?",
+    "question_type": "amendment",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q018",
+    "question": "Lãi suất cho vay tín chấp hiện hành là bao nhiêu?",
+    "question_type": "amendment",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q019",
+    "question": "Lãi suất tiền gửi tiết kiệm mới nhất là bao nhiêu?",
+    "question_type": "amendment",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q020",
+    "question": "Bảng lãi suất kỳ hạn tiền gửi hiện tại như thế nào?",
+    "question_type": "amendment",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q021",
+    "question": "Có sản phẩm tiết kiệm online không?",
+    "question_type": "amendment",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "Q022",
+    "question": "Điều nào về lãi suất tiền gửi tiết kiệm đã bị thay thế?",
+    "question_type": "supersession",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q023",
+    "question": "Quy định cho vay tín chấp - điều nào về hạn mức đã không còn hiệu lực?",
+    "question_type": "supersession",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q024",
+    "question": "Thông tư 35/2024 thay thế những điều nào của chính sách AML trước đó?",
+    "question_type": "supersession",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q025",
+    "question": "Thông tư 13/2024 thay thế những điều nào trong quy trình kiểm soát nội bộ?",
+    "question_type": "supersession",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q026",
+    "question": "Quy trình xử lý sự cố OPS-S02 thay thế phần nào của chính sách vận hành?",
+    "question_type": "supersession",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q027",
+    "question": "Lãi suất tiền gửi tiết kiệm online có khác với lãi suất thông thường không?",
+    "question_type": "conflict",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q028",
+    "question": "Hạn mức giao dịch tiền mặt tại quầy và giao dịch số có giống nhau không?",
+    "question_type": "conflict",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q029",
+    "question": "Giấy tờ cần thiết để xác minh khách hàng là gì?",
+    "question_type": "conflict",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q030",
+    "question": "Kiểm toán nội bộ được thực hiện bao lâu一次?",
+    "question_type": "conflict",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q031",
+    "question": "Thẩm quyền phê duyệt khoản vay của trưởng phòng là bao nhiêu?",
+    "question_type": "conflict",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q032",
+    "question": "Thời hạn báo cáo sự cố hệ thống là bao lâu?",
+    "question_type": "conflict",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q033",
+    "question": "Tranh chấp với khách hàng về khoản vay giải quyết như thế nào?",
+    "question_type": "conflict",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q034",
+    "question": "Xác thực giao dịch số cần những bước nào?",
+    "question_type": "conflict",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q034",
+    "question": "Khi một khách hàng muốn vay tín chấp, quy trình từ tiếp nhận hồ sơ đến giải ngân cần tuân theo những quy định nào từ nhiều văn bản?",
+    "question_type": "multi_hop",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q035",
+    "question": "Nếu khách hàng khiếu nại về lãi suất tiết kiệm, cần kiểm tra những quy định nào từ nhiều nguồn?",
+    "question_type": "multi_hop",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q036",
+    "question": "Hệ thống ngân hàng bị sự cố, cần xử lý theo trình tự nào từ các quy trình vận hành, tuân thủ và pháp chế?",
+    "question_type": "multi_hop",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q037",
+    "question": "Một giao dịch chuyển khoản lớn bị nghi ngờ rửa tiền, quy trình xử lý từ đầu đến cuối cần tuân theo những quy định nào?",
+    "question_type": "multi_hop",
+    "difficulty": "hard"
+  },
+  {
+    "question_id": "Q038",
+    "question": "Khi phát hiện mâu thuẫn giữa chính sách lãi suất tiết kiệm truyền thống và online, nhân viên cần xử lý theo quy trình nào?",
+    "question_type": "multi_hop",
+    "difficulty": "hard"
+  }
+]

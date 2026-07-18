@@ -1,0 +1,37 @@
+{
+  "id": "ca0a0330-6950-11f1-b221-1bc3b71f5606",
+  "doc_number": "13/VBHN-BTC",
+  "title": "Văn bản hợp nhất Thông tư số 138/2025/TT-BTC Hướng dẫn giám sát giao dịch chứng khoán trên thị trường chứng khoán",
+  "doc_type": "Văn bản hợp nhất",
+  "agency": "Bộ Tài chính",
+  "signer": "Nguyễn Đức Chi",
+  "signer_title": "Thứ trưởng",
+  "issue_date": "2026-04-22",
+  "effective_date": "--",
+  "expire_date": "--",
+  "status": "",
+  "industry": "",
+  "field": "",
+  "relations": {
+    "Căn cứ ban hành": [
+      {
+        "title": "Luật Chứng khoán số 54/2019/QH14",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--139885"
+      },
+      {
+        "title": "Nghị định số 87/2017/NĐ-CP Quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Tài chính",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--123330"
+      }
+    ],
+    "Văn bản được hợp nhất": [
+      {
+        "title": "Thông tư số 138/2025/TT-BTC Sửa đổi, bổ sung một số điều của Thông tư 95/2020/TT-BTC ngày 16 tháng 11 năm 2020 của Bộ trưởng Bộ Tài chính hướng dẫn giám sát giao dịch chứng khoán trên thị trường chứng khoán và Thông tư số 06/2022/TT-BTC ngày 08 tháng 02 năm 2022 của Bộ trưởng Bộ Tài chính hướng dẫn công tác giám sát tuân thủ của Ủy ban Chứng khoán Nhà nước đối với hoạt động trong lĩnh vực chứng khoán của Sở giao dịch chứng khoán Việt Nam và công ty con, Tổng công ty lưu ký và bù trừ chứng khoán Việt Nam và công ty con",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--186081"
+      },
+      {
+        "title": "Thông tư số 95/2020/TT-BTC Hướng dẫn giám sát giao dịch chứng khoán trên thị trường chứng khoán",
+        "url": "https://vbpl.vn/van-ban/chi-tiet/doc--146311"
+      }
+    ]
+  }
+}

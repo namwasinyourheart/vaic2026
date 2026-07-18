@@ -1,0 +1,10 @@
+https://github.com/RohanGottipati/A.U.R.A (tham khảo readme.md)
+
+
+https://github.com/SuperNova-W/Lendr_Hackathon ()
+TypeScript + Express REST API
+Supabase Postgres accessed through the raw pg driver — hand-written SQL, no ORM
+PostGIS for nearest-first sorting and radius search on listings
+zod for request validation
+Supabase Auth (JWT bearer tokens) for authentication; Supabase Storage for uploaded photos
+Deployed to AWS Lambda + API Gateway via the Serverless Framework (serverless.yml); runs as a plain Express server locally
