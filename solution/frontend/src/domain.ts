@@ -1,4 +1,4 @@
-export type Role = 'customer' | 'bank_employee' | 'knowledge_manager' | 'system_admin'
+export type Role = 'customer' | 'staff' | 'compliance_officer' | 'system_admin'
 
 export type Permission =
   | 'chat:public' | 'chat:internal' | 'documents:read' | 'documents:manage'
@@ -43,7 +43,7 @@ export interface TextChunk {
 }
 
 export interface SourceGroup { id: string; question: string; chunks: TextChunk[]; collapsed?: boolean }
-export interface Message { id: string; role: 'user' | 'ai'; content: string; time: string; warning?: string; sourceGroupId?: string }
+export interface Message { id: string; role: 'user' | 'ai'; content: string; time: string; warning?: string; sourceGroupId?: string; graph?: RAGGraph | null }
 export interface Conversation { id: string; title: string; updatedAt: string; scope: 'public' | 'internal'; messages: Message[]; sources: SourceGroup[] }
 
 export interface GraphNode { id: string; label: string; type: 'document' | 'clause' | 'chunk' | 'related'; x: number; y: number; primary?: boolean; detail: string }
@@ -64,17 +64,58 @@ export interface Document {
 
 export interface AuditLog { id: string; time: string; actor: string; role: Role; action: string; resourceType: string; target: string; result: 'success' | 'failed'; requestId: string; before?: string; after?: string; error?: string }
 
+export interface RAGSourceChunk {
+  chunk_id: string
+  document_id: string
+  document_type: string
+  section_title: string
+  text: string
+  token_count: number
+  domain: string
+  version: string
+  effective_date: string
+  expiry_date: string | null
+  status: string
+  language: string
+  score: number
+}
+
+export interface RAGGraphNode {
+  id: string
+  type: string
+  label: string
+  [key: string]: unknown
+}
+
+export interface RAGGraphEdge {
+  source: string
+  target: string
+  type: string
+}
+
+export interface RAGGraph {
+  nodes: RAGGraphNode[]
+  edges: RAGGraphEdge[]
+}
+
+export interface RAGResponse {
+  answer: string
+  sources: RAGSourceChunk[]
+  conflicts: Array<{ clause_a: string; clause_b: string }>
+  graph: RAGGraph | null
+}
+
 export const ROLE_LABELS: Record<Role, string> = {
-  customer: 'Khách hàng', bank_employee: 'Nhân viên Nghiệp vụ', knowledge_manager: 'Chuyên gia Pháp chế', system_admin: 'Quản trị hệ thống',
+  customer: 'Khách hàng', staff: 'Nhân viên Nghiệp vụ', compliance_officer: 'Chuyên gia Pháp chế', system_admin: 'Quản trị hệ thống',
 }
 
 export const ROLE_HOME: Record<Role, string> = {
-  customer: '/customer/chat', bank_employee: '/bank-employee/chat', knowledge_manager: '/knowledge-manager/dashboard', system_admin: '/admin/dashboard',
+  customer: '/customer/chat', staff: '/staff/documents', compliance_officer: '/compliance-officer/documents', system_admin: '/admin/dashboard',
 }
 
 export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
   customer: ['chat:public'],
-  bank_employee: ['chat:internal', 'documents:read'],
-  knowledge_manager: ['documents:read', 'documents:manage', 'metadata:manage', 'relations:manage', 'reindex:manage'],
+  staff: ['chat:internal', 'documents:read'],
+  compliance_officer: ['chat:internal', 'documents:read', 'documents:manage', 'metadata:manage', 'relations:manage', 'reindex:manage'],
   system_admin: ['users:manage', 'roles:manage', 'audit:read'],
 }

@@ -42,12 +42,15 @@ from ...services.ai_adapter import get_ai_adapter
 from ...services.storage_service import get_storage
 
 router = APIRouter(prefix="/documents", tags=["Documents"])
-ALLOWED_EXTENSIONS = {"pdf", "docx", "png", "jpg", "jpeg"}
+ALLOWED_EXTENSIONS = {"pdf", "docx", "png", "jpg", "jpeg", "md"}
 ALLOWED_MIME_TYPES = {
     "application/pdf",
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     "image/png",
     "image/jpeg",
+    "text/markdown",
+    "text/plain",
+    "text/x-markdown",
 }
 
 
@@ -329,12 +332,15 @@ async def upload_document(
     issuing_unit: str = Form(""),
     business_domain: str = Form(""),
     access_scope: str = Form("INTERNAL"),
+    issued_at: str = Form(None),
+    effective_from: str = Form(None),
+    effective_to: str = Form(None),
     user: User = Depends(require_permission("document.upload")),
     db: AsyncSession = Depends(get_db),
 ) -> DocumentOut:
     extension = Path(file.filename or "").suffix.lower().lstrip(".")
     if extension not in ALLOWED_EXTENSIONS:
-        raise HTTPException(422, "Only PDF, DOCX and scanned image files are supported")
+        raise HTTPException(422, "Only PDF, DOCX, Markdown (.md) and scanned image files are supported")
     if file.content_type not in ALLOWED_MIME_TYPES:
         raise HTTPException(422, "File MIME type is not supported")
     content = await file.read()
@@ -362,6 +368,9 @@ async def upload_document(
         issuing_unit=issuing_unit or None,
         business_domain=business_domain or None,
         access_scope=access_scope,
+        issued_at=datetime.fromisoformat(issued_at) if issued_at else None,
+        effective_from=datetime.fromisoformat(effective_from) if effective_from else None,
+        effective_to=datetime.fromisoformat(effective_to) if effective_to else None,
         processing_status="QUEUED",
         index_status="NOT_INDEXED",
         created_by=user.id,
@@ -444,7 +453,7 @@ async def replace_document_file(
         raise HTTPException(404, "Document not found")
     extension = Path(file.filename or "").suffix.lower().lstrip(".")
     if extension not in ALLOWED_EXTENSIONS or file.content_type not in ALLOWED_MIME_TYPES:
-        raise HTTPException(422, "File type is not supported")
+        raise HTTPException(422, "File type is not supported. Accepted: PDF, DOCX, Markdown, images")
     content = await file.read()
     if len(content) > get_settings().max_upload_bytes:
         raise HTTPException(422, "File is too large")

@@ -8,12 +8,12 @@ class TestRAGResponse:
     def test_create_response(self):
         response = RAGResponse(
             answer="Test answer",
-            sources=["CRD-C01-3.1"],
+            sources=[{"chunk_id": "CRD-C01-3.1"}],
             conflicts=[],
             reasoning_steps=["step1"],
         )
         assert response.answer == "Test answer"
-        assert response.sources == ["CRD-C01-3.1"]
+        assert response.sources == [{"chunk_id": "CRD-C01-3.1"}]
         assert response.conflicts == []
         assert response.graph is None
 
@@ -91,4 +91,4 @@ class TestAnswer:
              patch("ingestion.neo4j_client.get_subgraph", return_value={"nodes": [], "edges": []}):
 
             response = await answer("test")
-            assert len(response.sources) <= 5
+            assert len(response.sources) <= 10

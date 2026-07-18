@@ -39,7 +39,12 @@ class TestRAGEndpoint:
     def test_rag_success(self, mock_rag_answer, mock_ensure_loaded, client):
         mock_response = MagicMock()
         mock_response.answer = "Lãi suất là 9%/năm"
-        mock_response.sources = ["CRD-C01-3.1"]
+        mock_response.sources = [
+            {"chunk_id": "CRD-C01-3.1", "document_id": "CRD-C01", "document_type": "clause",
+             "section_title": "Điều 3", "text": "Lãi suất 9%", "token_count": 10,
+             "domain": "Tín dụng", "version": "1.0", "effective_date": "2024-01-01",
+             "expiry_date": None, "status": "Active", "language": "vi", "score": 0.95}
+        ]
         mock_response.conflicts = []
         mock_response.graph = {"nodes": [], "edges": []}
         mock_rag_answer.return_value = mock_response
@@ -52,7 +57,7 @@ class TestRAGEndpoint:
         assert "conflicts" in data
         assert "graph" in data
         assert data["answer"] == "Lãi suất là 9%/năm"
-        assert data["sources"] == ["CRD-C01-3.1"]
+        assert data["sources"][0]["chunk_id"] == "CRD-C01-3.1"
 
     @patch("api.routes._ensure_loaded")
     @patch("rag.rag_pipeline.answer", side_effect=Exception("LLM error"))

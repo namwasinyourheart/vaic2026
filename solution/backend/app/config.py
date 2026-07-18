@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     app_name: str = "Lumina – AI Assistant for Enterprise Knowledge"
     environment: str = "development"
     # PostgreSQL is the deployment default. Tests/POC may override DATABASE_URL with SQLite.
-    database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/shb_rag"
+    database_url: str = "sqlite+aiosqlite:///./shb_rag.db"
     database_ssl: bool = False
     jwt_secret_key: str = "change-me-in-development"
     jwt_algorithm: str = "HS256"

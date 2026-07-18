@@ -57,7 +57,8 @@ def cmd_chat():
         if query.lower() == "sources" and last_response:
             print("\nSources:")
             for s in last_response.sources:
-                print(f"  - {s}")
+                print(f"  - [{s['chunk_id']}] {s['document_id']} ({s['section_title']})")
+                print(f"    {s['text'][:100]}...")
             if last_response.conflicts:
                 print("\nConflicts detected:")
                 for c in last_response.conflicts:
@@ -69,13 +70,11 @@ def cmd_chat():
             last_response = response
 
             print(f"\nAssistant: {response.answer}")
-            print(f"\n  [Sources: {', '.join(response.sources)}]")
+            print(f"\n  [Sources: {', '.join(s['chunk_id'] for s in response.sources)}]")
             if response.conflicts:
                 print(f"  [Conflicts: {len(response.conflicts)} detected]")
             if response.graph:
                 print(f"  [Graph: {len(response.graph['nodes'])} nodes, {len(response.graph['edges'])} edges]")
-                print(f"  [Graph JSON:]")
-                print(json.dumps(response.graph, indent=2, ensure_ascii=False))
             print()
         except Exception as e:
             print(f"Error: {e}\n")
@@ -112,14 +111,15 @@ def cmd_eval():
         query = q["question"]
         qtype = q["question_type"]
 
-        print(f"[{qid}] {qtype}: {query}")
+            print(f"[{qid}] {qtype}: {query}")
         try:
             response = asyncio.run(answer(query))
             gt = gt_map.get(qid, {})
 
-            source_overlap = set(response.sources) & set(gt.get("source_clause_ids", []))
+            source_ids = [s["chunk_id"] for s in response.sources]
+            source_overlap = set(source_ids) & set(gt.get("source_clause_ids", []))
             print(f"  Answer: {response.answer[:120]}...")
-            print(f"  Sources found: {response.sources[:3]}")
+            print(f"  Sources found: {source_ids[:3]}")
             print(f"  Expected sources: {gt.get('source_clause_ids', [])[:3]}")
             print(f"  Overlap: {len(source_overlap)}/{len(gt.get('source_clause_ids', []))}")
             if response.conflicts:

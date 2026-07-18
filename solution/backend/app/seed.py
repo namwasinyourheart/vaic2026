@@ -47,14 +47,13 @@ PERMISSIONS = [
 ]
 ROLE_PERMS = {
     "customer": ["conversation.read_own", "conversation.create"],
-    "bank_employee": [
+    "staff": [
         "conversation.read_own",
         "conversation.create",
         "document.read",
         "document.download",
-        "relation.read",
     ],
-    "knowledge_manager": [
+    "compliance_officer": [
         "document.read",
         "document.download",
         "document.upload",
@@ -77,10 +76,10 @@ ROLE_PERMS = {
     ],
 }
 USERS = [
-    ("customer", "Nguyễn Thị Mai", "mai@example.com", "customer"),
-    ("employee", "Trần Văn Hùng", "hung@shb.vn", "bank_employee"),
-    ("knowledge", "Lê Thu Hà", "ha@shb.vn", "knowledge_manager"),
-    ("admin", "Admin Hệ thống", "admin@shb.vn", "system_admin"),
+    ("customer", "Nguyễn Thị Mai", "mai@example.com", "customer", None),
+    ("staff_test_1", "Trần Văn Hùng", "hung@shb.vn", "staff", "12345678"),
+    ("admin", "Admin Hệ thống", "admin@shb.vn", "system_admin", None),
+    ("compliance_test_1", "Chuyên viên Pháp chế", "compliance@shb.vn", "compliance_officer", "12345678"),
 ]
 
 
@@ -126,7 +125,8 @@ async def seed() -> None:
                             permission_id=permissions[permission_code].id,
                         )
                     )
-        for username, name, email, role_code in USERS:
+        for username, name, email, role_code, extra_password in USERS:
+            password = extra_password or "vaic@2026"
             user = (
                 await db.execute(select(User).where(User.username == username))
             ).scalar_one_or_none()
@@ -135,7 +135,7 @@ async def seed() -> None:
                     id=str(uuid.uuid4()),
                     username=username,
                     email=email,
-                    password_hash=hash_password("vaic@2026"),
+                    password_hash=hash_password(password),
                     must_change_password=False,
                     full_name=name,
                     status="ACTIVE",
@@ -143,14 +143,13 @@ async def seed() -> None:
                 db.add(user)
                 await db.flush()
             else:
-                # Development seed resets demo accounts to the first-login password.
-                user.password_hash = hash_password("vaic@2026")
+                user.password_hash = hash_password(password)
                 user.must_change_password = False
             if not await db.get(UserRole, {"user_id": user.id, "role_id": roles[role_code].id}):
                 db.add(UserRole(user_id=user.id, role_id=roles[role_code].id))
         await db.flush()
         knowledge_user = (
-            await db.execute(select(User).where(User.username == "knowledge"))
+            await db.execute(select(User).where(User.username == "compliance_test_1"))
         ).scalar_one()
         for code, title, scope in [
             ("SHB-QD-001", "Quy định tiền gửi tiết kiệm", "PUBLIC"),
@@ -320,7 +319,7 @@ async def seed() -> None:
                     id=str(uuid.uuid4()),
                     request_id="seed",
                     actor_user_id=knowledge_user.id,
-                    actor_role="knowledge_manager",
+                    actor_role="compliance_officer",
                     action="SEED_DATA",
                     resource_type="SYSTEM",
                     result="SUCCESS",

@@ -89,8 +89,8 @@ export function AdminDashboard() {
 
 const roles: Role[] = [
   "customer",
-  "bank_employee",
-  "knowledge_manager",
+  "staff",
+  "compliance_officer",
   "system_admin",
 ]
 export function AdminUsers() {
@@ -411,8 +411,8 @@ function UserModal({
 
 const ROLE_NAMES_VI: Record<Role, string> = {
   customer: "Khách hàng",
-  bank_employee: "Nhân viên Nghiệp vụ",
-  knowledge_manager: "Chuyên gia Pháp chế",
+  staff: "Nhân viên Nghiệp vụ",
+  compliance_officer: "Chuyên gia Pháp chế",
   system_admin: "Quản trị hệ thống",
 }
 
@@ -422,11 +422,11 @@ const ACTOR_DETAILS: Record<Role, { position: string; responsibility: string }> 
     position: "Khách hàng cá nhân / doanh nghiệp",
     responsibility: "Tra cứu dịch vụ, biểu mẫu và quy định công khai.",
   },
-  bank_employee: {
+  staff: {
     position: "RM, Giao dịch viên, Tín dụng",
     responsibility: "Tra cứu chính sách, quy trình nội bộ phục vụ nghiệp vụ.",
   },
-  knowledge_manager: {
+  compliance_officer: {
     position: "Phòng Pháp chế / Khối Tuân thủ",
     responsibility: "Quản trị kho tri thức, hiệu lực, quan hệ và xung đột.",
   },
@@ -495,8 +495,9 @@ const PERMISSIONS = [
 export function AdminRoles() {
   const [matrix, setMatrix] = useState<Record<Role, Set<string>>>(() => ({
     customer: new Set(["chat:public"]),
-    bank_employee: new Set(["chat:internal", "documents:read"]),
-    knowledge_manager: new Set([
+    staff: new Set(["chat:internal", "documents:read"]),
+    compliance_officer: new Set([
+      "chat:internal",
       "documents:read",
       "documents:manage",
       "metadata:manage",

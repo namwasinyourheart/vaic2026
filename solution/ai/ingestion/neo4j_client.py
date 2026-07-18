@@ -38,7 +38,11 @@ def build_graph(graph_json_path: Path, chunks: list):
     with open(graph_json_path, encoding="utf-8") as f:
         graph = json.load(f)
 
-    chunk_text_map = {c.chunk_id: c.text for c in chunks}
+    chunk_text_map = {}
+    for c in chunks:
+        existing = chunk_text_map.get(c.chunk_id, "")
+        if len(c.text) > len(existing):
+            chunk_text_map[c.chunk_id] = c.text
 
     with driver.session(database=NEO4J_DATABASE) as session:
         # Create indexes for date-based queries
@@ -206,7 +210,7 @@ def get_subgraph(chunk_ids: list[str]) -> dict:
                     "type": "Clause",
                     "label": nid,
                     "document_id": record["document_id"],
-                    "text": (record["text"] or "")[:200],
+                    "text": (record["text"] or "")[:500],
                     "effective_date": record["effective_date"],
                     "expiry_date": record["expiry_date"],
                 })
@@ -269,3 +273,76 @@ def get_subgraph(chunk_ids: list[str]) -> dict:
                 })
 
     return {"nodes": nodes, "edges": edges}
+
+
+def get_clause_timeline(clause_id: str) -> dict:
+    driver = get_driver()
+    timeline = []
+    visited = set()
+
+    with driver.session(database=NEO4J_DATABASE) as session:
+        def _walk(cid: str, direction: str):
+            if cid in visited:
+                return
+            visited.add(cid)
+
+            result = session.run(
+                "MATCH (c:Clause {clause_id: $cid}) "
+                "OPTIONAL MATCH (c)-[:HAS_CLAUSE]-(d:Document) "
+                "RETURN c.clause_id AS clause_id, c.document_id AS document_id, "
+                "c.text AS text, c.effective_date AS effective_date, "
+                "c.expiry_date AS expiry_date, c.status AS status, "
+                "d.title AS doc_title",
+                cid=cid,
+            )
+            record = result.single()
+            if not record:
+                return
+
+            timeline.append({
+                "clause_id": record["clause_id"],
+                "document_id": record["document_id"],
+                "document_title": record["doc_title"] or record["document_id"],
+                "text": (record["text"] or "")[:800],
+                "effective_date": record["effective_date"],
+                "expiry_date": record["expiry_date"],
+                "status": record["status"] or "Active",
+            })
+
+            # Find older versions (what this clause supersedes/amends)
+            result = session.run(
+                "MATCH (newer {id: $cid})-[r:AMENDS|SUPERSEDES]->(older) "
+                "RETURN older.clause_id AS older_id, type(r) AS rel",
+                cid=cid,
+            )
+            for rec in result:
+                _walk(rec["older_id"], "older")
+
+            # Find newer versions (what supersedes/amends this clause)
+            result = session.run(
+                "MATCH (newer)-[r:AMENDS|SUPERSEDES]->(current {id: $cid}) "
+                "RETURN newer.clause_id AS newer_id, type(r) AS rel",
+                cid=cid,
+            )
+            for rec in result:
+                _walk(rec["newer_id"], "newer")
+
+        _walk(clause_id, "start")
+
+    # Sort by effective_date (oldest first); fallback to expiry_date for clauses without explicit effective_date
+    def _sort_key(entry):
+        eff = entry.get("effective_date") or ""
+        if not eff:
+            # Use expiry_date as proxy for "when this version ended"
+            exp = entry.get("expiry_date") or ""
+            eff = exp  # Earlier expiry = older version
+        return eff
+    timeline.sort(key=_sort_key)
+
+    # Mark relationships between consecutive versions
+    for i, entry in enumerate(timeline):
+        entry["position"] = i
+        entry["is_first"] = i == 0
+        entry["is_current"] = i == len(timeline) - 1
+
+    return {"clause_id": clause_id, "timeline": timeline}

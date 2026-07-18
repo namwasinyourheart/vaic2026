@@ -3,19 +3,18 @@ import { useEffect, useState } from 'react'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import GuestChatPage from './pages/GuestChatPage'
-import ChatbotPage from './pages/customer/ChatbotPage'
-import ConversationHistoryPage from './pages/ConversationHistoryPage'
+import ChatPage from './pages/ChatPage'
 import AccountPage from './pages/AccountPage'
 import { ForbiddenPage, NotFoundPage } from './pages/SystemPages'
 import { RouteGuard } from './auth/Guards'
 import { useAuth } from './auth/AuthContext'
 import { AdminAudit, AdminDashboard, AdminRoles, AdminUsers } from './pages/admin/AdminPages'
-import { ClauseSearchPage, ComparePage, DocumentDetailPageNew, DocumentSearchPage, RelatedPage, TimelinePage } from './pages/bank/BankPages'
-import { EffectivenessPage, KnowledgeDashboard, KnowledgeDocuments, KnowledgeHistoryPage, KnowledgeRelationsPage, MetadataPage, ReindexPage, UploadDocumentPage } from './pages/knowledge/KnowledgePages'
+import { DocumentDetailPageNew } from './pages/DocumentDetailPage'
+import DocumentListPage from './pages/DocumentListPage'
 import type { Role } from './domain'
 
 function Guard({ roles, children }: { roles: Parameters<typeof RouteGuard>[0]['roles']; children: React.ReactNode }) { return <RouteGuard roles={roles}>{children}</RouteGuard> }
-const customer: Role[] = ['customer']; const bank: Role[] = ['bank_employee']; const knowledge: Role[] = ['knowledge_manager']; const admin: Role[] = ['system_admin']
+const customer: Role[] = ['customer']; const staff: Role[] = ['staff']; const compliance: Role[] = ['compliance_officer']; const admin: Role[] = ['system_admin']
 
 function ApiErrorToast() {
   const [message, setMessage] = useState('')
@@ -39,16 +38,16 @@ function ApiErrorToast() {
 
 export default function App() { return <BrowserRouter><ApiErrorToast /><Routes>
   <Route path="/" element={<HomeRoute />} /><Route path="/guest-chat" element={<GuestChatPage />} /><Route path="/login" element={<LoginPage />} /><Route path="/register" element={<RegisterPage />} /><Route path="/403" element={<ForbiddenPage />} />
-  <Route path="/customer/chat" element={<Guard roles={customer}><ChatbotPage /></Guard>} /><Route path="/customer/history" element={<Guard roles={customer}><ConversationHistoryPage /></Guard>} /><Route path="/customer/account" element={<Guard roles={customer}><AccountPage /></Guard>} />
-  <Route path="/bank-employee/chat" element={<Guard roles={bank}><ChatbotPage /></Guard>} /><Route path="/bank-employee/documents" element={<Guard roles={bank}><DocumentSearchPage /></Guard>} /><Route path="/bank-employee/documents/:id" element={<Guard roles={bank}><DocumentDetailPageNew /></Guard>} /><Route path="/bank-employee/clauses" element={<Guard roles={bank}><ClauseSearchPage /></Guard>} /><Route path="/bank-employee/compare" element={<Guard roles={bank}><ComparePage /></Guard>} /><Route path="/bank-employee/timeline" element={<Guard roles={bank}><TimelinePage /></Guard>} /><Route path="/bank-employee/relations" element={<Guard roles={bank}><RelatedPage /></Guard>} /><Route path="/bank-employee/history" element={<Guard roles={bank}><ConversationHistoryPage /></Guard>} /><Route path="/bank-employee/account" element={<Guard roles={bank}><AccountPage /></Guard>} />
-  <Route path="/knowledge-manager/dashboard" element={<Guard roles={knowledge}><KnowledgeDashboard /></Guard>} /><Route path="/knowledge-manager/documents" element={<Guard roles={knowledge}><KnowledgeDocuments /></Guard>} /><Route path="/knowledge-manager/upload" element={<Guard roles={knowledge}><UploadDocumentPage /></Guard>} /><Route path="/knowledge-manager/metadata" element={<Guard roles={knowledge}><MetadataPage /></Guard>} /><Route path="/knowledge-manager/effectiveness" element={<Guard roles={knowledge}><EffectivenessPage /></Guard>} /><Route path="/knowledge-manager/relations" element={<Guard roles={knowledge}><KnowledgeRelationsPage /></Guard>} /><Route path="/knowledge-manager/reindex" element={<Guard roles={knowledge}><ReindexPage /></Guard>} /><Route path="/knowledge-manager/history" element={<Guard roles={knowledge}><KnowledgeHistoryPage /></Guard>} /><Route path="/knowledge-manager/account" element={<Guard roles={knowledge}><AccountPage /></Guard>} />
+  <Route path="/customer/chat" element={<Guard roles={customer}><ChatPage mode="server" /></Guard>} /><Route path="/customer/account" element={<Guard roles={customer}><AccountPage /></Guard>} />
+  <Route path="/staff/chat" element={<Guard roles={staff}><ChatPage mode="server" /></Guard>} /><Route path="/staff/documents" element={<Guard roles={staff}><DocumentListPage /></Guard>} /><Route path="/staff/documents/:id" element={<Guard roles={staff}><DocumentDetailPageNew /></Guard>} /><Route path="/staff/account" element={<Guard roles={staff}><AccountPage /></Guard>} />
+  <Route path="/compliance-officer/chat" element={<Guard roles={compliance}><ChatPage mode="rag" /></Guard>} /><Route path="/compliance-officer/documents" element={<Guard roles={compliance}><DocumentListPage /></Guard>} /><Route path="/compliance-officer/documents/:id" element={<Guard roles={compliance}><DocumentDetailPageNew /></Guard>} /><Route path="/compliance-officer/account" element={<Guard roles={compliance}><AccountPage /></Guard>} />
   <Route path="/admin/dashboard" element={<Guard roles={admin}><AdminDashboard /></Guard>} /><Route path="/admin/users" element={<Guard roles={admin}><AdminUsers /></Guard>} /><Route path="/admin/roles" element={<Guard roles={admin}><AdminRoles /></Guard>} /><Route path="/admin/logs" element={<Guard roles={admin}><AdminAudit /></Guard>} /><Route path="/admin/account" element={<Guard roles={admin}><AccountPage /></Guard>} />
-  {/* Legacy aliases are intentionally redirected into the separated workspaces. */}
-  <Route path="/employee/dashboard" element={<Navigate to="/bank-employee/chat" replace />} /><Route path="/employee/chatbot" element={<Navigate to="/bank-employee/chat" replace />} /><Route path="/employee/documents/*" element={<Navigate to="/knowledge-manager/documents" replace />} /><Route path="/employee/review/*" element={<Navigate to="/knowledge-manager/metadata" replace />} />
+  {/* Legacy aliases */}
+  <Route path="/employee/dashboard" element={<Navigate to="/staff/documents" replace />} /><Route path="/employee/chatbot" element={<Navigate to="/staff/chat" replace />} /><Route path="/employee/documents/*" element={<Navigate to="/compliance-officer/documents" replace />} /><Route path="/employee/review/*" element={<Navigate to="/compliance-officer/documents" replace />} />
   <Route path="*" element={<NotFoundPage />} />
 </Routes></BrowserRouter> }
 
 function HomeRoute() {
   const { user } = useAuth()
-  return user ? <Navigate to={user.role === 'customer' ? '/customer/chat' : user.role === 'bank_employee' ? '/bank-employee/chat' : user.role === 'knowledge_manager' ? '/knowledge-manager/dashboard' : '/admin/dashboard'} replace /> : <GuestChatPage />
+  return user ? <Navigate to={user.role === 'customer' ? '/customer/chat' : user.role === 'staff' ? '/staff/documents' : user.role === 'compliance_officer' ? '/compliance-officer/documents' : '/admin/dashboard'} replace /> : <GuestChatPage />
 }

@@ -29,11 +29,67 @@ class RAGRequest(BaseModel):
     query: str
 
 
+class SourceChunkResponse(BaseModel):
+    chunk_id: str
+    document_id: str
+    document_type: str
+    section_title: str
+    text: str
+    token_count: int
+    domain: str
+    version: str
+    effective_date: str
+    expiry_date: str | None = None
+    status: str = "Active"
+    language: str = "vi"
+    score: float = 0.0
+
+
+class GraphNodeResponse(BaseModel):
+    id: str
+    type: str
+    label: str
+    properties: dict = {}
+
+
+class GraphEdgeResponse(BaseModel):
+    source: str
+    target: str
+    type: str
+
+
+class GraphResponse(BaseModel):
+    nodes: list[GraphNodeResponse]
+    edges: list[GraphEdgeResponse]
+
+
 class RAGResponse(BaseModel):
     answer: str
-    sources: list[str]
+    sources: list[SourceChunkResponse]
     conflicts: list[dict]
-    graph: dict | None = None
+    graph: GraphResponse | None = None
+
+
+class TimelineRequest(BaseModel):
+    clause_id: str
+
+
+class TimelineEntry(BaseModel):
+    clause_id: str
+    document_id: str
+    document_title: str
+    text: str
+    effective_date: str | None = None
+    expiry_date: str | None = None
+    status: str = "Active"
+    position: int = 0
+    is_first: bool = False
+    is_current: bool = False
+
+
+class TimelineResponse(BaseModel):
+    clause_id: str
+    timeline: list[TimelineEntry]
 
 
 @router.get("/health")
@@ -48,11 +104,37 @@ def rag(request: RAGRequest):
         from rag.rag_pipeline import answer as rag_answer
 
         result = asyncio.run(rag_answer(request.query))
+
+        sources = [SourceChunkResponse(**s) for s in result.sources]
+
+        graph = None
+        if result.graph:
+            nodes = []
+            for n in result.graph.get("nodes", []):
+                node_id = n.get("id", "")
+                node_type = n.get("type", "")
+                node_label = n.get("label", "")
+                properties = {k: v for k, v in n.items() if k not in ("id", "type", "label") and v is not None}
+                nodes.append(GraphNodeResponse(id=node_id, type=node_type, label=node_label, properties=properties))
+            edges = [GraphEdgeResponse(**e) for e in result.graph.get("edges", [])]
+            graph = GraphResponse(nodes=nodes, edges=edges)
+
         return RAGResponse(
             answer=result.answer,
-            sources=result.sources,
+            sources=sources,
             conflicts=result.conflicts,
-            graph=result.graph,
+            graph=graph,
         )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/clause-timeline", response_model=TimelineResponse)
+def clause_timeline(request: TimelineRequest):
+    try:
+        from ingestion.neo4j_client import get_clause_timeline
+        result = get_clause_timeline(request.clause_id)
+        entries = [TimelineEntry(**e) for e in result.get("timeline", [])]
+        return TimelineResponse(clause_id=request.clause_id, timeline=entries)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

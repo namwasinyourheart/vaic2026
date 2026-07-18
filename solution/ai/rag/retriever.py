@@ -30,7 +30,7 @@ def search_bm25(query: str, top_k: int = 20) -> list[dict]:
     tokenized = query.lower().split()
     scores = _bm25_index.get_scores(tokenized)
     top_indices = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:top_k]
-    return [{"chunk_id": _bm25_corpus_ids[i], "score": float(scores[i])} for i in top_indices]
+    return [{"chunk_id": _bm25_corpus_ids[i], "score": float(scores[i]), "text": _bm25_corpus_texts[i]} for i in top_indices]
 
 
 def search_vector(query: str, top_k: int = 20) -> list[dict]:
@@ -51,7 +51,7 @@ def reciprocal_rank_fusion(result_lists: list[list[dict]], k: int = 60) -> list[
             scores[cid] = scores.get(cid, 0) + 1.0 / (k + rank + 1)
             if "payload" in r:
                 metadata[cid] = r["payload"]
-            elif "text" in r:
+            elif cid not in metadata and "text" in r:
                 metadata[cid] = r
 
     ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)

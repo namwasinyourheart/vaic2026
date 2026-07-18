@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { Bell, Bot, ChevronLeft, ChevronRight, CircleUserRound, Clock3, Database, FileSearch, GitCompareArrows, History, LayoutDashboard, Link2, ListTree, LogOut, Menu, Network, RefreshCw, Search, Settings, ShieldCheck, Upload, UserRoundCog, Users } from 'lucide-react'
+import { Bell, Bot, ChevronLeft, ChevronRight, CircleUserRound, Database, History, LayoutDashboard, LogOut, Menu, Settings, UserRoundCog, Users } from 'lucide-react'
 import type { Role } from '../domain'
 import { ROLE_LABELS } from '../domain'
 import { useAuth } from '../auth/AuthContext'
@@ -8,15 +8,15 @@ import { Avatar } from '../components/shared'
 
 type NavItem = { label: string; path: string; icon: ReactNode }
 const NAV: Record<Role, NavItem[]> = {
-  customer: [{ label: 'Chat với AI', path: '/customer/chat', icon: <Bot /> }, { label: 'Lịch sử hội thoại', path: '/customer/history', icon: <History /> }, { label: 'Tài khoản', path: '/customer/account', icon: <CircleUserRound /> }],
-  bank_employee: [{ label: 'Chat với AI', path: '/bank-employee/chat', icon: <Bot /> }, { label: 'Tra cứu văn bản', path: '/bank-employee/documents', icon: <FileSearch /> }, { label: 'Tìm theo điều khoản', path: '/bank-employee/clauses', icon: <Search /> }, { label: 'So sánh phiên bản', path: '/bank-employee/compare', icon: <GitCompareArrows /> }, { label: 'Timeline sửa đổi', path: '/bank-employee/timeline', icon: <Clock3 /> }, { label: 'Văn bản liên quan', path: '/bank-employee/relations', icon: <Network /> }, { label: 'Lịch sử hội thoại', path: '/bank-employee/history', icon: <History /> }, { label: 'Tài khoản', path: '/bank-employee/account', icon: <CircleUserRound /> }],
-  knowledge_manager: [{ label: 'Tổng quan kho tri thức', path: '/knowledge-manager/dashboard', icon: <LayoutDashboard /> }, { label: 'Danh sách tài liệu', path: '/knowledge-manager/documents', icon: <Database /> }, { label: 'Upload tài liệu', path: '/knowledge-manager/upload', icon: <Upload /> }, { label: 'Metadata', path: '/knowledge-manager/metadata', icon: <ListTree /> }, { label: 'Hiệu lực văn bản', path: '/knowledge-manager/effectiveness', icon: <ShieldCheck /> }, { label: 'Liên kết văn bản', path: '/knowledge-manager/relations', icon: <Link2 /> }, { label: 'Re-index tài liệu', path: '/knowledge-manager/reindex', icon: <RefreshCw /> }, { label: 'Lịch sử thao tác', path: '/knowledge-manager/history', icon: <History /> }, { label: 'Tài khoản', path: '/knowledge-manager/account', icon: <CircleUserRound /> }],
+  customer: [{ label: 'Chat với AI', path: '/customer/chat', icon: <Bot /> }, { label: 'Tài khoản', path: '/customer/account', icon: <CircleUserRound /> }],
+  staff: [{ label: 'Chat với AI', path: '/staff/chat', icon: <Bot /> }, { label: 'Quản lý văn bản', path: '/staff/documents', icon: <Database /> }, { label: 'Tài khoản', path: '/staff/account', icon: <CircleUserRound /> }],
+  compliance_officer: [{ label: 'Chat với AI', path: '/compliance-officer/chat', icon: <Bot /> }, { label: 'Quản lý văn bản', path: '/compliance-officer/documents', icon: <Database /> }, { label: 'Tài khoản', path: '/compliance-officer/account', icon: <CircleUserRound /> }],
   system_admin: [{ label: 'Tổng quan hệ thống', path: '/admin/dashboard', icon: <LayoutDashboard /> }, { label: 'Người dùng', path: '/admin/users', icon: <Users /> }, { label: 'Vai trò và quyền', path: '/admin/roles', icon: <UserRoundCog /> }, { label: 'Nhật ký hệ thống', path: '/admin/logs', icon: <History /> }, { label: 'Tài khoản', path: '/admin/account', icon: <CircleUserRound /> }],
 }
 
 export default function AppLayout({ children, pageTitle, headerActions, breadcrumbs, role: legacyRole }: { children?: ReactNode; pageTitle: string; headerActions?: ReactNode; breadcrumbs?: string[]; role?: Role | 'employee' | 'admin' }) {
   const { user, logout } = useAuth(); const navigate = useNavigate(); const location = useLocation()
-  const mappedLegacy = legacyRole === 'employee' ? 'knowledge_manager' : legacyRole === 'admin' ? 'system_admin' : legacyRole
+  const mappedLegacy = legacyRole === 'employee' ? 'compliance_officer' : legacyRole === 'admin' ? 'system_admin' : legacyRole
   const role = user?.role || mappedLegacy || 'customer'
   const [collapsed, setCollapsed] = useState(false); const [notifications, setNotifications] = useState(false); const [accountOpen, setAccountOpen] = useState(false)
   const crumbs = breadcrumbs || location.pathname.split('/').filter(Boolean).slice(1).map(part => part.replace(/-/g, ' '))

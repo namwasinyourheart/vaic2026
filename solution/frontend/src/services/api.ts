@@ -33,6 +33,11 @@ async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
       const body = await response.json() as { detail?: string | Array<{ msg?: string }> }
       message = typeof body.detail === 'string' ? body.detail : body.detail?.map(item => item.msg).filter(Boolean).join(', ') || message
     } catch { /* response is not JSON */ }
+    if (response.status === 401 || response.status === 403) {
+      localStorage.removeItem(ACCESS_KEY); localStorage.removeItem(REFRESH_KEY)
+      sessionStorage.removeItem(ACCESS_KEY); sessionStorage.removeItem(REFRESH_KEY)
+      if (window.location.pathname !== '/login') window.location.href = '/login'
+    }
     window.dispatchEvent(new CustomEvent('shb-api-error', { detail: message }))
     throw new Error(message)
   }
@@ -172,12 +177,12 @@ async function getConversation(id: string): Promise<Conversation> {
 }
 
 export const chatService = {
-  async list(_role: 'customer' | 'bank_employee') {
+  async list(_role: 'customer' | 'staff') {
     const values = await api<ApiConversation[]>('/conversations')
     return Promise.all(values.map(item => getConversation(item.id)))
   },
   get: getConversation,
-  async create(role: 'customer' | 'bank_employee') {
+  async create(role: 'customer' | 'staff') {
     const value = await api<ApiConversation>('/conversations', {
       method: 'POST',
       body: JSON.stringify({ title: 'Cuộc trò chuyện mới', scope: role === 'customer' ? 'PUBLIC' : 'INTERNAL' }),
@@ -214,14 +219,18 @@ function mapDocument(value: ApiDocument): Document {
 export const documentService = {
   async list() { return (await api<ApiDocument[]>('/documents')).map(mapDocument) },
   async get(id: string) { return mapDocument(await api<ApiDocument>(`/documents/${id}`)) },
-  async upload(file: File, metadata: { name: string; type: string; field: string; scope: string }) {
+  async upload(file: File, metadata: { name: string; type: string; field: string; scope: string; doc_number?: string; agency?: string; issued_at?: string; effective_from?: string; effective_to?: string }) {
     const body = new FormData()
     body.set('file', file)
-    body.set('document_code', `SHB-${Date.now()}`)
+    body.set('document_code', metadata.doc_number || `SHB-${Date.now()}`)
     body.set('title', metadata.name)
     body.set('document_type', metadata.type)
     body.set('business_domain', metadata.field)
     body.set('access_scope', metadata.scope.toUpperCase())
+    if (metadata.agency) body.set('issuing_unit', metadata.agency)
+    if (metadata.issued_at) body.set('issued_at', metadata.issued_at)
+    if (metadata.effective_from) body.set('effective_from', metadata.effective_from)
+    if (metadata.effective_to) body.set('effective_to', metadata.effective_to)
     return mapDocument(await api<ApiDocument>('/knowledge/documents', { method: 'POST', body }))
   },
   async save(document: Document) {
