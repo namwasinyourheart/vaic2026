@@ -1,4 +1,17 @@
-export type Role = 'customer' | 'staff' | 'compliance_officer' | 'system_admin'
+export type Role = 'ROLE_CUSTOMER' | 'ROLE_STAFF' | 'ROLE_COMPLIANCE' | 'ROLE_ADMIN'
+
+/** Normalize role values from sessions or older backend deployments. */
+export function normalizeRole(value: unknown): Role | null {
+  const role = String(value || '').trim()
+  const legacy: Record<string, Role> = {
+    customer: 'ROLE_CUSTOMER',
+    bank_employee: 'ROLE_STAFF',
+    knowledge_manager: 'ROLE_COMPLIANCE',
+    system_admin: 'ROLE_ADMIN',
+  }
+  if (role in legacy) return legacy[role]
+  return ['ROLE_CUSTOMER', 'ROLE_STAFF', 'ROLE_COMPLIANCE', 'ROLE_ADMIN'].includes(role) ? role as Role : null
+}
 
 export type Permission =
   | 'chat:public' | 'chat:internal' | 'documents:read' | 'documents:manage'
@@ -106,16 +119,16 @@ export interface RAGResponse {
 }
 
 export const ROLE_LABELS: Record<Role, string> = {
-  customer: 'Khách hàng', staff: 'Nhân viên Nghiệp vụ', compliance_officer: 'Chuyên gia Pháp chế', system_admin: 'Quản trị hệ thống',
+  ROLE_CUSTOMER: 'Khách hàng', ROLE_STAFF: 'Nhân viên Nghiệp vụ', ROLE_COMPLIANCE: 'Chuyên gia Pháp chế', ROLE_ADMIN: 'Quản trị hệ thống',
 }
 
 export const ROLE_HOME: Record<Role, string> = {
-  customer: '/customer/chat', staff: '/staff/documents', compliance_officer: '/compliance-officer/documents', system_admin: '/admin/dashboard',
+  ROLE_CUSTOMER: '/customer/chat', ROLE_STAFF: '/bank-employee/chat', ROLE_COMPLIANCE: '/knowledge-manager/dashboard', ROLE_ADMIN: '/admin/dashboard',
 }
 
 export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
-  customer: ['chat:public'],
-  staff: ['chat:internal', 'documents:read'],
-  compliance_officer: ['chat:internal', 'documents:read', 'documents:manage', 'metadata:manage', 'relations:manage', 'reindex:manage'],
-  system_admin: ['users:manage', 'roles:manage', 'audit:read'],
+  ROLE_CUSTOMER: ['chat:public'],
+  ROLE_STAFF: ['chat:internal', 'documents:read'],
+  ROLE_COMPLIANCE: ['documents:read', 'documents:manage', 'metadata:manage', 'relations:manage', 'reindex:manage'],
+  ROLE_ADMIN: ['users:manage', 'roles:manage', 'audit:read'],
 }

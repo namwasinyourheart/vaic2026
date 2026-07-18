@@ -14,7 +14,7 @@ from ...services.security import hash_password
 router = APIRouter(
     prefix="/admin",
     tags=["System Admin"],
-    dependencies=[Depends(require_roles("system_admin"))],
+    dependencies=[Depends(require_roles("ROLE_ADMIN"))],
 )
 DEFAULT_PASSWORD = "vaic@2026"
 
@@ -27,7 +27,7 @@ async def out(user: User, db: AsyncSession) -> UserOut:
         email=user.email,
         full_name=user.full_name,
         status=user.status,
-        role=roles[0] if roles else "customer",
+        role=roles[0] if roles else "ROLE_CUSTOMER",
         must_change_password=user.must_change_password,
     )
 

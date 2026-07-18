@@ -36,7 +36,7 @@ async def user_out(user: User, db: AsyncSession) -> UserOut:
         email=user.email,
         full_name=user.full_name,
         status=user.status,
-        role=roles[0] if roles else "customer",
+        role=roles[0] if roles else "ROLE_CUSTOMER",
         must_change_password=user.must_change_password,
     )
 
@@ -171,7 +171,7 @@ async def sign_up(payload: CustomerRegisterRequest, db: AsyncSession = Depends(g
     await db.flush()
     from ...models import Role, UserRole
 
-    role = (await db.execute(select(Role).where(Role.code == "customer"))).scalar_one()
+    role = (await db.execute(select(Role).where(Role.code == "ROLE_CUSTOMER"))).scalar_one()
     db.add(UserRole(user_id=user.id, role_id=role.id, assigned_at=datetime.now(timezone.utc)))
     await db.commit()
     await db.refresh(user)

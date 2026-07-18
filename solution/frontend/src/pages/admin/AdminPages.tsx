@@ -24,12 +24,12 @@ import {
   Select,
   StatCard,
 } from "../../components/shared"
-import { DemoStateBoundary } from "../SystemPages"
+import { DataStateBoundary } from "../SystemPages"
 import { createId } from "../../utils/id"
 
 export function AdminDashboard() {
   return (
-    <DemoStateBoundary title="Tổng quan hệ thống">
+    <DataStateBoundary title="Tổng quan hệ thống">
       <AppLayout pageTitle="Tổng quan hệ thống">
         <PageHeader
           title="Tổng quan hệ thống"
@@ -83,15 +83,15 @@ export function AdminDashboard() {
           </Card>
         </div>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
 const roles: Role[] = [
-  "customer",
-  "staff",
-  "compliance_officer",
-  "system_admin",
+  "ROLE_CUSTOMER",
+  "ROLE_STAFF",
+  "ROLE_COMPLIANCE",
+  "ROLE_ADMIN",
 ]
 export function AdminUsers() {
   const [users, setUsers] = useState<Omit<User, "password">[]>([])
@@ -167,7 +167,7 @@ export function AdminUsers() {
       ? "Chưa xác định được số người dùng"
       : `${filtered.length} người dùng`
   return (
-    <DemoStateBoundary title="Người dùng">
+    <DataStateBoundary title="Người dùng">
       <AppLayout pageTitle="Người dùng">
         <PageHeader
           title="Quản lý người dùng"
@@ -257,7 +257,7 @@ export function AdminUsers() {
                       <td className="p-3">
                         <Badge
                           variant={
-                            user.role === "system_admin" ? "info" : "active"
+                            user.role === "ROLE_ADMIN" ? "info" : "active"
                           }
                           label={ROLE_LABELS[user.role]}
                         />
@@ -315,7 +315,7 @@ export function AdminUsers() {
           onSave={(value) => void save(value)}
         />
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -337,7 +337,7 @@ function UserModal({
         username: "",
         name: "",
         email: "",
-        role: "customer",
+        role: "ROLE_CUSTOMER",
         status: "active",
         createdAt: new Date().toLocaleDateString("vi-VN"),
       },
@@ -410,27 +410,27 @@ function UserModal({
 }
 
 const ROLE_NAMES_VI: Record<Role, string> = {
-  customer: "Khách hàng",
-  staff: "Nhân viên Nghiệp vụ",
-  compliance_officer: "Chuyên gia Pháp chế",
-  system_admin: "Quản trị hệ thống",
+  ROLE_CUSTOMER: "Khách hàng",
+  ROLE_STAFF: "Nhân viên Nghiệp vụ",
+  ROLE_COMPLIANCE: "Chuyên gia Pháp chế",
+  ROLE_ADMIN: "Quản trị hệ thống",
 }
 
 const ACTOR_DETAILS: Record<Role, { position: string; responsibility: string }> =
 {
-  customer: {
+  ROLE_CUSTOMER: {
     position: "Khách hàng cá nhân / doanh nghiệp",
     responsibility: "Tra cứu dịch vụ, biểu mẫu và quy định công khai.",
   },
-  staff: {
+  ROLE_STAFF: {
     position: "RM, Giao dịch viên, Tín dụng",
     responsibility: "Tra cứu chính sách, quy trình nội bộ phục vụ nghiệp vụ.",
   },
-  compliance_officer: {
+  ROLE_COMPLIANCE: {
     position: "Phòng Pháp chế / Khối Tuân thủ",
     responsibility: "Quản trị kho tri thức, hiệu lực, quan hệ và xung đột.",
   },
-  system_admin: {
+  ROLE_ADMIN: {
     position: "CNTT / DevOps / An toàn thông tin",
     responsibility: "Quản lý tài khoản, RBAC, audit và vận hành hệ thống.",
   },
@@ -494,17 +494,16 @@ const PERMISSIONS = [
 
 export function AdminRoles() {
   const [matrix, setMatrix] = useState<Record<Role, Set<string>>>(() => ({
-    customer: new Set(["chat:public"]),
-    staff: new Set(["chat:internal", "documents:read"]),
-    compliance_officer: new Set([
-      "chat:internal",
+    ROLE_CUSTOMER: new Set(["chat:public"]),
+    ROLE_STAFF: new Set(["chat:internal", "documents:read"]),
+    ROLE_COMPLIANCE: new Set([
       "documents:read",
       "documents:manage",
       "metadata:manage",
       "relations:manage",
       "reindex:manage",
     ]),
-    system_admin: new Set(["users:manage", "roles:manage", "audit:read"]),
+    ROLE_ADMIN: new Set(["users:manage", "roles:manage", "audit:read"]),
   }))
   const toggle = (role: Role, permission: string) =>
     setMatrix((value) => {
@@ -516,7 +515,7 @@ export function AdminRoles() {
     })
 
   return (
-    <DemoStateBoundary title="Vai trò và quyền">
+    <DataStateBoundary title="Vai trò và quyền">
       <AppLayout pageTitle="Vai trò và quyền">
         <PageHeader
           title="Quản lý vai trò và quyền"
@@ -588,7 +587,7 @@ export function AdminRoles() {
           </div>
         </Card>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }
 
@@ -624,7 +623,7 @@ export function AdminAudit() {
           log.requestId,
         ].join(","),
       ),
-    ].join("\n")
+    ].join("\r\n")
     const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }))
     const anchor = document.createElement("a")
     anchor.href = url
@@ -633,7 +632,7 @@ export function AdminAudit() {
     URL.revokeObjectURL(url)
   }
   return (
-    <DemoStateBoundary title="Nhật ký hệ thống">
+    <DataStateBoundary title="Nhật ký hệ thống">
       <AppLayout pageTitle="Nhật ký hệ thống">
         <PageHeader
           title="Nhật ký hệ thống"
@@ -761,6 +760,6 @@ export function AdminAudit() {
           )}
         </Modal>
       </AppLayout>
-    </DemoStateBoundary>
+    </DataStateBoundary>
   )
 }

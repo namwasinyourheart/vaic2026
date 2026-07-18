@@ -36,7 +36,7 @@ async def create_conversation(
     db: AsyncSession = Depends(get_db),
 ) -> ConversationOut:
     roles = await user_role_codes(user, db)
-    if payload.scope == "INTERNAL" and "customer" in roles:
+    if payload.scope == "INTERNAL" and "ROLE_CUSTOMER" in roles:
         raise HTTPException(403, "Customer cannot create internal conversation")
     item = Conversation(
         id=str(uuid.uuid4()),

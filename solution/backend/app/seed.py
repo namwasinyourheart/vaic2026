@@ -46,14 +46,14 @@ PERMISSIONS = [
     "audit_log.read",
 ]
 ROLE_PERMS = {
-    "customer": ["conversation.read_own", "conversation.create"],
-    "staff": [
+    "ROLE_CUSTOMER": ["conversation.read_own", "conversation.create"],
+    "ROLE_STAFF": [
         "conversation.read_own",
         "conversation.create",
         "document.read",
         "document.download",
     ],
-    "compliance_officer": [
+    "ROLE_COMPLIANCE": [
         "document.read",
         "document.download",
         "document.upload",
@@ -66,7 +66,7 @@ ROLE_PERMS = {
         "relation.create",
         "relation.update",
     ],
-    "system_admin": [
+    "ROLE_ADMIN": [
         "user.create",
         "user.update",
         "user.lock",
@@ -75,11 +75,17 @@ ROLE_PERMS = {
         "audit_log.read",
     ],
 }
+ROLE_NAMES = {
+    "ROLE_CUSTOMER": "Customer",
+    "ROLE_STAFF": "Staff",
+    "ROLE_COMPLIANCE": "Compliance Officer",
+    "ROLE_ADMIN": "System Admin",
+}
 USERS = [
-    ("customer", "Nguyễn Thị Mai", "mai@example.com", "customer", None),
-    ("staff_test_1", "Trần Văn Hùng", "hung@shb.vn", "staff", "12345678"),
-    ("admin", "Admin Hệ thống", "admin@shb.vn", "system_admin", None),
-    ("compliance_test_1", "Chuyên viên Pháp chế", "compliance@shb.vn", "compliance_officer", "12345678"),
+    ("customer", "Nguyễn Thị Mai", "mai@example.com", "ROLE_CUSTOMER"),
+    ("employee", "Trần Văn Hùng", "hung@shb.vn", "ROLE_STAFF"),
+    ("knowledge", "Lê Thu Hà", "ha@shb.vn", "ROLE_COMPLIANCE"),
+    ("admin", "Admin Hệ thống", "admin@shb.vn", "ROLE_ADMIN"),
 ]
 
 
@@ -90,8 +96,10 @@ async def seed() -> None:
         for code in ROLE_PERMS:
             role = (await db.execute(select(Role).where(Role.code == code))).scalar_one_or_none()
             if not role:
-                role = Role(id=str(uuid.uuid4()), code=code, name=code.replace("_", " ").title())
+                role = Role(id=str(uuid.uuid4()), code=code, name=ROLE_NAMES[code])
                 db.add(role)
+            elif role.name != ROLE_NAMES[code]:
+                role.name = ROLE_NAMES[code]
             roles[code] = role
         permissions = {}
         for code in PERMISSIONS:
@@ -319,7 +327,7 @@ async def seed() -> None:
                     id=str(uuid.uuid4()),
                     request_id="seed",
                     actor_user_id=knowledge_user.id,
-                    actor_role="compliance_officer",
+                    actor_role="ROLE_COMPLIANCE",
                     action="SEED_DATA",
                     resource_type="SYSTEM",
                     result="SUCCESS",
