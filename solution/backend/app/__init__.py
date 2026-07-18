@@ -1,1 +1,1 @@
-"""SHB Advanced RAG backend application."""
+"""Lumina AI Assistant for Enterprise Knowledge backend application."""

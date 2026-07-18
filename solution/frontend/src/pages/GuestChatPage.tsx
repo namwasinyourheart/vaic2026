@@ -108,7 +108,7 @@ export default function GuestChatPage() {
   return (
     <div className="guest-shell">
       <header className="guest-header">
-        <strong>SHB Advanced RAG Knowledge Base</strong>
+        <strong>Lumina – AI Assistant for Enterprise Knowledge</strong>
         <span>Dữ liệu công khai • Guest</span>
         <nav>
           <Link to="/login">Đăng nhập</Link>

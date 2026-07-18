@@ -2,9 +2,9 @@
 
 ## Tên đề tài
 
-**Advanced RAG Knowledge Base — AI Chatbot for Complex Banking Document Retrieval**
+**Lumina – AI Assistant for Enterprise Knowledge**
 
-Tên hệ thống sử dụng trong sản phẩm: **SHB Advanced RAG Knowledge Base**.
+Tên sản phẩm sử dụng trong hệ thống: **Lumina – AI Assistant for Enterprise Knowledge**.
 
 ## Đơn vị/lĩnh vực
 

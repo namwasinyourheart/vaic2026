@@ -1,4 +1,4 @@
-# SHB Advanced RAG Knowledge Base — Bộ tài liệu dự án
+# Lumina – AI Assistant for Enterprise Knowledge — Bộ tài liệu dự án
 
 ## Mục đích
 

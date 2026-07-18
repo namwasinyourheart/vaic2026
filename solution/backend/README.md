@@ -1,6 +1,6 @@
-# SHB Advanced RAG Backend
+# Lumina Backend
 
-FastAPI backend cho hệ thống **SHB Advanced RAG Knowledge Base** – nền tảng tra cứu tài liệu ngân hàng bằng AI dành cho nhân viên và khách hàng của SHB.
+FastAPI backend cho sản phẩm **Lumina – AI Assistant for Enterprise Knowledge** – nền tảng tra cứu tri thức doanh nghiệp bằng AI.
 
 Ngân hàng quản lý hàng nghìn văn bản nội bộ, thông tư, quy định và hợp đồng với vòng đời phức tạp: mỗi điều khoản có thể được sửa đổi nhiều lần, bị thay thế một phần, hoặc mâu thuẫn với quy định mới hơn. RAG thông thường không phân biệt được câu trả lời đúng với câu trả lời đến từ quy định đã hết hiệu lực. Backend này được thiết kế để giải quyết chính xác bài toán đó.
 

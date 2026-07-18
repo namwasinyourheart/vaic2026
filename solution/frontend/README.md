@@ -1,6 +1,6 @@
-# SHB Advanced RAG Frontend
+# Lumina Frontend
 
-React frontend for the **SHB Advanced RAG Knowledge Base**, an AI-assisted banking document search and governance platform for Customers, Bank Employees, Knowledge Managers, and System Administrators.
+React frontend for **Lumina – AI Assistant for Enterprise Knowledge**, an AI-assisted enterprise document search and governance platform for Customers, Bank Employees, Knowledge Managers, and System Administrators.
 
 The application includes a public Guest Chat, role-specific workspaces, source inspection, retrieval graphs, document management, user administration, and audit views.
 

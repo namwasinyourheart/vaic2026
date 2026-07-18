@@ -39,9 +39,9 @@ export default function LoginPage() {
   return <div className="min-h-screen grid lg:grid-cols-2 bg-[#F4F6F9]">
     <section className="hidden lg:flex bg-[#192B4B] text-white p-14 flex-col justify-between relative overflow-hidden">
       <div className="absolute -right-32 -top-32 w-96 h-96 rounded-full bg-[#C8102E]/20" />
-      <div className="relative"><div className="flex items-center gap-3"><div className="w-12 h-12 rounded-xl bg-[#C8102E] grid place-items-center font-black">SHB</div><div><div className="font-bold text-xl">Advanced RAG</div><div className="text-white/55 text-sm">Knowledge Base</div></div></div></div>
+      <div className="relative"><div className="flex items-center gap-3"><div className="w-12 h-12 rounded-xl bg-[#C8102E] grid place-items-center font-black">L</div><div><div className="font-bold text-xl">Lumina</div><div className="text-white/55 text-sm">AI Assistant for Enterprise Knowledge</div></div></div></div>
       <div className="relative max-w-lg"><h1 className="text-4xl font-bold leading-tight">Tri thức ngân hàng,<br />được kết nối bằng AI.</h1><p className="text-white/60 mt-5 leading-relaxed">Tra cứu văn bản, điều khoản, phiên bản và quan hệ tri thức trong một không gian an toàn theo vai trò.</p></div>
-      <div className="text-xs text-white/35">SHB Internal Platform · Version 0.3</div>
+      <div className="text-xs text-white/35">Lumina · Version 0.3</div>
     </section>
     <section className="flex items-center justify-center p-6"><div className="w-full max-w-md bg-white rounded-xl border border-[#DDE1E9] shadow-sm p-7">
       <div className="mb-6"><h2 className="text-xl font-bold">Đăng nhập hệ thống</h2><p className="text-sm text-gray-500 mt-1">Sử dụng tài khoản được cấp để tiếp tục</p></div>
