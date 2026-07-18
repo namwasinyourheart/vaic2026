@@ -57,6 +57,18 @@ if result.graph:
         echo "=== Running benchmark evaluation ==="
         python -W ignore demo.py eval 2>/dev/null
         ;;
+    eval-graph)
+        echo "=== Running benchmark evaluation with Graph RAG ==="
+        BYPASS_LLM=true NO_GRAPH=false NO_GRAPH_EXPANSION=false python -W ignore demo.py eval
+        ;;
+    eval-nograph)
+        echo "=== Running benchmark evaluation with RAG thường (No Graph) ==="
+        BYPASS_LLM=true NO_GRAPH=true python -W ignore demo.py eval
+        ;;
+    eval-nograph-expansion)
+        echo "=== Running benchmark evaluation without Graph Expansion ==="
+        BYPASS_LLM=true NO_GRAPH=false NO_GRAPH_EXPANSION=true python -W ignore demo.py eval
+        ;;
     chat)
         echo "=== Starting interactive chat ==="
         python -W ignore demo.py chat 2>/dev/null
@@ -95,9 +107,12 @@ print(f'Total: {len(clauses)}')
         echo "Commands:"
         echo "  ingest          Ingest all documents into Qdrant + Neo4j"
         echo "  query [text]    Run a RAG query (default: interest rate question)"
-        echo "  eval            Run benchmark evaluation (first 5 questions)"
-        echo "  chat            Start interactive chat"
-        echo "  dates [date]    Show active documents/clauses at a date"
-        echo "  help            Show this help"
+        echo "  eval                    Run benchmark evaluation (first 5 questions, default RAG)"
+        echo "  eval-graph              Run full benchmark evaluation (Graph RAG with bypassed LLM)"
+        echo "  eval-nograph            Run full benchmark evaluation (RAG thường with bypassed LLM)"
+        echo "  eval-nograph-expansion  Run full benchmark evaluation (No graph expansion with bypassed LLM)"
+        echo "  chat                    Start interactive chat"
+        echo "  dates [date]            Show active documents/clauses at a date"
+        echo "  help                    Show this help"
         ;;
 esac
