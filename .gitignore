@@ -42,3 +42,12 @@ Thumbs.db
 !*/README.md
 !docs/*.md
 !solution/backend/DATABASE.md
+
+# Project-specific
+data_prep
+pre_hackathon
+problem_understanding
+resources
+notes
+solution/third-party/
+.gitignore
