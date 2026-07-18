@@ -107,7 +107,7 @@ def cmd_eval():
 
     print(f"\nEvaluating {len(questions)} questions...\n")
     results = []
-    for q in questions[:5]:
+    for q in questions:
         qid = q["question_id"]
         query = q["question"]
         qtype = q["question_type"]
@@ -143,6 +143,11 @@ def cmd_eval():
 
 
 if __name__ == "__main__":
+    try:
+        import sys
+        sys.stdout.reconfigure(encoding='utf-8')
+    except AttributeError:
+        pass
     if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(1)

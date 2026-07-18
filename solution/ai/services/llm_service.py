@@ -23,6 +23,9 @@ def generate(
     temperature: float | None = None,
     max_tokens: int | None = None,
 ) -> str:
+    import os
+    if os.getenv("BYPASS_LLM") == "true":
+        return "Bypassed LLM generation."
     client = get_client()
     temp = temperature if temperature is not None else LLM_TEMPERATURE
     tokens = max_tokens if max_tokens is not None else LLM_MAX_TOKENS

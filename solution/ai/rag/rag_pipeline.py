@@ -30,20 +30,31 @@ async def answer(query: str) -> RAGResponse:
     candidates = hybrid_search(query, top_k=15)
     candidate_ids = [c["chunk_id"] for c in candidates]
 
-    reasoning.append(f"2. Graph expansion (REFERENCES, 2 hops)")
-    expanded = expand_references(candidate_ids, hops=2)
+    import os
+    if os.getenv("NO_GRAPH") == "true":
+        reasoning.append("Bypassed graph elements (No Graph Mode)")
+        active = candidate_ids
+        conflicts = []
+        evidence_chunks = candidates[:10]
+    else:
+        if os.getenv("NO_GRAPH_EXPANSION") == "true":
+            reasoning.append("Bypassed graph expansion (No Graph Expansion Mode)")
+            expanded = candidate_ids
+        else:
+            reasoning.append(f"2. Graph expansion (REFERENCES, 2 hops)")
+            expanded = expand_references(candidate_ids, hops=2)
 
-    reasoning.append("3. Version resolution (AMENDS chain)")
-    resolved = resolve_versions(list(expanded))
+        reasoning.append("3. Version resolution (AMENDS chain)")
+        resolved = resolve_versions(list(expanded))
 
-    reasoning.append("4. Supersession filter")
-    active = filter_superseded(resolved)
+        reasoning.append("4. Supersession filter")
+        active = filter_superseded(resolved)
 
-    reasoning.append("5. Conflict detection")
-    conflicts = detect_conflicts(active)
+        reasoning.append("5. Conflict detection")
+        conflicts = detect_conflicts(active)
 
-    evidence_chunks = candidates[:10]
-    evidence_chunks = [c for c in evidence_chunks if c.get("chunk_id") in set(active)]
+        evidence_chunks = candidates[:10]
+        evidence_chunks = [c for c in evidence_chunks if c.get("chunk_id") in set(active)]
 
     prompt = build_prompt(evidence_chunks, conflicts, query)
     reasoning.append("6. LLM generation")
@@ -53,8 +64,11 @@ async def answer(query: str) -> RAGResponse:
     source_ids = [c.get("chunk_id", "") for c in evidence_chunks[:5]]
 
     reasoning.append("7. Build subgraph for visualization")
-    from ingestion.neo4j_client import get_subgraph
-    graph = get_subgraph(list(expanded))
+    if os.getenv("NO_GRAPH") == "true":
+        graph = None
+    else:
+        from ingestion.neo4j_client import get_subgraph
+        graph = get_subgraph(list(expanded))
 
     return RAGResponse(
         answer=llm_answer,

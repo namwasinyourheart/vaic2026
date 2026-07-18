@@ -11,7 +11,7 @@ LLM_BASE_URL = "https://openrouter.ai/api/v1"
 LLM_TEMPERATURE = 0.7
 LLM_MAX_TOKENS = 4096
 
-EMBEDDING_MODEL = "intfloat/multilingual-e5-large"
+EMBEDDING_MODEL = "Qwen/Qwen3-Embedding-0.6B"
 EMBEDDING_DIM = 1024
 
 QDRANT_COLLECTION = "banking_clauses"
