@@ -400,3 +400,21 @@ export function Avatar({ name, size = 'sm' }: { name: string; size?: 'sm' | 'md'
     </div>
   )
 }
+
+// Reusable interaction primitives used by the role workspaces.
+export function Pagination({ page, totalPages, onChange }: { page: number; totalPages: number; onChange: (page: number) => void }) {
+  return <div className="flex items-center gap-2 text-xs"><button disabled={page <= 1} onClick={() => onChange(page - 1)} className="px-2 py-1 border rounded disabled:opacity-40">Trước</button><span>Trang {page}/{Math.max(1, totalPages)}</span><button disabled={page >= totalPages} onClick={() => onChange(page + 1)} className="px-2 py-1 border rounded disabled:opacity-40">Sau</button></div>
+}
+
+export function Drawer({ open, title, children, onClose, width = 'w-96' }: { open: boolean; title: string; children: ReactNode; onClose: () => void; width?: string }) {
+  if (!open) return null
+  return <div className="fixed inset-0 z-50 bg-black/25"><button aria-label="Đóng drawer" onClick={onClose} className="absolute inset-0 cursor-default" /><aside className={`absolute right-0 top-0 bottom-0 ${width} max-w-full bg-white shadow-2xl flex flex-col`}><div className="p-4 border-b flex items-center justify-between"><h2 className="font-semibold text-sm">{title}</h2><button onClick={onClose} className="text-gray-500">×</button></div><div className="flex-1 overflow-y-auto">{children}</div></aside></div>
+}
+
+export function Toast({ message, tone = 'success', onClose }: { message: string; tone?: 'success' | 'error' | 'info'; onClose?: () => void }) {
+  return <div role="status" className={`fixed bottom-5 right-5 z-[60] rounded-lg px-4 py-3 text-xs text-white shadow-xl ${tone === 'error' ? 'bg-red-700' : tone === 'info' ? 'bg-blue-700' : 'bg-gray-900'}`}>{message}{onClose && <button onClick={onClose} className="ml-3 opacity-70">×</button>}</div>
+}
+
+export function ConfirmationDialog({ open, title, description, confirmLabel = 'Xác nhận', onConfirm, onClose }: { open: boolean; title: string; description: string; confirmLabel?: string; onConfirm: () => void; onClose: () => void }) {
+  return <Modal open={open} onClose={onClose} title={title} footer={<><Btn variant="outline" size="sm" onClick={onClose}>Hủy</Btn><Btn variant="danger" size="sm" onClick={onConfirm}>{confirmLabel}</Btn></>}><p className="text-sm text-gray-600">{description}</p></Modal>
+}

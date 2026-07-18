@@ -1,318 +1,59 @@
-import { useState, useRef, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { ChevronDown, ChevronRight, Clipboard, Copy, FileText, Maximize2, Network, Pause, Plus, RotateCcw, Search, Send, Trash2, Volume2, X, ZoomIn, ZoomOut } from 'lucide-react'
 import AppLayout from '../../layouts/AppLayout'
-import { Badge, Btn } from '../../components/shared'
+import { useAuth } from '../../auth/AuthContext'
+import type { Conversation, GraphNode, Message, SourceGroup, TextChunk } from '../../domain'
+import { chatService } from '../../services/mock'
+import { Badge, Btn, EmptyState, Modal } from '../../components/shared'
+import { DemoStateBoundary } from '../SystemPages'
 
-interface Citation {
-  id: string
-  docName: string
-  docCode: string
-  clause: string
-  date: string
-  status: 'effective' | 'superseded' | 'expired'
-}
-
-interface Message {
-  id: string
-  role: 'user' | 'ai'
-  content: string
-  time: string
-  citations?: Citation[]
-  warning?: string
-}
-
-const DEMO_MESSAGES: Message[] = [
-  {
-    id: '1', role: 'user',
-    content: 'Lãi suất tiết kiệm kỳ hạn 12 tháng hiện tại là bao nhiêu?',
-    time: '09:32',
-  },
-  {
-    id: '2', role: 'ai',
-    content: 'Lãi suất tiết kiệm kỳ hạn 12 tháng của SHB hiện tại là **5,8%/năm** đối với hình thức gửi tại quầy và **6,0%/năm** đối với gửi online.\n\nMức lãi suất này được áp dụng từ ngày 01/01/2024 theo Quyết định số 01/QĐ-SHB/2024 về biểu lãi suất huy động vốn cá nhân.',
-    time: '09:32',
-    citations: [
-      { id: 'c1', docName: 'Quyết định biểu lãi suất huy động vốn cá nhân', docCode: 'QĐ-01/2024', clause: 'Điều 3, Khoản 2', date: '01/01/2024', status: 'effective' },
-      { id: 'c2', docName: 'Thông báo điều chỉnh lãi suất tháng 01/2024', docCode: 'TB-SHB-2024/001', clause: 'Phần II', date: '15/01/2024', status: 'effective' },
-    ],
-  },
-  {
-    id: '3', role: 'user',
-    content: 'Điều kiện để mở thẻ tín dụng SHB là gì?',
-    time: '09:35',
-  },
-  {
-    id: '4', role: 'ai',
-    content: 'Để mở thẻ tín dụng SHB, khách hàng cần đáp ứng các điều kiện sau:\n\n**1. Về độ tuổi:** Từ 18 tuổi trở lên đối với chủ thẻ chính; từ 15 tuổi đối với chủ thẻ phụ.\n\n**2. Về thu nhập:** Thu nhập tối thiểu 5 triệu đồng/tháng (có xác nhận của đơn vị công tác hoặc sao kê lương).\n\n**3. Về hồ sơ:** CCCD/CMND còn hiệu lực; hợp đồng lao động hoặc giấy tờ xác nhận thu nhập.\n\n**4. Về lịch sử tín dụng:** Không có nợ xấu trong vòng 12 tháng gần nhất.',
-    time: '09:35',
-    citations: [
-      { id: 'c3', docName: 'Quy định phát hành và sử dụng thẻ tín dụng SHB', docCode: 'QC-SHB-TD/2023', clause: 'Điều 5', date: '01/06/2023', status: 'effective' },
-    ],
-    warning: 'Một số điều khoản trong văn bản này đang trong quá trình sửa đổi. Kết quả có thể thay đổi sau khi cập nhật.',
-  },
+const graphNodes: GraphNode[] = [
+  { id: 'chunk', label: 'Chunk nguồn #1', type: 'chunk', x: 300, y: 170, primary: true, detail: 'Đoạn văn được truy xuất trực tiếp cho câu trả lời.' },
+  { id: 'clause', label: 'Điều 5 · Khoản 2', type: 'clause', x: 100, y: 70, detail: 'Điều khoản quy định mức lãi suất.' },
+  { id: 'document', label: 'QĐ-01/2024', type: 'document', x: 500, y: 70, detail: 'Quyết định biểu lãi suất huy động vốn.' },
+  { id: 'related', label: 'TB-001/2024', type: 'related', x: 500, y: 280, detail: 'Thông báo điều chỉnh có liên quan.' },
 ]
 
-const CONVERSATIONS = [
-  { id: '1', title: 'Lãi suất tiết kiệm 2024', time: '09:32', active: true },
-  { id: '2', title: 'Điều kiện vay mua nhà', time: 'Hôm qua' },
-  { id: '3', title: 'Phí chuyển khoản quốc tế', time: '14/01' },
-  { id: '4', title: 'Thủ tục mở tài khoản doanh nghiệp', time: '12/01' },
-  { id: '5', title: 'Quy định giao dịch ngoại tệ', time: '10/01' },
-]
+function SafeAnswer({ text }: { text: string }) { return <>{text.split('\n').map((line, index) => <p key={`${line}-${index}`} className="mb-2 last:mb-0">{line}</p>)}</> }
 
-function CitationCard({ citation }: { citation: Citation }) {
-  const [open, setOpen] = useState(false)
-  const statusMap: Record<string, 'effective' | 'superseded' | 'expired'> = {
-    effective: 'effective',
-    superseded: 'superseded',
-    expired: 'expired',
-  }
-  return (
-    <div className="bg-[#F8FAFC] border border-[#DDE1E9] rounded p-2.5 text-xs">
-      <div className="flex items-start justify-between gap-2">
-        <div className="flex-1">
-          <div className="font-medium text-gray-800 leading-snug">{citation.docName}</div>
-          <div className="text-gray-400 font-mono mt-0.5">{citation.docCode} · {citation.clause}</div>
-          <div className="flex items-center gap-2 mt-1.5">
-            <Badge variant={statusMap[citation.status]} />
-            <span className="text-gray-400 font-mono text-[10px]">Ngày HL: {citation.date}</span>
-          </div>
-        </div>
-        <button
-          onClick={() => setOpen(!open)}
-          className="text-[#C8102E] hover:underline text-[10px] font-medium flex-shrink-0 cursor-pointer"
-        >
-          Xem nguồn
-        </button>
-      </div>
-      {open && (
-        <div className="mt-2 pt-2 border-t border-[#DDE1E9] text-gray-600 leading-relaxed">
-          Nội dung trích dẫn từ {citation.clause}: Lãi suất tiết kiệm kỳ hạn 12 tháng áp dụng cho khách hàng cá nhân tại SHB là 5,8%/năm (gửi tại quầy) và 6,0%/năm (gửi qua kênh số)...
-        </div>
-      )}
-    </div>
-  )
+function GraphModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const [selected, setSelected] = useState(graphNodes[0]); const [zoom, setZoom] = useState(1); const [query, setQuery] = useState(''); const [type, setType] = useState('all')
+  const nodes = graphNodes.filter(node => (type === 'all' || node.type === type) && node.label.toLowerCase().includes(query.toLowerCase()))
+  return <Modal open={open} onClose={onClose} title="Retrieval Knowledge Graph" size="lg"><div className="-m-5 h-[68vh] flex bg-[#F8FAFC]">
+    <div className="flex-1 flex flex-col min-w-0"><div className="h-12 border-b bg-white px-3 flex items-center gap-2"><div className="relative"><Search size={14} className="absolute left-2 top-2 text-gray-400" /><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Tìm node..." className="border rounded pl-7 pr-2 py-1.5 text-xs" /></div><select value={type} onChange={e => setType(e.target.value)} className="border rounded px-2 py-1.5 text-xs"><option value="all">Tất cả node</option><option value="chunk">Text Chunk</option><option value="clause">Điều khoản</option><option value="document">Văn bản</option><option value="related">Liên quan</option></select><div className="ml-auto flex"><button onClick={() => setZoom(v => Math.min(1.5, v + .1))} className="p-2"><ZoomIn size={16} /></button><button onClick={() => setZoom(v => Math.max(.6, v - .1))} className="p-2"><ZoomOut size={16} /></button><button onClick={() => setZoom(1)} className="p-2"><RotateCcw size={16} /></button><button onClick={() => document.documentElement.requestFullscreen?.()} className="p-2"><Maximize2 size={16} /></button></div></div>
+      <div className="flex-1 overflow-hidden relative"><svg viewBox="0 0 650 380" className="w-full h-full" style={{ transform: `scale(${zoom})` }}><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#94a3b8" /></marker></defs><g stroke="#94a3b8" strokeWidth="1.5" markerEnd="url(#arrow)"><line x1="150" y1="95" x2="300" y2="170" /><line x1="350" y1="170" x2="500" y2="95" /><line x1="350" y1="190" x2="500" y2="280" /></g>{nodes.map(node => <g key={node.id} onClick={() => setSelected(node)} className="cursor-pointer"><circle cx={node.x} cy={node.y} r={node.primary ? 39 : 34} fill={node.primary ? '#C8102E' : node.type === 'document' ? '#192B4B' : node.type === 'clause' ? '#2563eb' : '#7c3aed'} stroke={selected.id === node.id ? '#fbbf24' : 'white'} strokeWidth="4" /><text x={node.x} y={node.y + 55} textAnchor="middle" fontSize="12" fill="#334155">{node.label}</text></g>)}</svg><div className="absolute left-3 bottom-3 bg-white/90 border rounded p-2 text-[10px] text-gray-500">Quan hệ: CONTAINS · BELONGS_TO · RELATED_TO</div></div>
+    </div><aside className="w-72 border-l bg-white p-4 overflow-y-auto"><div className="text-[10px] uppercase text-gray-400 font-semibold">Node Details</div><div className="mt-4 w-12 h-12 rounded-full bg-[#C8102E] text-white grid place-items-center"><Network size={20} /></div><h3 className="font-semibold mt-3">{selected.label}</h3><Badge variant={selected.type === 'document' ? 'info' : 'effective'} label={selected.type} /><p className="text-xs text-gray-600 mt-4 leading-relaxed">{selected.detail}</p><dl className="mt-4 text-xs space-y-2"><div><dt className="text-gray-400">Node ID</dt><dd className="font-mono">{selected.id}</dd></div><div><dt className="text-gray-400">Quan hệ</dt><dd>2 kết nối trực tiếp</dd></div></dl></aside>
+  </div></Modal>
 }
 
-function MessageBubble({ msg }: { msg: Message }) {
-  if (msg.role === 'user') {
-    return (
-      <div className="flex justify-end mb-4">
-        <div className="max-w-xl">
-          <div className="bg-[#1A2B4A] text-white rounded-xl rounded-tr-sm px-4 py-3 text-sm">
-            {msg.content}
-          </div>
-          <div className="text-right text-[10px] text-gray-400 font-mono mt-1 pr-1">{msg.time}</div>
-        </div>
-      </div>
-    )
-  }
+function SourcesPanel({ groups, selected, onSelect, onClose }: { groups: SourceGroup[]; selected: TextChunk | null; onSelect: (chunk: TextChunk | null) => void; onClose: () => void }) {
+  const [collapsed, setCollapsed] = useState<Set<string>>(new Set())
+  const toggle = (id: string) => setCollapsed(previous => { const next = new Set(previous); next.has(id) ? next.delete(id) : next.add(id); return next })
+  if (selected) return <aside className="w-[560px] border-l bg-white flex min-h-0"><div className="w-56 border-r overflow-y-auto p-3"><button onClick={() => onSelect(null)} className="text-xs text-[#C8102E] mb-3">← Danh sách chunks</button>{groups.flatMap(group => group.chunks).map(chunk => <button key={chunk.id} onClick={() => onSelect(chunk)} className={`w-full text-left border rounded p-2 mb-2 ${selected.id === chunk.id ? 'border-[#C8102E] bg-red-50' : ''}`}><div className="text-[10px] font-mono text-gray-400">#{chunk.rank} · {Math.round(chunk.score * 100)}%</div><div className="text-xs font-medium line-clamp-2 mt-1">{chunk.documentName}</div></button>)}</div><div className="flex-1 min-w-0 flex flex-col"><div className="p-4 border-b flex justify-between"><div><div className="text-[10px] text-gray-400 uppercase">Chi tiết text chunk</div><h3 className="font-semibold text-sm mt-1">{selected.documentName}</h3></div><button onClick={onClose}><X size={18} /></button></div><div className="flex-1 overflow-y-auto"><div className="p-4 bg-[#F8FAFC] border-b grid grid-cols-2 gap-3 text-xs">{[['Số hiệu', selected.documentCode], ['Đường dẫn', selected.path], ['Phiên bản', selected.version], ['Loại', selected.contentType], ['Ngôn ngữ', selected.language], ['Điểm liên quan', `${Math.round(selected.score * 100)}%`], ['Phạm vi', selected.accessScope], ['Index lúc', selected.indexedAt]].map(([label, value]) => <div key={label}><div className="text-gray-400">{label}</div><div className="font-medium mt-0.5">{value}</div></div>)}</div><div className="p-4"><h4 className="text-xs font-semibold mb-2">Nội dung đầy đủ</h4>{selected.available === false ? <div className="text-xs bg-amber-50 border border-amber-200 rounded p-3">Chunk không còn khả dụng.</div> : selected.accessScope === 'internal' && false ? <div>Không có quyền</div> : <p className="text-sm leading-7 text-gray-700">{selected.content}</p>}</div></div></div></aside>
+  return <aside className="w-96 border-l bg-white flex flex-col min-h-0"><div className="p-4 border-b flex items-center justify-between"><div><h3 className="font-semibold">Sources</h3><div className="text-[10px] text-gray-400">{groups.reduce((sum, group) => sum + group.chunks.length, 0)} text chunks</div></div><button onClick={onClose}><X size={18} /></button></div><div className="flex-1 overflow-y-auto p-3">{groups.length === 0 ? <EmptyState title="Chưa có Sources" description="Gửi câu hỏi để hệ thống truy xuất nguồn." /> : groups.map(group => <section key={group.id} className="mb-3 border rounded"><button onClick={() => toggle(group.id)} title={group.question} className="w-full p-3 flex gap-2 text-left bg-gray-50">{collapsed.has(group.id) ? <ChevronRight size={15} /> : <ChevronDown size={15} />}<span className="text-xs font-semibold line-clamp-2">Results for “{group.question}”</span></button>{!collapsed.has(group.id) && <div className="p-2">{group.chunks.map(chunk => <button key={chunk.id} onClick={() => onSelect(chunk)} className="w-full text-left border rounded p-3 mb-2 hover:border-[#C8102E]"><div className="flex justify-between"><span className="text-[10px] font-mono text-[#C8102E]">Kết quả #{chunk.rank}</span><Badge variant="effective" /></div><div className="text-xs font-semibold mt-2">{chunk.documentName}</div><div className="text-[10px] font-mono text-gray-400 mt-1">{chunk.documentCode} · {chunk.path}</div><p className="text-xs text-gray-600 line-clamp-3 mt-2">{chunk.snippet}</p></button>)}</div>}</section>)}</div></aside>
+}
 
-  return (
-    <div className="flex gap-3 mb-5">
-      <div className="w-7 h-7 bg-[#C8102E] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-        <span className="text-white text-[9px] font-black">AI</span>
-      </div>
-      <div className="flex-1 min-w-0 max-w-2xl">
-        <div className="bg-white border border-[#DDE1E9] rounded-xl rounded-tl-sm px-4 py-3">
-          <div
-            className="text-sm text-gray-800 leading-relaxed"
-            dangerouslySetInnerHTML={{
-              __html: msg.content
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\n/g, '<br />'),
-            }}
-          />
-
-          {msg.warning && (
-            <div className="mt-3 bg-amber-50 border border-amber-200 rounded p-2.5 flex gap-2">
-              <svg className="w-3.5 h-3.5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              <span className="text-xs text-amber-700">{msg.warning}</span>
-            </div>
-          )}
-
-          {msg.citations && msg.citations.length > 0 && (
-            <div className="mt-3 pt-3 border-t border-[#DDE1E9]">
-              <div className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">
-                Nguồn trích dẫn ({msg.citations.length})
-              </div>
-              <div className="grid grid-cols-1 gap-2">
-                {msg.citations.map(c => <CitationCard key={c.id} citation={c} />)}
-              </div>
-            </div>
-          )}
-
-          <div className="mt-3 pt-2 border-t border-[#DDE1E9] flex items-center gap-3">
-            <span className="text-[10px] text-gray-400 font-mono flex-1">{msg.time}</span>
-            <button className="p-1 hover:bg-gray-100 rounded transition-colors text-gray-400 cursor-pointer" title="Sao chép">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-            </button>
-            <button className="p-1 hover:bg-green-50 rounded transition-colors text-gray-400 hover:text-green-600 cursor-pointer" title="Hữu ích">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-              </svg>
-            </button>
-            <button className="p-1 hover:bg-red-50 rounded transition-colors text-gray-400 hover:text-red-500 cursor-pointer" title="Không hữu ích">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.096c.5 0 .905-.405.905-.904 0-.715.211-1.413.608-2.008L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+function MessageView({ message, onGraph, onToast }: { message: Message; onGraph: () => void; onToast: (text: string) => void }) {
+  const [speaking, setSpeaking] = useState(false)
+  const speak = () => { if (!('speechSynthesis' in window)) return onToast('Trình duyệt không hỗ trợ phát nội dung.'); if (speaking) { speechSynthesis.cancel(); setSpeaking(false); return } const utterance = new SpeechSynthesisUtterance(message.content); utterance.lang = 'vi-VN'; utterance.onend = () => setSpeaking(false); speechSynthesis.speak(utterance); setSpeaking(true) }
+  if (message.role === 'user') return <div className="flex justify-end mb-5"><div className="max-w-2xl"><div className="bg-[#192B4B] text-white rounded-xl rounded-tr-sm px-4 py-3 text-sm">{message.content}</div><div className="text-[10px] text-gray-400 text-right mt-1">{message.time}</div></div></div>
+  return <div className="flex gap-3 mb-6"><div className="w-8 h-8 bg-[#C8102E] rounded-full text-white text-[10px] font-bold grid place-items-center">AI</div><div className="max-w-3xl flex-1"><div className="bg-white border rounded-xl rounded-tl-sm p-4 text-sm leading-6"><SafeAnswer text={message.content} />{message.warning && <div className="bg-amber-50 border border-amber-200 text-amber-800 rounded p-2 text-xs mt-3">{message.warning}</div>}<div className="border-t mt-3 pt-2 flex items-center gap-1"><span className="text-[10px] text-gray-400 mr-auto">{message.time}</span><button onClick={speak} title="Phát nội dung" className="p-1.5 rounded hover:bg-gray-100">{speaking ? <Pause size={15} /> : <Volume2 size={15} />}</button><button onClick={async () => { await navigator.clipboard.writeText(message.content); onToast('Đã sao chép câu trả lời') }} title="Sao chép" className="p-1.5 rounded hover:bg-gray-100"><Copy size={15} /></button><button onClick={onGraph} title="Xem đồ thị" className="p-1.5 rounded hover:bg-gray-100"><Network size={15} /></button></div></div></div></div>
 }
 
 export default function ChatbotPage() {
-  const [messages, setMessages] = useState<Message[]>(DEMO_MESSAGES)
-  const [input, setInput] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [search, setSearch] = useState('')
-  const endRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages, loading])
-
-  const handleSend = async () => {
-    if (!input.trim() || loading) return
-    const userMsg: Message = {
-      id: Date.now().toString(), role: 'user',
-      content: input.trim(),
-      time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
-    }
-    setMessages(prev => [...prev, userMsg])
-    setInput('')
-    setLoading(true)
-    await new Promise(r => setTimeout(r, 1500))
-    const aiMsg: Message = {
-      id: (Date.now() + 1).toString(), role: 'ai',
-      content: 'Cảm ơn câu hỏi của bạn. Dựa trên dữ liệu tài liệu hiện có, tôi sẽ cung cấp thông tin chính xác và đầy đủ nhất. Hiện tôi đang tra cứu các quy định liên quan...',
-      time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
-    }
-    setMessages(prev => [...prev, aiMsg])
-    setLoading(false)
-  }
-
-  return (
-    <AppLayout role="customer" pageTitle="Chatbot">
-      <div className="flex h-[calc(100vh-8.25rem)] gap-0 bg-white rounded-lg border border-[#DDE1E9] overflow-hidden">
-        {/* Sidebar */}
-        <div className="w-64 flex-shrink-0 border-r border-[#DDE1E9] flex flex-col">
-          <div className="p-3 border-b border-[#DDE1E9]">
-            <Btn variant="primary" size="sm" className="w-full justify-center">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
-              Cuộc trò chuyện mới
-            </Btn>
-          </div>
-          <div className="p-2 border-b border-[#DDE1E9]">
-            <input
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              placeholder="Tìm kiếm hội thoại..."
-              className="w-full px-2.5 py-1.5 text-xs border border-[#DDE1E9] rounded focus:outline-none focus:ring-1 focus:ring-[#C8102E]/30"
-            />
-          </div>
-          <div className="flex-1 overflow-y-auto">
-            <div className="px-2 py-1.5">
-              <div className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide px-2 mb-1">Gần đây</div>
-              {CONVERSATIONS.filter(c => c.title.toLowerCase().includes(search.toLowerCase())).map(conv => (
-                <div
-                  key={conv.id}
-                  className={`px-2.5 py-2 rounded cursor-pointer group flex items-start justify-between gap-1 ${
-                    conv.active ? 'bg-[#FFF1F3] border border-[#C8102E]/20' : 'hover:bg-gray-50'
-                  }`}
-                >
-                  <div className="flex-1 min-w-0">
-                    <div className={`text-xs font-medium truncate ${conv.active ? 'text-[#C8102E]' : 'text-gray-700'}`}>
-                      {conv.title}
-                    </div>
-                    <div className="text-[10px] text-gray-400 font-mono mt-0.5">{conv.time}</div>
-                  </div>
-                  <button className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-gray-600 cursor-pointer">
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                    </svg>
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Chat area */}
-        <div className="flex-1 flex flex-col min-w-0">
-          {/* Chat header */}
-          <div className="px-5 py-3 border-b border-[#DDE1E9] flex items-center justify-between">
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">Lãi suất tiết kiệm 2024</h3>
-              <div className="text-xs text-gray-400">4 tin nhắn · Hôm nay 09:35</div>
-            </div>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto px-5 py-4">
-            {messages.map(msg => <MessageBubble key={msg.id} msg={msg} />)}
-            {loading && (
-              <div className="flex gap-3 mb-4">
-                <div className="w-7 h-7 bg-[#C8102E] rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-[9px] font-black">AI</span>
-                </div>
-                <div className="bg-white border border-[#DDE1E9] rounded-xl rounded-tl-sm px-4 py-3">
-                  <div className="flex gap-1 items-center">
-                    {[0, 1, 2].map(i => (
-                      <div
-                        key={i}
-                        className="w-2 h-2 bg-gray-300 rounded-full animate-bounce"
-                        style={{ animationDelay: `${i * 0.15}s` }}
-                      />
-                    ))}
-                    <span className="text-xs text-gray-400 ml-1">AI đang xử lý...</span>
-                  </div>
-                </div>
-              </div>
-            )}
-            <div ref={endRef} />
-          </div>
-
-          {/* Input */}
-          <div className="p-4 border-t border-[#DDE1E9]">
-            <div className="flex gap-2 items-end bg-[#F8FAFC] rounded-lg border border-[#DDE1E9] p-2.5 focus-within:border-[#C8102E] focus-within:ring-2 focus-within:ring-[#C8102E]/20 transition-all">
-              <textarea
-                value={input}
-                onChange={e => setInput(e.target.value)}
-                onKeyDown={e => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault()
-                    handleSend()
-                  }
-                }}
-                placeholder="Nhập câu hỏi của bạn... (Enter để gửi)"
-                rows={2}
-                className="flex-1 bg-transparent text-sm text-gray-800 resize-none focus:outline-none placeholder:text-gray-400"
-              />
-              <button
-                onClick={handleSend}
-                disabled={!input.trim() || loading}
-                className="p-2 bg-[#C8102E] text-white rounded-md disabled:opacity-40 hover:bg-[#a50d25] transition-colors cursor-pointer flex-shrink-0"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
-              </button>
-            </div>
-            <div className="text-[10px] text-gray-400 mt-1.5 text-center">
-              Câu trả lời dựa trên tài liệu chính thức của SHB · Chỉ hiển thị thông tin công khai
-            </div>
-          </div>
-        </div>
-      </div>
-    </AppLayout>
-  )
+  const { user } = useAuth(); const role = user?.role === 'bank_employee' ? 'bank_employee' : 'customer'; const [conversations, setConversations] = useState<Conversation[]>([]); const [currentId, setCurrentId] = useState(''); const [input, setInput] = useState(''); const [search, setSearch] = useState(''); const [loading, setLoading] = useState(true); const [sourcesOpen, setSourcesOpen] = useState(false); const [selectedChunk, setSelectedChunk] = useState<TextChunk | null>(null); const [graphOpen, setGraphOpen] = useState(false); const [toast, setToast] = useState(''); const end = useRef<HTMLDivElement>(null)
+  useEffect(() => { chatService.list(role).then(items => { setConversations(items); setCurrentId(items[0]?.id || ''); setLoading(false) }) }, [role])
+  const current = conversations.find(item => item.id === currentId)
+  const persist = (next: Conversation[]) => { setConversations(next); void chatService.save(role, next) }
+  const create = () => { const next: Conversation = { id: crypto.randomUUID(), title: 'Cuộc trò chuyện mới', updatedAt: 'Vừa xong', scope: role === 'customer' ? 'public' : 'internal', messages: [], sources: [] }; persist([next, ...conversations]); setCurrentId(next.id) }
+  const remove = (id: string) => { const next = conversations.filter(item => item.id !== id); persist(next); setCurrentId(next[0]?.id || '') }
+  const rename = (item: Conversation) => { const title = prompt('Tên mới cho hội thoại', item.title)?.trim(); if (title) persist(conversations.map(value => value.id === item.id ? { ...value, title } : value)) }
+  const send = async () => { if (!input.trim() || !current) return; const question = input.trim(); setInput(''); setLoading(true); const userMessage: Message = { id: crypto.randomUUID(), role: 'user', content: question, time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) }; const draft = conversations.map(item => item.id === current.id ? { ...item, messages: [...item.messages, userMessage], title: item.messages.length ? item.title : question.slice(0, 46) } : item); persist(draft); await new Promise(resolve => setTimeout(resolve, 700)); const source = current.sources[0]?.chunks || conversations[0]?.sources[0]?.chunks || []; const groupId = crypto.randomUUID(); const aiMessage: Message = { id: crypto.randomUUID(), role: 'ai', content: role === 'customer' ? 'Dựa trên các văn bản công khai đang có hiệu lực, thông tin phù hợp nhất đã được tổng hợp. Bạn có thể mở Sources để kiểm tra từng text chunk.' : 'Dựa trên kho văn bản nội bộ theo quyền truy cập của bạn, hệ thống đã tìm thấy quy định liên quan. Mở Sources để xem metadata và nội dung đầy đủ.', time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }), sourceGroupId: groupId }; const final = draft.map(item => item.id === current.id ? { ...item, messages: [...item.messages, aiMessage], sources: [...item.sources, { id: groupId, question, chunks: source.map((chunk, index) => ({ ...chunk, id: `${groupId}-${index}`, accessScope: role === 'customer' ? 'public' as const : chunk.accessScope })) }] } : item); persist(final); setLoading(false); setTimeout(() => end.current?.scrollIntoView({ behavior: 'smooth' }), 20) }
+  const sourceCount = current?.sources.reduce((sum, group) => sum + group.chunks.length, 0) || 0
+  const headerAction = <Btn variant={sourcesOpen ? 'primary' : 'outline'} size="sm" onClick={() => setSourcesOpen(v => !v)}><FileText size={14} /> Sources <span className="rounded-full bg-black/10 px-1.5">{sourceCount}</span></Btn>
+  return <DemoStateBoundary title="Chat với AI"><AppLayout pageTitle={role === 'customer' ? 'Chat với AI' : 'Chat nội bộ với AI'} headerActions={headerAction}><div className="h-[calc(100vh-7.5rem)] bg-white border rounded-lg flex overflow-hidden">
+    <aside className="w-64 border-r flex flex-col"><div className="p-3 border-b"><Btn className="w-full justify-center" onClick={create}><Plus size={14} /> Cuộc trò chuyện mới</Btn></div><div className="p-2 border-b relative"><Search size={14} className="absolute left-4 top-4 text-gray-400" /><input value={search} onChange={e => setSearch(e.target.value)} placeholder="Tìm hội thoại..." className="w-full border rounded pl-8 pr-2 py-2 text-xs" /></div><div className="flex-1 overflow-y-auto p-2">{conversations.filter(item => item.title.toLowerCase().includes(search.toLowerCase())).map(item => <div key={item.id} className={`group rounded p-2 mb-1 flex gap-1 ${item.id === currentId ? 'bg-red-50 text-[#C8102E]' : 'hover:bg-gray-50'}`}><button onClick={() => setCurrentId(item.id)} className="flex-1 min-w-0 text-left"><div className="text-xs font-medium truncate">{item.title}</div><div className="text-[10px] text-gray-400 mt-0.5">{item.updatedAt}</div></button><button onClick={() => rename(item)} title="Đổi tên" className="opacity-0 group-hover:opacity-100"><Clipboard size={13} /></button><button onClick={() => remove(item.id)} title="Xóa" className="opacity-0 group-hover:opacity-100 text-red-500"><Trash2 size={13} /></button></div>)}</div></aside>
+    <section className="flex-1 flex flex-col min-w-0 bg-[#F8FAFC]">{current ? <><div className="p-4 border-b bg-white"><h2 className="font-semibold text-sm">{current.title}</h2><div className="text-[10px] text-gray-400">{current.messages.length} tin nhắn · {role === 'customer' ? 'Dữ liệu công khai' : 'Dữ liệu nội bộ theo quyền'}</div></div><div className="flex-1 overflow-y-auto p-5">{current.messages.map(message => <MessageView key={message.id} message={message} onGraph={() => setGraphOpen(true)} onToast={text => { setToast(text); setTimeout(() => setToast(''), 1800) }} />)}{loading && <div className="text-xs text-gray-400 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-[#C8102E] animate-bounce" /> AI đang trả lời...</div>}<div ref={end} /></div><div className="p-4 border-t bg-white"><div className="border rounded-lg p-2 flex items-end focus-within:ring-2 ring-red-100"><textarea value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); void send() } }} rows={2} maxLength={2000} placeholder="Nhập câu hỏi... Enter để gửi, Shift+Enter để xuống dòng" className="flex-1 resize-none outline-none text-sm p-1" /><button disabled={!input.trim() || loading} onClick={() => void send()} className="p-2 bg-[#C8102E] text-white rounded disabled:opacity-40"><Send size={17} /></button></div><div className="text-[10px] text-gray-400 mt-1 text-right">{input.length}/2000</div></div></> : <div className="m-auto"><EmptyState title="Chưa có cuộc trò chuyện" description="Tạo cuộc trò chuyện mới để bắt đầu." /></div>}</section>
+    {sourcesOpen && <SourcesPanel groups={current?.sources || []} selected={selectedChunk} onSelect={setSelectedChunk} onClose={() => { setSourcesOpen(false); setSelectedChunk(null) }} />}
+  </div>{toast && <div className="fixed bottom-5 right-5 bg-gray-900 text-white text-xs px-4 py-3 rounded shadow-xl z-50">{toast}</div>}<GraphModal open={graphOpen} onClose={() => setGraphOpen(false)} /></AppLayout></DemoStateBoundary>
 }
