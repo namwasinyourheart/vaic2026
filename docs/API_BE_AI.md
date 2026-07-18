@@ -78,7 +78,7 @@ AI trả content chỉ sau khi xác nhận chunk tồn tại và access scope ph
 }
 ```
 
-Backend không ghi response content vào SQLite.
+Backend không ghi response content vào PostgreSQL (hoặc SQLite test).
 
 ## Retrieval graph
 
@@ -104,7 +104,9 @@ Result có `ai_document_id`, `ai_job_id`, `status`. Backend cập nhật workflo
 
 ## HTTP mapping đề xuất
 
-Khi có AI Service thật, dùng internal base URL (`AI_SERVICE_URL`, hiện mặc định `http://localhost:9000/internal/v1`):
+Khi có AI Service thật, dùng internal base URL (`AI_SERVICE_URL`, local mặc định `http://localhost:9000/internal/v1`):
+
+> Trạng thái hiện tại: deploy dùng `AI_PROVIDER=mock`; chưa cần một AI URL hoạt động. Mock adapter tuân theo cùng kiểu ID/response nhưng không thực hiện OCR, embedding, vector retrieval hoặc graph thật.
 
 | Backend adapter | Internal endpoint đề xuất | Method |
 |---|---|---|

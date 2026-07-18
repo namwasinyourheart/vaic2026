@@ -34,8 +34,8 @@ Tài liệu này ghi quyết định đã thống nhất, không phải danh sá
 
 ## Tài liệu và ingestion
 
-- File gốc đi qua StorageService; POC lưu local tại `solution/backend/storage`.
-- Chỉ nhận PDF, DOCX và ảnh scan theo MIME/extension/size.
+- File gốc đi qua `StorageService`; development/test có thể lưu local tại `solution/backend/storage`, production dùng Cloudflare R2.
+- Chỉ nhận PDF, DOCX và các định dạng ảnh scan được validator Backend cho phép; luôn kiểm tra MIME, extension và kích thước.
 - Upload tạo document, version, document_file và processing job trong Backend.
 - Backend gọi AI adapter dạng background task sau khi lưu file.
 - Parsed/OCR/chunk/index thuộc AI; Backend theo dõi trạng thái job.

@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from ...database import get_db
 from ...dependencies import current_user, require_roles, user_role_codes
 from ...models import AuditLog, Permission, Role, RolePermission, Session, User, UserRole
-from ...schemas import UserCreate, UserOut, UserUpdate
+from ...schemas import PasswordResetRequest, UserCreate, UserOut, UserUpdate
 from ...services.security import hash_password
 
 router = APIRouter(
@@ -16,6 +16,7 @@ router = APIRouter(
     tags=["System Admin"],
     dependencies=[Depends(require_roles("system_admin"))],
 )
+DEFAULT_PASSWORD = "vaic@2026"
 
 
 async def out(user: User, db: AsyncSession) -> UserOut:
@@ -27,6 +28,7 @@ async def out(user: User, db: AsyncSession) -> UserOut:
         full_name=user.full_name,
         status=user.status,
         role=roles[0] if roles else "customer",
+        must_change_password=user.must_change_password,
     )
 
 
@@ -59,7 +61,8 @@ async def create_user(payload: UserCreate, db: AsyncSession = Depends(get_db)) -
         id=str(uuid.uuid4()),
         username=username,
         email=email,
-        password_hash=hash_password(payload.password),
+        password_hash=hash_password(DEFAULT_PASSWORD),
+        must_change_password=True,
         full_name=payload.full_name,
         department_id=payload.department_id,
         status="ACTIVE",
@@ -67,6 +70,23 @@ async def create_user(payload: UserCreate, db: AsyncSession = Depends(get_db)) -
     db.add(user)
     await db.flush()
     db.add(UserRole(user_id=user.id, role_id=role.id))
+    await db.commit()
+    return await out(user, db)
+
+
+@router.post("/users/{user_id}/reset-password", response_model=UserOut)
+async def reset_password(
+    user_id: str,
+    payload: PasswordResetRequest | None = None,
+    db: AsyncSession = Depends(get_db),
+) -> UserOut:
+    user = await db.get(User, user_id)
+    if not user or user.deleted_at:
+        raise HTTPException(404, "User not found")
+    user.password_hash = hash_password((payload.password if payload else DEFAULT_PASSWORD))
+    user.must_change_password = True
+    for session in (await db.execute(select(Session).where(Session.user_id == user.id, Session.revoked_at.is_(None)))).scalars():
+        session.revoked_at = datetime.now(timezone.utc)
     await db.commit()
     return await out(user, db)
 

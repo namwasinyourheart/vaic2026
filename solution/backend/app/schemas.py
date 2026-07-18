@@ -11,6 +11,7 @@ class UserOut(BaseModel):
     full_name: str
     status: str
     role: str
+    must_change_password: bool = False
 
 
 class LoginRequest(BaseModel):
@@ -138,7 +139,7 @@ class ExpireRequest(BaseModel):
 class UserCreate(BaseModel):
     username: str = Field(min_length=3, max_length=120)
     email: str | None = None
-    password: str = Field(min_length=8, max_length=128)
+    password: str = Field(default="vaic@2026", min_length=8, max_length=128)
     full_name: str = Field(min_length=1, max_length=255)
     role: str
     department_id: str | None = None
@@ -149,6 +150,10 @@ class UserUpdate(BaseModel):
     email: str | None = None
     role: str | None = None
     status: str | None = None
+
+
+class PasswordResetRequest(BaseModel):
+    password: str = Field(default="vaic@2026", min_length=8, max_length=128)
 
 
 class SourceRefOut(BaseModel):

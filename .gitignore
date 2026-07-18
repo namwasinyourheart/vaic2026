@@ -1,4 +1,43 @@
 *node_modules/
+
+# Frontend build and tooling output
+**/dist/
+**/.vite/
+**/coverage/
+
+# Python caches, test and lint output
+**/__pycache__/
+*.py[cod]
+*.pyo
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+.coverage
+coverage.xml
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+!.env.product.example
+
+# Local databases, runtime files and uploaded POC storage
+*.db
+*.sqlite
+*.sqlite3
+solution/backend/storage/
+solution/backend/generate_sql.py
+solution/backend/init_supabase.sql
+*.log
+
+# Local IDE and OS files
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
 *.md
 !*/README.md
+!docs/*.md
 !solution/backend/DATABASE.md

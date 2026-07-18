@@ -20,5 +20,7 @@
 
 - Mock AI trả dữ liệu giả; chưa có OCR/vector/graph thật.
 - Guest UI hiện là prototype; source/graph detail sẽ hoàn thiện khi AI API thật có schema ổn định.
-- SQLite không phù hợp concurrent production; cần PostgreSQL.
+- Production đã chuyển sang PostgreSQL; SQLite chỉ còn dùng cho test.
+- AI Service thật chưa tồn tại nên source, graph, clause, conflict và impact analysis hiện do mock adapter trả dữ liệu mô phỏng.
+- R2 adapter đã được triển khai nhưng cần kiểm tra upload/download thực tế sau mỗi lần thay credential hoặc bucket policy.
 - Audit middleware hiện ghi request-level audit; production cần chuẩn hóa actor role, before/after và retention.

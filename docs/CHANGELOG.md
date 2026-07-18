@@ -1,5 +1,25 @@
 # Nhật ký thay đổi và quyết định
 
+## 2026-07-18 — Chuẩn hóa actor ngân hàng
+
+- Ánh xạ `knowledge_manager` thành actor Chuyên gia Pháp chế thuộc Phòng Pháp chế/Khối Tuân thủ.
+- Ánh xạ `bank_employee` thành Nhân viên Nghiệp vụ gồm RM, Giao dịch viên và Tín dụng.
+- Giữ `customer` là Khách hàng B2C và `system_admin` là Quản trị hệ thống.
+- Giữ nguyên role code trong JWT/DB/API; chỉ thay tên nghiệp vụ hiển thị.
+- Bổ sung tài liệu `ACTORS.md` và quy tắc phân đoạn `PUBLIC/INTERNAL`.
+
+## 2026-07-18 — PostgreSQL, R2 và deploy Render
+
+- Chuyển database production sang PostgreSQL; SQLite chỉ giữ cho test.
+- Runtime SQLAlchemy dùng `asyncpg`; Alembic chuyển URL sang driver đồng bộ `psycopg`.
+- Thêm cấu hình `DATABASE_SSL` cho PostgreSQL hosted.
+- Tương thích Supabase/PgBouncer transaction mode bằng cách tắt asyncpg/SQLAlchemy prepared-statement cache, tạo tên statement duy nhất và dùng `NullPool`.
+- Pin Python Render ở `3.11.11` và dùng `psycopg[binary]==3.2.10` tương thích môi trường build.
+- Production storage dùng `R2StorageAdapter`; credential chỉ cấu hình qua environment variables, không commit `.env.product`.
+- Backend Render hiện dùng URL `https://vaic2026.onrender.com`; Frontend production fallback dùng `https://vaic2026.onrender.com/api/v1`.
+- Trong thời gian AI Service chưa có, giữ `AI_PROVIDER=mock`; không bắt buộc `AI_SERVICE_URL` phải truy cập được.
+- Health check đúng là `GET /health`, không phải `/healthz`.
+
 ## 2026-07-18 — Mở rộng contract nghiệp vụ AI
 
 - Bổ sung API clause/chunk theo document cho Bank Employee và Knowledge Manager.

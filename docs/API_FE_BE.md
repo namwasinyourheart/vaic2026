@@ -3,6 +3,8 @@
 ## Quy ước chung
 
 - Base local: `http://localhost:8000/api/v1`.
+- Base production hiện tại: `https://vaic2026.onrender.com/api/v1`.
+- Frontend ưu tiên `VITE_API_URL`; nếu không khai báo, build production dùng URL Render trên, còn localhost dùng Backend port `8000`.
 - JSON dùng `Content-Type: application/json`; upload dùng `multipart/form-data`.
 - Protected endpoint: `Authorization: Bearer <access_token>`.
 - Response lỗi FastAPI: `{ "detail": "..." }` hoặc validation detail.
@@ -139,7 +141,7 @@ Token chỉ hợp lệ với group/graph/chunk thuộc request tương ứng và
 
 ## API đầy đủ cho Bank Employee
 
-Các endpoint chat/source đã có. Những endpoint đánh dấu **Cần bổ sung** là contract mục tiêu chưa có route Backend hoàn chỉnh.
+Các endpoint dưới đây phản ánh route Backend hiện có. Endpoint chưa có implementation được ghi rõ để FE không gọi nhầm route.
 
 | Method | Path | Trạng thái | Permission | Mô tả |
 |---|---|---|---|---|
@@ -147,15 +149,15 @@ Các endpoint chat/source đã có. Những endpoint đánh dấu **Cần bổ s
 | GET | `/documents/{id}` | Đã có | `document.read` | Chi tiết metadata |
 | GET | `/documents/{id}/versions` | Đã có | `document.read` | Version list |
 | GET | `/documents/{id}/timeline` | Đã có | `document.read` | Timeline Backend |
-| GET | `/documents/{id}/relations` | Đã có một phần | `relation.read` | Relation refs, chưa có evidence/clause |
-| GET | `/documents/{id}/clauses` | Cần bổ sung | `document.read` | Clause list từ AI qua Backend |
-| GET | `/documents/{id}/clauses/{ai_clause_id}` | Cần bổ sung | `document.read` | Clause detail |
-| GET | `/documents/{id}/chunks` | Cần bổ sung | `document.read` | Chunk list từ AI |
-| GET | `/documents/{id}/chunks/{ai_chunk_id}` | Cần bổ sung | `document.read` | Chunk detail với access check |
-| GET | `/documents/{id}/knowledge-graph` | Cần bổ sung | `relation.read` | Graph tổng thể |
-| GET | `/documents/{id}/relation-graph` | Cần bổ sung | `relation.read` | Graph quan hệ tài liệu |
-| GET | `/documents/{id}/conflicts` | Cần bổ sung | `document.read` | Xung đột liên quan |
-| POST | `/documents/compare` | Cần bổ sung | `document.read` | So sánh version/document/clause |
+| GET | `/documents/{id}/relations` | Đã có | `relation.read` | Relation refs, không trả evidence content |
+| GET | `/documents/{id}/clauses` | Đã có | `document.read` | Clause refs/detail qua AI adapter |
+| GET | `/documents/{id}/clauses/{ai_clause_id}` | Đã có | `document.read` | Clause detail có access check |
+| GET | `/documents/{id}/chunks` | Đã có | `document.read` | Chunk list từ AI |
+| GET | `/documents/{id}/chunks/{ai_chunk_id}` | Đã có | `document.read` | Chunk detail với access check |
+| GET | `/documents/{id}/knowledge-graph` | Đã có | `relation.read` | Graph tổng thể từ AI adapter |
+| GET | `/documents/{id}/relation-graph` | Đã có | `relation.read` | Graph quan hệ tài liệu |
+| GET | `/documents/{id}/conflicts` | Chưa có route trực tiếp | `document.read` | Dùng `/knowledge/documents/{id}/conflicts` cho KM |
+| POST | `/documents/compare` | Chưa có route | `document.read` | So sánh version/document/clause |
 
 List response chuẩn:
 
@@ -178,12 +180,12 @@ Document query cần hỗ trợ `keyword`, `document_type`, `issuing_unit`, `bus
 | Method | Path | Trạng thái | Mô tả |
 |---|---|---|---|
 | GET | `/knowledge/jobs/{job_id}` | Đã có | Job progress |
-| GET | `/knowledge/documents/{id}/ingestion-result` | Cần bổ sung | Count, warnings, failed steps |
-| GET | `/knowledge/documents/{id}/outline` | Cần bổ sung | Parsed structure |
-| GET | `/knowledge/documents/{id}/clauses` | Cần bổ sung | Clause review list |
-| GET | `/knowledge/documents/{id}/chunks` | Cần bổ sung | Chunk QA list |
-| GET | `/knowledge/documents/{id}/chunks/{chunk_id}` | Cần bổ sung | Chunk content từ AI |
-| GET | `/knowledge/documents/{id}/knowledge-graph` | Cần bổ sung | Full graph sau ingestion |
+| GET | `/knowledge/documents/{id}/ingestion-result` | Chưa có route | Count, warnings, failed steps |
+| GET | `/knowledge/documents/{id}/outline` | Đã có | Parsed structure |
+| GET | `/knowledge/documents/{id}/clauses` | Đã có | Clause review list |
+| GET | `/knowledge/documents/{id}/chunks` | Đã có | Chunk QA list |
+| GET | `/knowledge/documents/{id}/chunks/{chunk_id}` | Đã có | Chunk content từ AI |
+| GET | `/knowledge/documents/{id}/knowledge-graph` | Đã có | Full graph sau ingestion |
 
 ### Relation review
 
@@ -193,9 +195,7 @@ Document query cần hỗ trợ `keyword`, `document_type`, `issuing_unit`, `bus
 | POST | `/knowledge/documents/{id}/relations/detect` | `relation.update` | Chạy detection |
 | POST | `/knowledge/relations` | `relation.create` | Tạo relation manual |
 | PATCH | `/knowledge/relations/{id}` | `relation.update` | Sửa relation |
-| POST | `/knowledge/relations/{id}/approve` | `relation.update` | Duyệt relation AI |
-| POST | `/knowledge/relations/{id}/reject` | `relation.update` | Từ chối + reason |
-| DELETE | `/knowledge/relations/{id}` | `relation.update` | Xóa relation manual |
+| POST | `/knowledge/relations/{id}/review` | `relation.update` | Duyệt/từ chối relation với decision + reason |
 
 Create relation:
 
@@ -211,7 +211,7 @@ Create relation:
 }
 ```
 
-Backend map document IDs sang AI IDs, gọi AI, rồi lưu `ai_relation_id` và sync status; không lưu clause content.
+Backend map document IDs sang AI IDs, gọi AI, rồi lưu `ai_relation_id` và sync status; không lưu clause content. Route approve/reject riêng chưa được expose.
 
 ### Conflict review
 
@@ -219,9 +219,9 @@ Backend map document IDs sang AI IDs, gọi AI, rồi lưu `ai_relation_id` và 
 |---|---|---|
 | GET | `/knowledge/documents/{id}/conflicts` | Danh sách conflict |
 | POST | `/knowledge/documents/{id}/conflicts/detect` | Chạy detection |
-| GET | `/knowledge/conflicts/{id}` | Evidence/detail |
-| POST | `/knowledge/conflicts/{id}/approve` | Xác nhận conflict |
-| POST | `/knowledge/conflicts/{id}/reject` | False positive |
+| GET | `/knowledge/conflicts/{id}` | Chưa có route detail riêng |
+| POST | `/knowledge/conflicts/{id}/approve` | Chưa có route riêng |
+| POST | `/knowledge/conflicts/{id}/reject` | Chưa có route riêng |
 | PUT | `/knowledge/conflicts/{id}/resolution` | Chọn clause ưu tiên và lý do |
 
 Resolution request:
@@ -240,10 +240,10 @@ Resolution request:
 | Method | Path | Mô tả |
 |---|---|---|
 | POST | `/knowledge/impact-analyses` | Phân tích sửa đổi/bổ sung/thay thế/bãi bỏ |
-| GET | `/knowledge/impact-analyses/{id}` | Kết quả theo clause |
-| POST | `/knowledge/impact-analyses/{id}/approve` | Duyệt toàn bộ hoặc selected effects |
-| POST | `/knowledge/impact-analyses/{id}/reject` | Từ chối analysis |
-| POST | `/knowledge/impact-analyses/{id}/apply` | Cập nhật AI index và re-index |
+| GET | `/knowledge/impact-analyses/{id}` | Chưa có route detail riêng |
+| POST | `/knowledge/impact-analyses/{id}/approve` | Chưa có route riêng |
+| POST | `/knowledge/impact-analyses/{id}/reject` | Chưa có route riêng |
+| POST | `/knowledge/impact-analyses/{id}/apply` | Chưa có route riêng |
 
 ### Metadata AI suggestions
 

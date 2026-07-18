@@ -20,6 +20,7 @@ export interface User {
   department?: string
   createdAt: string
   lastLogin?: string
+  mustChangePassword?: boolean
 }
 
 export interface TextChunk {
@@ -64,7 +65,7 @@ export interface Document {
 export interface AuditLog { id: string; time: string; actor: string; role: Role; action: string; resourceType: string; target: string; result: 'success' | 'failed'; requestId: string; before?: string; after?: string; error?: string }
 
 export const ROLE_LABELS: Record<Role, string> = {
-  customer: 'Customer', bank_employee: 'Bank Employee', knowledge_manager: 'Knowledge Manager', system_admin: 'System Admin',
+  customer: 'Khách hàng', bank_employee: 'Nhân viên Nghiệp vụ', knowledge_manager: 'Chuyên gia Pháp chế', system_admin: 'Quản trị hệ thống',
 }
 
 export const ROLE_HOME: Record<Role, string> = {

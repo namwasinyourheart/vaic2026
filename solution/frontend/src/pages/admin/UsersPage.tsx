@@ -134,7 +134,7 @@ export default function UsersPage() {
         <div className="space-y-3">
           <div className="grid grid-cols-2 gap-3">
             <Input label="Họ tên" placeholder="Nguyễn Văn A" required />
-            <Input label="Email" type="email" placeholder="email@shb.vn" required />
+            <Input label="Email (không bắt buộc)" type="email" placeholder="email@shb.vn" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <Select label="Vai trò" placeholder="Chọn vai trò" options={[

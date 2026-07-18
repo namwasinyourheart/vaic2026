@@ -8,8 +8,8 @@ Backend FastAPI
  ├─ Auth/permission
  ├─ Conversation & message persistence
  ├─ Document metadata/version/file workflow
- ├─ SQLite/PostgreSQL adapter
- ├─ Local/R2 StorageService
+ ├─ PostgreSQL production / SQLite test
+ ├─ R2 production / Local StorageService development
  └─ AIServiceAdapter
         │ internal contract, chỉ ID + trạng thái; query/source/graph trả content từ AI
         ▼
@@ -40,7 +40,7 @@ AI/RAG Service
 1. FE gửi access token.
 2. Backend giải mã JWT và kiểm tra user ACTIVE.
 3. Endpoint kiểm tra role/permission và ownership/access scope.
-4. Backend đọc/ghi SQLite và gọi AI adapter khi cần.
+4. Backend đọc/ghi PostgreSQL (SQLite trong test) và gọi AI adapter khi cần.
 5. Response không expose `storage_key`, password hash hoặc source text không được phép.
 
 ## Luồng request guest
@@ -53,4 +53,15 @@ AI/RAG Service
 
 ## Luồng thay AI thật
 
-Component không đổi. Thay `MockAIServiceAdapter` bằng HTTP adapter thực hiện contract trong [API_BE_AI.md](API_BE_AI.md). Storage local được thay bằng R2 adapter mà không đổi schema `document_files`.
+Component không đổi. Khi AI Service sẵn sàng, thay `MockAIServiceAdapter` bằng HTTP adapter thực hiện contract trong [API_BE_AI.md](API_BE_AI.md). Production chọn R2 bằng `STORAGE_BACKEND=r2`; việc đổi adapter không làm đổi schema `knowledge_document_files`.
+
+## Trạng thái adapter khi deploy
+
+```text
+Frontend production → https://vaic2026.onrender.com/api/v1
+Backend             → PostgreSQL qua asyncpg/PgBouncer-safe config
+Backend file        → Cloudflare R2 khi STORAGE_BACKEND=r2
+Backend AI          → MockAIServiceAdapter khi AI_PROVIDER=mock
+```
+
+Backend không gọi `AI_SERVICE_URL` khi đang chạy mock. Biến URL được giữ để chuyển sang HTTP AI adapter sau này.

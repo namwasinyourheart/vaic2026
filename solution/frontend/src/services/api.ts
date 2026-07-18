@@ -23,7 +23,9 @@ async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   try {
     response = await fetch(`${API_ROOT}${path}`, { ...init, headers })
   } catch {
-    throw new Error(`Không thể kết nối Backend tại ${API_ROOT.replace('/api/v1', '')}. Hãy kiểm tra FastAPI đang chạy ở cổng 8000.`)
+    const error = new Error(`Không thể kết nối Backend tại ${API_ROOT.replace('/api/v1', '')}. Hãy kiểm tra dịch vụ đang chạy.`)
+    window.dispatchEvent(new CustomEvent('shb-api-error', { detail: error.message }))
+    throw error
   }
   if (!response.ok) {
     let message = `API error ${response.status}`
@@ -31,13 +33,14 @@ async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
       const body = await response.json() as { detail?: string | Array<{ msg?: string }> }
       message = typeof body.detail === 'string' ? body.detail : body.detail?.map(item => item.msg).filter(Boolean).join(', ') || message
     } catch { /* response is not JSON */ }
+    window.dispatchEvent(new CustomEvent('shb-api-error', { detail: message }))
     throw new Error(message)
   }
   if (response.status === 204) return undefined as T
   return response.json() as Promise<T>
 }
 
-interface ApiUser { id: string; username: string; email?: string | null; full_name: string; status: string; role: Role }
+interface ApiUser { id: string; username: string; email?: string | null; full_name: string; status: string; role: Role; must_change_password?: boolean }
 interface ApiToken { access_token: string; refresh_token: string; user: ApiUser }
 
 function mapUser(value: ApiUser): User {
@@ -50,6 +53,7 @@ function mapUser(value: ApiUser): User {
     role: value.role || 'customer',
     status: value.status === 'LOCKED' ? 'locked' : 'active',
     createdAt: '',
+    mustChangePassword: value.must_change_password === true,
   }
 }
 
@@ -94,8 +98,19 @@ async function publicApi<T>(path: string, init: RequestInit = {}, guestToken?: s
   const headers = new Headers(init.headers)
   if (!(init.body instanceof FormData)) headers.set('Content-Type', 'application/json')
   if (guestToken) headers.set('Authorization', `Bearer ${guestToken}`)
-  const response = await fetch(`${API_ROOT}${path}`, { ...init, headers })
-  if (!response.ok) throw new Error(`API error ${response.status}`)
+  let response: Response
+  try {
+    response = await fetch(`${API_ROOT}${path}`, { ...init, headers })
+  } catch {
+    const message = 'Không thể kết nối dịch vụ AI/Backend. Vui lòng thử lại sau.'
+    window.dispatchEvent(new CustomEvent('shb-api-error', { detail: message }))
+    throw new Error(message)
+  }
+  if (!response.ok) {
+    const message = `API không phản hồi thành công (HTTP ${response.status}).`
+    window.dispatchEvent(new CustomEvent('shb-api-error', { detail: message }))
+    throw new Error(message)
+  }
   return response.json() as Promise<T>
 }
 
@@ -230,9 +245,13 @@ export const adminService = {
   async saveUser(user: User) {
     const existing = (await api<ApiUser[]>('/admin/users')).some(item => item.id === user.id)
     const payload = existing
-      ? { full_name: user.name, email: user.email, role: user.role, status: user.status.toUpperCase() }
-      : { username: user.username, email: user.email, password: user.password || 'password', full_name: user.name, role: user.role }
+      ? { full_name: user.name, email: user.email.trim() || null, role: user.role, status: user.status.toUpperCase() }
+      : { username: user.username, email: user.email.trim() || null, password: 'vaic@2026', full_name: user.name, role: user.role }
     const value = await api<ApiUser>(existing ? `/admin/users/${user.id}` : '/admin/users', { method: existing ? 'PATCH' : 'POST', body: JSON.stringify(payload) })
+    return mapUser(value)
+  },
+  async resetUserPassword(id: string) {
+    const value = await api<ApiUser>(`/admin/users/${id}/reset-password`, { method: 'POST', body: JSON.stringify({}) })
     return mapUser(value)
   },
   async audit(): Promise<AuditLog[]> {

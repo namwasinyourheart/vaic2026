@@ -135,15 +135,17 @@ async def seed() -> None:
                     id=str(uuid.uuid4()),
                     username=username,
                     email=email,
-                    password_hash=hash_password("password"),
+                    password_hash=hash_password("vaic@2026"),
+                    must_change_password=True,
                     full_name=name,
                     status="ACTIVE",
                 )
                 db.add(user)
                 await db.flush()
             else:
-                # Development seed resets demo accounts to bcrypt("password").
-                user.password_hash = hash_password("password")
+                # Development seed resets demo accounts to the first-login password.
+                user.password_hash = hash_password("vaic@2026")
+                user.must_change_password = True
             if not await db.get(UserRole, {"user_id": user.id, "role_id": roles[role_code].id}):
                 db.add(UserRole(user_id=user.id, role_id=roles[role_code].id))
         await db.flush()

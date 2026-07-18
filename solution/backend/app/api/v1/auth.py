@@ -37,6 +37,7 @@ async def user_out(user: User, db: AsyncSession) -> UserOut:
         full_name=user.full_name,
         status=user.status,
         role=roles[0] if roles else "customer",
+        must_change_password=user.must_change_password,
     )
 
 
@@ -208,6 +209,7 @@ async def change_password(
     if not verify_password(payload.current_password, user.password_hash):
         raise HTTPException(status_code=400, detail="Current password is incorrect")
     user.password_hash = hash_password(payload.new_password)
+    user.must_change_password = False
     sessions = (
         await db.execute(
             select(Session).where(Session.user_id == user.id, Session.revoked_at.is_(None))
