@@ -1,5 +1,18 @@
 export type Role = 'ROLE_CUSTOMER' | 'ROLE_STAFF' | 'ROLE_COMPLIANCE' | 'ROLE_ADMIN'
 
+/** Normalize role values from sessions or older backend deployments. */
+export function normalizeRole(value: unknown): Role | null {
+  const role = String(value || '').trim()
+  const legacy: Record<string, Role> = {
+    customer: 'ROLE_CUSTOMER',
+    bank_employee: 'ROLE_STAFF',
+    knowledge_manager: 'ROLE_COMPLIANCE',
+    system_admin: 'ROLE_ADMIN',
+  }
+  if (role in legacy) return legacy[role]
+  return ['ROLE_CUSTOMER', 'ROLE_STAFF', 'ROLE_COMPLIANCE', 'ROLE_ADMIN'].includes(role) ? role as Role : null
+}
+
 export type Permission =
   | 'chat:public' | 'chat:internal' | 'documents:read' | 'documents:manage'
   | 'metadata:manage' | 'relations:manage' | 'reindex:manage'

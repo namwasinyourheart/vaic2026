@@ -1,3 +1,4 @@
+import { normalizeRole } from '../domain'
 import type { AuditLog, Conversation, Document, Message, Role, SourceGroup, TextChunk, User } from '../domain'
 
 const API_ROOT = import.meta.env.VITE_API_URL
@@ -40,17 +41,18 @@ async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   return response.json() as Promise<T>
 }
 
-interface ApiUser { id: string; username: string; email?: string | null; full_name: string; status: string; role: Role; must_change_password?: boolean }
+interface ApiUser { id: string; username: string; email?: string | null; full_name: string; status: string; role: string; must_change_password?: boolean }
 interface ApiToken { access_token: string; refresh_token: string; user: ApiUser }
 
 function mapUser(value: ApiUser): User {
+  const role = normalizeRole(value.role) || 'ROLE_CUSTOMER'
   return {
     id: value.id,
     username: value.username,
     password: '',
     name: value.full_name,
     email: value.email || '',
-    role: value.role || 'ROLE_CUSTOMER',
+    role,
     status: value.status === 'LOCKED' ? 'locked' : 'active',
     createdAt: '',
     mustChangePassword: value.must_change_password === true,
