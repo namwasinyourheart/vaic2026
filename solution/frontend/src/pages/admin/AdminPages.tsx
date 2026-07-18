@@ -156,7 +156,7 @@ export function AdminUsers() {
     try {
       await adminService.resetUserPassword(user.id)
       setError("")
-      window.alert("Đã reset mật khẩu. Người dùng sẽ phải đổi mật khẩu khi đăng nhập lần tới.")
+      window.alert("Đã reset mật khẩu về vaic@2026.")
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Không thể reset mật khẩu.")
     }

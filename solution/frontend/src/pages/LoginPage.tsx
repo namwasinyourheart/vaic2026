@@ -28,10 +28,7 @@ export default function LoginPage() {
       setLoading(true)
       const next = await login(username, password, remember)
       const target = (location.state as { from?: string } | null)?.from
-      const accountPath = next.mustChangePassword
-        ? `${ROLE_HOME[next.role].replace(/\/[^/]+$/, '')}/account`
-        : target || ROLE_HOME[next.role]
-      navigate(accountPath, { replace: true })
+      navigate(target || ROLE_HOME[next.role], { replace: true })
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'Không thể kết nối hệ thống.')
     } finally {

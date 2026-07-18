@@ -8,9 +8,6 @@ export function RouteGuard({ roles, children }: { roles: Role[]; children: React
   const { user } = useAuth(); const location = useLocation()
   if (!user) return <Navigate to="/login" state={{ from: location.pathname }} replace />
   if (!roles.includes(user.role)) return <Navigate to="/403" replace />
-  if (user.mustChangePassword && !location.pathname.endsWith('/account')) {
-    return <Navigate to={`${ROLE_HOME[user.role].replace(/\/[^/]+$/, '')}/account`} replace />
-  }
   return children
 }
 

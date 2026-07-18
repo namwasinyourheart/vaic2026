@@ -136,7 +136,7 @@ async def seed() -> None:
                     username=username,
                     email=email,
                     password_hash=hash_password("vaic@2026"),
-                    must_change_password=True,
+                    must_change_password=False,
                     full_name=name,
                     status="ACTIVE",
                 )
@@ -145,7 +145,7 @@ async def seed() -> None:
             else:
                 # Development seed resets demo accounts to the first-login password.
                 user.password_hash = hash_password("vaic@2026")
-                user.must_change_password = True
+                user.must_change_password = False
             if not await db.get(UserRole, {"user_id": user.id, "role_id": roles[role_code].id}):
                 db.add(UserRole(user_id=user.id, role_id=roles[role_code].id))
         await db.flush()

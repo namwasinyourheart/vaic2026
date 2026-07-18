@@ -28,6 +28,7 @@ coverage.xml
 solution/backend/storage/
 solution/backend/generate_sql.py
 solution/backend/init_supabase.sql
+solution/backend/check_db.py
 *.log
 
 # Local IDE and OS files

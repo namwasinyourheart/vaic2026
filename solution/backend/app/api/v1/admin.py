@@ -62,7 +62,7 @@ async def create_user(payload: UserCreate, db: AsyncSession = Depends(get_db)) -
         username=username,
         email=email,
         password_hash=hash_password(DEFAULT_PASSWORD),
-        must_change_password=True,
+        must_change_password=False,
         full_name=payload.full_name,
         department_id=payload.department_id,
         status="ACTIVE",
@@ -84,7 +84,7 @@ async def reset_password(
     if not user or user.deleted_at:
         raise HTTPException(404, "User not found")
     user.password_hash = hash_password((payload.password if payload else DEFAULT_PASSWORD))
-    user.must_change_password = True
+    user.must_change_password = False
     for session in (await db.execute(select(Session).where(Session.user_id == user.id, Session.revoked_at.is_(None)))).scalars():
         session.revoked_at = datetime.now(timezone.utc)
     await db.commit()
@@ -106,11 +106,12 @@ async def update_user(
         role = (await db.execute(select(Role).where(Role.code == role_code))).scalar_one_or_none()
         if not role:
             raise HTTPException(422, "Unknown role")
-        for item in (
-            (await db.execute(select(UserRole).where(UserRole.user_id == user.id))).scalars().all()
-        ):
-            await db.delete(item)
-        db.add(UserRole(user_id=user.id, role_id=role.id))
+        current = (await db.execute(select(UserRole).where(UserRole.user_id == user.id))).scalars().first()
+        if not current:
+            db.add(UserRole(user_id=user.id, role_id=role.id))
+        elif current.role_id != role.id:
+            current.role_id = role.id
+            current.assigned_at = datetime.now(timezone.utc)
     await db.commit()
     return await out(user, db)
 
