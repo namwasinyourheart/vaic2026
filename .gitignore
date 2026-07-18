@@ -1,1 +1,4 @@
 *node_modules/
+*.md
+!*/README.md
+!solution/backend/DATABASE.md

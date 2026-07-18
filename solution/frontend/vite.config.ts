@@ -17,6 +17,13 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: parseInt(process.env.PORT || '8443'),
+    proxy: {
+      // Cho phép dùng VITE_API_URL=/api/v1 nếu muốn request cùng origin.
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      },
+    },
   },
   preview: {
     host: '0.0.0.0',

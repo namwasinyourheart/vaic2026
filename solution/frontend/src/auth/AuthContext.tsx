@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
 import type { Permission, Role, User } from '../domain'
 import { ROLE_HOME, ROLE_PERMISSIONS } from '../domain'
-import { authService } from '../services/mock'
+import { authService } from '../services/api'
 
 const LOCAL_KEY = 'shb-rag-auth'; const SESSION_KEY = 'shb-rag-session'
 type SessionUser = Omit<User, 'password'>
@@ -16,8 +16,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<SessionUser | null>(readSession)
   const value = useMemo<AuthValue>(() => ({
     user,
-    async login(username, password, remember) { const next = await authService.login(username, password); localStorage.removeItem(LOCAL_KEY); sessionStorage.removeItem(SESSION_KEY); (remember ? localStorage : sessionStorage).setItem(remember ? LOCAL_KEY : SESSION_KEY, JSON.stringify(next)); setUser(next); return next },
-    logout() { localStorage.removeItem(LOCAL_KEY); sessionStorage.removeItem(SESSION_KEY); setUser(null) },
+    async login(username, password, remember) { const result = await authService.login(username, password); authService.persist(result, remember); const next = result.user; localStorage.removeItem(LOCAL_KEY); sessionStorage.removeItem(SESSION_KEY); (remember ? localStorage : sessionStorage).setItem(remember ? LOCAL_KEY : SESSION_KEY, JSON.stringify(next)); setUser(next); return next },
+    logout() { void authService.logout(); localStorage.removeItem(LOCAL_KEY); sessionStorage.removeItem(SESSION_KEY); setUser(null) },
     can(permission) { return !!user && ROLE_PERMISSIONS[user.role].includes(permission) },
     home: user ? ROLE_HOME[user.role] : '/login',
   }), [user])

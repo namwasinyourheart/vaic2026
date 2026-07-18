@@ -15,4 +15,4 @@ export function PermissionGuard({ permission, children, fallback = null }: { per
   return useAuth().can(permission) ? children : fallback
 }
 
-export function HomeRedirect() { const { user } = useAuth(); return <Navigate to={user ? ROLE_HOME[user.role] : '/login'} replace /> }
+export function HomeRedirect() { const { user } = useAuth(); return <Navigate to={user ? ROLE_HOME[user.role] : '/guest-chat'} replace /> }
