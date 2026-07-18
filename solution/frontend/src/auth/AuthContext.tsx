@@ -35,4 +35,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 }
 
 export function useAuth() { const value = useContext(AuthContext); if (!value) throw new Error('useAuth must be used inside AuthProvider'); return value }
-export function isRole(value: string): value is Role { return ['customer', 'bank_employee', 'knowledge_manager', 'system_admin'].includes(value) }
+export function isRole(value: string): value is Role { return ['ROLE_CUSTOMER', 'ROLE_STAFF', 'ROLE_COMPLIANCE', 'ROLE_ADMIN'].includes(value) }

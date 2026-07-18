@@ -3,12 +3,12 @@ import AppLayout from '../../layouts/AppLayout'
 import { Card, Badge, Btn, SearchBox, Table, Avatar, Modal, Input, Select, PageHeader } from '../../components/shared'
 
 const USERS = [
-  { id: '1', name: 'Nguyễn Văn An', email: 'an.nv@shb.vn', role: 'Bank Employee', dept: 'Ban Tín dụng', status: 'active', created: '01/01/2024', lastLogin: '17/01/2024 09:30' },
-  { id: '2', name: 'Trần Thị Bình', email: 'binh.tt@shb.vn', role: 'Bank Employee', dept: 'Ban Nguồn vốn', status: 'active', created: '15/11/2023', lastLogin: '17/01/2024 08:15' },
-  { id: '3', name: 'Lê Minh Cường', email: 'cuong.lm@shb.vn', role: 'Bank Employee', dept: 'Ban Tuân thủ', status: 'active', created: '10/09/2023', lastLogin: '16/01/2024 17:45' },
-  { id: '4', name: 'Phạm Thu Hà', email: 'ha.pt@shb.vn', role: 'Bank Employee', dept: 'Ban Thẻ', status: 'active', created: '05/06/2023', lastLogin: '17/01/2024 09:55' },
-  { id: '5', name: 'Đỗ Quang Minh', email: 'minh.dq@shb.vn', role: 'Bank Employee', dept: 'Ban Dịch vụ', status: 'locked', created: '20/04/2023', lastLogin: '10/01/2024 14:30' },
-  { id: '6', name: 'Vũ Thị Lan', email: 'lan.vt@shb.vn', role: 'Bank Employee', dept: 'Ban Pháp chế', status: 'active', created: '01/03/2023', lastLogin: '17/01/2024 07:50' },
+  { id: '1', name: 'Nguyễn Văn An', email: 'an.nv@shb.vn', role: 'Nhân viên Nghiệp vụ', dept: 'Ban Tín dụng', status: 'active', created: '01/01/2024', lastLogin: '17/01/2024 09:30' },
+  { id: '2', name: 'Trần Thị Bình', email: 'binh.tt@shb.vn', role: 'Nhân viên Nghiệp vụ', dept: 'Ban Nguồn vốn', status: 'active', created: '15/11/2023', lastLogin: '17/01/2024 08:15' },
+  { id: '3', name: 'Lê Minh Cường', email: 'cuong.lm@shb.vn', role: 'Nhân viên Nghiệp vụ', dept: 'Ban Tuân thủ', status: 'active', created: '10/09/2023', lastLogin: '16/01/2024 17:45' },
+  { id: '4', name: 'Phạm Thu Hà', email: 'ha.pt@shb.vn', role: 'Nhân viên Nghiệp vụ', dept: 'Ban Thẻ', status: 'active', created: '05/06/2023', lastLogin: '17/01/2024 09:55' },
+  { id: '5', name: 'Đỗ Quang Minh', email: 'minh.dq@shb.vn', role: 'Nhân viên Nghiệp vụ', dept: 'Ban Dịch vụ', status: 'locked', created: '20/04/2023', lastLogin: '10/01/2024 14:30' },
+  { id: '6', name: 'Vũ Thị Lan', email: 'lan.vt@shb.vn', role: 'Nhân viên Nghiệp vụ', dept: 'Ban Pháp chế', status: 'active', created: '01/03/2023', lastLogin: '17/01/2024 07:50' },
   { id: '7', name: 'Nguyễn Thị Mai', email: 'mai.nt@gmail.com', role: 'Customer', dept: '—', status: 'active', created: '12/01/2024', lastLogin: '17/01/2024 09:32' },
   { id: '8', name: 'Bùi Thanh Tú', email: 'tu.bt@gmail.com', role: 'Customer', dept: '—', status: 'locked', created: '05/01/2024', lastLogin: '09/01/2024 10:00' },
 ]
@@ -48,7 +48,7 @@ export default function UsersPage() {
         <SearchBox value={search} onChange={setSearch} placeholder="Tìm theo tên hoặc email..." />
         <select value={roleFilter} onChange={e => setRoleFilter(e.target.value)} className="px-3 py-2 text-sm border border-[#DDE1E9] rounded bg-white focus:outline-none cursor-pointer">
           <option value="">Tất cả vai trò</option>
-          <option>Bank Employee</option>
+          <option>Nhân viên Nghiệp vụ</option>
           <option>Customer</option>
           <option>Admin</option>
         </select>
@@ -82,7 +82,7 @@ export default function UsersPage() {
             role: (
               <span className={`text-xs px-2 py-0.5 rounded font-medium ${
                 u.role === 'Admin' ? 'bg-purple-100 text-purple-700'
-                : u.role === 'Bank Employee' ? 'bg-amber-100 text-amber-700'
+                : u.role === 'Nhân viên Nghiệp vụ' ? 'bg-amber-100 text-amber-700'
                 : 'bg-blue-100 text-blue-700'
               }`}>{u.role}</span>
             ),
@@ -138,8 +138,8 @@ export default function UsersPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <Select label="Vai trò" placeholder="Chọn vai trò" options={[
-              { value: 'employee', label: 'Bank Employee' },
-              { value: 'customer', label: 'Customer' },
+              { value: 'employee', label: 'Nhân viên Nghiệp vụ' },
+              { value: 'ROLE_CUSTOMER', label: 'Customer' },
               { value: 'admin', label: 'Admin' },
             ]} />
             <Input label="Phòng ban" placeholder="Ban Tín dụng" />

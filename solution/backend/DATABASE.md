@@ -65,7 +65,7 @@ Thông tin tài khoản người dùng.
 
 ### `auth_roles`
 
-Danh mục bốn vai trò: `customer`, `bank_employee`, `knowledge_manager`, `system_admin`.
+Danh mục bốn vai trò: `ROLE_CUSTOMER`, `ROLE_STAFF`, `ROLE_COMPLIANCE`, `ROLE_ADMIN`.
 
 Các cột: `id` PK, `code` unique, `name`, `description`.
 
@@ -335,7 +335,7 @@ Quy ước:
 | Column | Data type | Constraint/default | Ý nghĩa |
 |---|---|---|---|
 | `id` | `VARCHAR(36)` | PK | UUID vai trò |
-| `code` | `VARCHAR(50)` | UQ, NOT NULL | Mã role: `customer`, `bank_employee`, `knowledge_manager`, `system_admin` |
+| `code` | `VARCHAR(50)` | UQ, NOT NULL | Mã role: `ROLE_CUSTOMER`, `ROLE_STAFF`, `ROLE_COMPLIANCE`, `ROLE_ADMIN` |
 | `name` | `VARCHAR(100)` | NOT NULL | Tên hiển thị của role |
 | `description` | `TEXT` | NULL | Mô tả phạm vi role |
 

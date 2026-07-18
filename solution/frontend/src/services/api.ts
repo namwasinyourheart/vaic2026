@@ -50,7 +50,7 @@ function mapUser(value: ApiUser): User {
     password: '',
     name: value.full_name,
     email: value.email || '',
-    role: value.role || 'customer',
+    role: value.role || 'ROLE_CUSTOMER',
     status: value.status === 'LOCKED' ? 'locked' : 'active',
     createdAt: '',
     mustChangePassword: value.must_change_password === true,
@@ -172,15 +172,15 @@ async function getConversation(id: string): Promise<Conversation> {
 }
 
 export const chatService = {
-  async list(_role: 'customer' | 'bank_employee') {
+  async list(_role: 'ROLE_CUSTOMER' | 'ROLE_STAFF') {
     const values = await api<ApiConversation[]>('/conversations')
     return Promise.all(values.map(item => getConversation(item.id)))
   },
   get: getConversation,
-  async create(role: 'customer' | 'bank_employee') {
+  async create(role: 'ROLE_CUSTOMER' | 'ROLE_STAFF') {
     const value = await api<ApiConversation>('/conversations', {
       method: 'POST',
-      body: JSON.stringify({ title: 'Cuộc trò chuyện mới', scope: role === 'customer' ? 'PUBLIC' : 'INTERNAL' }),
+      body: JSON.stringify({ title: 'Cuộc trò chuyện mới', scope: role === 'ROLE_CUSTOMER' ? 'PUBLIC' : 'INTERNAL' }),
     })
     return getConversation(value.id)
   },
@@ -256,7 +256,7 @@ export const adminService = {
   },
   async audit(): Promise<AuditLog[]> {
     return (await api<ApiAudit[]>('/admin/audit-logs')).map(item => ({
-      id: item.id, time: time(item.created_at), actor: item.actor_user_id || 'System', role: item.actor_role || 'system_admin',
+      id: item.id, time: time(item.created_at), actor: item.actor_user_id || 'System', role: item.actor_role || 'ROLE_ADMIN',
       action: item.action, resourceType: item.resource_type, target: item.resource_id || '', result: item.result === 'SUCCESS' ? 'success' : 'failed',
       requestId: item.request_id, before: item.before ? JSON.stringify(item.before) : undefined, after: item.after ? JSON.stringify(item.after) : undefined,
     }))
@@ -270,10 +270,6 @@ export const knowledgeService = {
       method: 'POST', body: JSON.stringify({ document_ids: documentIds, reason }),
     })
   },
-}
-
-export function resetDemoData() {
-  localStorage.removeItem('shb-rag-demo-v3')
 }
 
 export { API_ROOT }

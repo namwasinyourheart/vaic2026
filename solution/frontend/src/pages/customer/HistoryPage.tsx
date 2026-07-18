@@ -18,7 +18,7 @@ export default function HistoryPage() {
   const filtered = HISTORY.filter(h => h.title.toLowerCase().includes(search.toLowerCase()))
 
   return (
-    <AppLayout role="customer" pageTitle="Lịch sử hội thoại">
+    <AppLayout role="ROLE_CUSTOMER" pageTitle="Lịch sử hội thoại">
       <div className="max-w-3xl">
         <div className="flex items-center justify-between mb-5">
           <div>

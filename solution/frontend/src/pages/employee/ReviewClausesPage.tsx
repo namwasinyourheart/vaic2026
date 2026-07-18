@@ -19,7 +19,7 @@ const TREE = [
 const CLAUSE_CONTENT: Record<string, string> = {
   art1: 'Quyết định này quy định về mức lãi suất huy động vốn bằng đồng Việt Nam áp dụng cho khách hàng cá nhân tại Ngân hàng TMCP Sài Gòn – Hà Nội.',
   art2: 'Quyết định này áp dụng cho tất cả khách hàng cá nhân gửi tiền bằng đồng Việt Nam tại SHB và toàn bộ các chi nhánh trong hệ thống.',
-  art3: 'Trong Quyết định này, các từ ngữ dưới đây được hiểu như sau:\n1. "Tiền gửi có kỳ hạn" là khoản tiền gửi có thỏa thuận về thời hạn gửi và lãi suất.\n2. "Gửi online" là hình thức gửi tiền qua ứng dụng SHB Mobile hoặc SHB DigiBank.',
+  art3: 'Trong Quyết định này, các từ ngữ dưới đây được hiểu như sau:\r\n1. "Tiền gửi có kỳ hạn" là khoản tiền gửi có thỏa thuận về thời hạn gửi và lãi suất.\r\n2. "Gửi online" là hình thức gửi tiền qua ứng dụng SHB Mobile hoặc SHB DigiBank.',
   art5: 'Lãi suất huy động có kỳ hạn bằng đồng Việt Nam được áp dụng theo từng kỳ hạn cụ thể.',
   'art5-k1': 'Lãi suất tiết kiệm kỳ hạn dưới 6 tháng áp dụng theo biểu lãi suất công bố hàng tháng, không vượt quá mức trần lãi suất do Ngân hàng Nhà nước quy định.',
   'art5-k2': 'Lãi suất tiết kiệm kỳ hạn 12 tháng: 5,80%/năm (tại quầy) và 6,00%/năm (online) áp dụng từ 01/01/2024.',

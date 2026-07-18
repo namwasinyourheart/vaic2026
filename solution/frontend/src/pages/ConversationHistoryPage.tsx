@@ -8,7 +8,7 @@ import { ApiDataState, Card, EmptyState, PageHeader } from "../components/shared
 
 export default function ConversationHistoryPage() {
   const { user } = useAuth()
-  const role = user?.role === "bank_employee" ? "bank_employee" : "customer"
+  const role = user?.role === "ROLE_STAFF" ? "ROLE_STAFF" : "ROLE_CUSTOMER"
   const [items, setItems] = useState<Conversation[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")

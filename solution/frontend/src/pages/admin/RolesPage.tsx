@@ -8,7 +8,7 @@ const ROLES = [
     perms: ['Quản lý người dùng', 'Quản lý vai trò', 'Xem nhật ký hệ thống', 'Khóa/mở tài khoản', 'Theo dõi trạng thái hệ thống'],
   },
   {
-    name: 'Bank Employee', color: 'bg-amber-100 text-amber-700', count: 124,
+    name: 'Nhân viên Nghiệp vụ', color: 'bg-amber-100 text-amber-700', count: 124,
     desc: 'Nhân viên ngân hàng thực hiện nghiệp vụ tra cứu và duyệt tài liệu.',
     perms: ['Sử dụng chatbot nội bộ', 'Upload tài liệu', 'Duyệt metadata', 'Duyệt điều khoản', 'Duyệt quan hệ tài liệu', 'Duyệt mâu thuẫn', 'Xem toàn bộ tài liệu nội bộ', 'Xem lịch sử phiên bản'],
   },
@@ -40,7 +40,7 @@ function PermCell({ value }: { value: string }) {
 
 export default function RolesPage() {
   return (
-    <AppLayout role="admin" pageTitle="Vai trò & Quyền">
+    <AppLayout role="ROLE_ADMIN" pageTitle="Vai trò & Quyền">
       <h1 className="text-lg font-semibold text-gray-900 mb-1">Vai trò và quyền truy cập</h1>
       <p className="text-sm text-gray-500 mb-5">Quản lý vai trò và phân quyền trong hệ thống</p>
 
@@ -78,7 +78,7 @@ export default function RolesPage() {
             <thead>
               <tr className="border-b border-[#DDE1E9] bg-[#F8FAFC]">
                 <th className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3 w-52">Chức năng</th>
-                {['Admin', 'Bank Employee', 'Customer'].map(r => (
+                {['Admin', 'Nhân viên Nghiệp vụ', 'Customer'].map(r => (
                   <th key={r} className="text-center text-xs font-semibold text-gray-500 uppercase tracking-wide px-4 py-3">
                     {r}
                   </th>

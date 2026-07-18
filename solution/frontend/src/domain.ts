@@ -1,4 +1,4 @@
-export type Role = 'customer' | 'bank_employee' | 'knowledge_manager' | 'system_admin'
+export type Role = 'ROLE_CUSTOMER' | 'ROLE_STAFF' | 'ROLE_COMPLIANCE' | 'ROLE_ADMIN'
 
 export type Permission =
   | 'chat:public' | 'chat:internal' | 'documents:read' | 'documents:manage'
@@ -65,16 +65,16 @@ export interface Document {
 export interface AuditLog { id: string; time: string; actor: string; role: Role; action: string; resourceType: string; target: string; result: 'success' | 'failed'; requestId: string; before?: string; after?: string; error?: string }
 
 export const ROLE_LABELS: Record<Role, string> = {
-  customer: 'Khách hàng', bank_employee: 'Nhân viên Nghiệp vụ', knowledge_manager: 'Chuyên gia Pháp chế', system_admin: 'Quản trị hệ thống',
+  ROLE_CUSTOMER: 'Khách hàng', ROLE_STAFF: 'Nhân viên Nghiệp vụ', ROLE_COMPLIANCE: 'Chuyên gia Pháp chế', ROLE_ADMIN: 'Quản trị hệ thống',
 }
 
 export const ROLE_HOME: Record<Role, string> = {
-  customer: '/customer/chat', bank_employee: '/bank-employee/chat', knowledge_manager: '/knowledge-manager/dashboard', system_admin: '/admin/dashboard',
+  ROLE_CUSTOMER: '/customer/chat', ROLE_STAFF: '/bank-employee/chat', ROLE_COMPLIANCE: '/knowledge-manager/dashboard', ROLE_ADMIN: '/admin/dashboard',
 }
 
 export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
-  customer: ['chat:public'],
-  bank_employee: ['chat:internal', 'documents:read'],
-  knowledge_manager: ['documents:read', 'documents:manage', 'metadata:manage', 'relations:manage', 'reindex:manage'],
-  system_admin: ['users:manage', 'roles:manage', 'audit:read'],
+  ROLE_CUSTOMER: ['chat:public'],
+  ROLE_STAFF: ['chat:internal', 'documents:read'],
+  ROLE_COMPLIANCE: ['documents:read', 'documents:manage', 'metadata:manage', 'relations:manage', 'reindex:manage'],
+  ROLE_ADMIN: ['users:manage', 'roles:manage', 'audit:read'],
 }
