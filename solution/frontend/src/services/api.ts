@@ -3,7 +3,7 @@ import type { AuditLog, Conversation, Document, Message, Role, SourceGroup, Text
 const API_ROOT = import.meta.env.VITE_API_URL
   || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:8000/api/v1'
-    : '/api/v1')
+    : 'https://vaic2026.onrender.com/api/v1')
 
 const ACCESS_KEY = 'shb-rag-access-token'
 const REFRESH_KEY = 'shb-rag-refresh-token'

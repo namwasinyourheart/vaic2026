@@ -14,7 +14,7 @@ services:
       - key: NODE_VERSION
         value: 22.14.0
       - key: VITE_API_URL
-        sync: false
+        value: https://vaic2026.onrender.com/api/v1
 
   - type: web
     name: shb-rag-backend
