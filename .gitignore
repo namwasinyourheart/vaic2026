@@ -39,6 +39,7 @@ solution/backend/check_db.py
 Thumbs.db
 
 *.md
+!README.md
 !*/README.md
 !docs/*.md
 !solution/backend/DATABASE.md
